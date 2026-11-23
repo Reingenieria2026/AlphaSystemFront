@@ -1,0 +1,354 @@
+@use '../../../styles/variables' as *;
+@use 'sass:color';
+
+.titulo{
+    font-size: 10vh;
+    font-family: 'Euclid', sans-serif;
+    font-optical-sizing: auto;
+    margin-left: 90px;
+    
+}
+#comienzo{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    font-family: 'Euclid', sans-serif !important;
+    background-color: $blanco;
+    margin-right: 7%;
+    margin-left: 7%;
+    border-radius: 16px;
+    height: 100%;
+    align-items: center;
+    transition-duration: 300ms;
+    animation-duration: 300ms;
+    #derecho{
+        padding-top: 20px;
+        width: 100%;
+        max-width: fit-content;
+        display: flex;
+        flex-direction: row !important;
+        @include theme-prop(
+          background-color,
+          color-naranja-lighten-25,
+          color.adjust($color-naranja, $lightness: 25%)
+        );
+        //background-color: color.adjust($color-naranja, $lightness: 25%) !important;
+        padding: 15px 50px;
+        border-radius: 16px;
+        height: 90px;
+        .imagen{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+                width: 20vh;
+                height: 20vh;
+            max-height: 20vh;
+            max-width: 20vh;
+            margin-bottom: 0px;
+            img{
+                aspect-ratio: 1/1;
+                max-width: 30vh;
+                width: 30vh;
+                max-height: 30vh;
+                border-radius: 99999px;
+                margin-bottom: 10px;
+                background-color: $blanco !important;
+            }
+        }
+
+        .botones{
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            align-content: flex-start;
+            height: 20vh;
+            justify-content: flex-start;
+            .arriba{
+                margin-left: 30px;
+                width: 100%;
+                #boto{
+                    display: flex;
+                    flex-direction: row;
+                    border: 0px;
+                    background-color: $blanco;
+                    justify-content: center;
+                    align-items: center;
+                    p-fileupload{
+                        
+                        border: 0px;
+                        background-color: $blanco;
+                        width: 100%;
+                    }
+                }
+            }
+            .abajo{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-top: 10px;
+                width: 100%;
+                height: 100%;
+                gap: 0px;
+                margin: 0px;
+                button{
+                    margin-left: 30px;
+                    width: 100%;
+                    height: 43px;
+                    background-color: $color-naranja;
+                    border-radius: 99px;
+                    border: 0px;
+                    color: $blanco;
+                    font-size: 1.2em;
+                    transition: all 0.3s ease-in-out;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    &:hover{
+                        background-color: color.adjust($color-naranja, $lightness: -20%);
+                        color: $blanco;
+                        cursor: pointer;
+                    }
+                }
+               
+                #cancelar{
+                    background-color: transparent;
+                    border: 2px solid $color-naranja;
+                    color: $color-naranja;
+                    &:hover{
+                        background-color: color.adjust($color-naranja, $lightness: -20%);
+                        color: $blanco;
+                    }
+                }
+            }
+        }
+
+    }
+
+    #izquierdo{
+        background-color: $blanco;
+        width: 90%;
+        .card{
+            border: 0;
+            #carta{
+                background-color: transparent;
+                border: 0;
+                input{
+                    background-color: $blanco;
+                }
+            }
+        }
+    }
+}
+
+::ng-deep .p-fileupload .p-fileupload-choose-button {
+    background-color: $color-naranja !important;
+    border: none !important;
+    border-radius: 999px !important;
+    color: #ffffff !important;
+    font-size: 1.1em !important;
+    padding: 0.5em 1em !important;
+    width: 100%;
+  }
+  
+  ::ng-deep .p-fileupload .p-fileupload-choose-button:hover {
+    background-color: rgb(163, 38, 0) !important;  // Color para el estado hover
+  }
+
+  #quitar{
+    margin: 0;
+  }
+
+  #cartaimport{
+    background-color: $blanco !important;
+    padding: 20px;
+  }
+
+  /* rompe el encapsulado para aplicar a PrimeNG */
+:host ::ng-deep .compact-upload {
+
+    /* El contenedor de mensaje de PrimeNG dentro del fileupload */
+    .p-message {
+      display: none;
+    }
+  
+    /* Opcional: si quieres que flote sobre el fileupload */
+
+  }
+
+  /* Estilos frescos y minimalistas para CrearUsuarioComponent */
+
+
+
+// Variables base (asume definidas globalmente):
+// $color-naranja, $color-beige, $color-marron, $blanco, $blanco_opciones
+
+$primary: $color-naranja;
+$secondary-bg: $color-beige;
+$text-color: $color-marron;
+$white: $blanco;
+$hover-bg: color.adjust($primary, $lightness: 15%);
+
+#eliminarFoto{
+    border-radius: 16666px;
+    width: 100%;
+    opacity: 0.5;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  padding: 2rem;
+}
+
+.titulo {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: $text-color;
+  text-align: center;
+  margin-top: 2rem;
+  text-transform: uppercase;
+}
+
+#comienzo {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+}
+
+#derecho,
+#izquierdo {
+  flex: 1;
+}
+
+.imagen {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto 1.5rem;
+  border-radius: 99999px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+}
+
+.botones {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+    justify-content: center;
+    align-items: center;
+  button {
+    width: 100%;
+    padding: 0.8rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5rem;
+    background: $primary;
+    color: $white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: $hover-bg;
+    }
+  }
+}
+
+.card-body {
+  background: $white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+
+
+/* Etiquetas */
+label {
+  font-weight: 600;
+  color: $text-color;
+  display: block;
+}
+
+/* Inputs de texto */
+
+
+/* Dropdowns */
+.p-dropdown {
+  width: 100%;
+
+  .p-dropdown-label,
+  .p-dropdown-trigger {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+  }
+}
+
+/* Mensajes de error */
+.text-danger,
+.text-red-600 {
+  color: #e74c3c;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+
+
+/* Botones adicionales */
+#guardar,
+#cancelar {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+// Para que nuestro CSS penetre dentro del PrimeNG p-dropdown
+:host ::ng-deep {
+  // Aplica al label (texto) y al trigger (flecha) igual que el input
+  .custom-dropdown .p-dropdown-label,
+  .custom-dropdown .p-dropdown-trigger {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    height: 110px !important;
+    background: $blanco;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  // Cuando el dropdown reciba foco, cambia borde y fondo como el input
+  .custom-dropdown.p-focus .p-dropdown-label,
+  .custom-dropdown.p-focus .p-dropdown-trigger {
+    border-color: $primary;     // tu $color-naranja
+    background: #fff;
+  }
+
+  // Oculta el borde interior por defecto si existiera
+  .custom-dropdown .p-dropdown {
+    border: none;
+  }
+}
+
+#contra{
+    width: 100%;
+}
+
+:host ::ng-deep .p-password .p-password-input {
+  width: 110%;
+  border-radius: 0.5rem;
+  background: #f9f9f9;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+:host ::ng-deep .p-password.p-focus .p-password-input {
+  border-color: $primary;
+  background: #fff;
+}

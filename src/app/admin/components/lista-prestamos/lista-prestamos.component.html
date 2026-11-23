@@ -1,0 +1,356 @@
+<!-- <div class="body">
+  <div class="titulo">
+    <span>
+      PRÉSTAMOS
+    </span>
+  </div>
+  <div class="navbar">
+    <div class="busqueda">
+      <input
+        id="bus"
+        type="text"
+        pInputText
+        placeholder="Buscar por ID, nombre o correo"
+        [(ngModel)]="searchTerm"
+        (input)="onSearchChange($event)"
+        class="w-full"
+      />
+    </div>
+    <div class="btnBuscar">
+      <button [routerLink]="['/admin/detalles-prestamo']">
+        <span>Nuevo Préstamo</span>
+      </button>
+    </div>
+  </div>
+  <div class="lista">
+    <div class="usuarios">
+      <div class="contenido">
+        <div class="lis">
+          <p-scrollpanel [style]="{ width: '100%', height: '355px' }">
+            <ng-container *ngFor="let p of filteredPrestamos">
+              <div
+                id="usuario"
+                class=" flex items-center justify-between cursor-pointer"
+                [routerLink]="['/admin/detalles-prestamo/', p.idPrestamo]"
+              >
+                <div class="flex flex-col">
+                  <div class="flex items-center">
+                    <div class="font-medium">
+                      {{ p.usuario.nombreUsr }} {{ p.usuario.apellidoP }}
+                    </div>
+                    
+                  </div>
+                  <div class="flex items-center mt-1 ">
+                    <small class=" text-gray-600 border-r-8 border-transparent">
+                      Libro: {{ p.libro.titulo }}  
+                    </small>
+                    <small class="text-gray-600 border-r-8 border-transparent">
+                      Préstamo el dia: {{ p.fechaPrestamo | date:'dd/MM/yyyy' }}
+                    </small>
+                    <small
+                      *ngIf="p.devuelto"
+                      class=" text-gray-600"
+                    >
+                      Devolución: {{ p.fechaEntrega | date:'dd/MM/yyyy' }}
+                    </small>
+                  </div>
+                </div>
+
+                <div id="tipok" class="flex items-center gap-4">
+                  <span class="font-mono">#{{ p.idPrestamo }}</span>
+                  <span
+                    [ngClass]="
+                      p.devuelto
+                        ? 'text-green-500'
+                        : (p.multa && p.multa > 0
+                            ? 'text-red-600'
+                            : 'text-yellow-600')
+                    "
+                  >
+                    {{
+                      p.devuelto
+                        ? 'Entregado'
+                        : (p.multa && p.multa > 0
+                            ? 'Con deuda'
+                            : 'Pendiente')
+                    }}
+                  </span>
+                </div>
+
+              </div>
+            </ng-container>
+            <div
+              *ngIf="filteredPrestamos.length === 0"
+              class="text-center text-gray-600 p-4"
+            >
+              No se encontraron préstamos.
+            </div>
+
+          </p-scrollpanel>
+        </div>
+      </div>
+
+      <div class="filtros">
+        <div id="fil" class="p-m-2">
+          <div class="p-m-2 w-full">
+            <span id="tit">Filtros</span>
+
+
+
+            <div class="filtros">
+              <p-accordion class="w-full md:w-80 filters-accordion">
+ 
+                <p-accordionTab>
+                  <ng-template pTemplate="header">
+                    Estado de préstamo
+                  </ng-template>
+
+
+                  <ng-template pTemplate="content">
+                <div
+                  id="opciones"
+                  *ngFor="let opt of statusOptions"
+                  class="p-field-radiobutton"
+                >
+                  <p-radioButton
+                    name="statusFilter"
+                    [value]="opt.value"
+                    [(ngModel)]="filterMode"
+                    (onClick)="applyFilters()"
+                    [inputId]="'rbStatus_' + opt.value"
+                  ></p-radioButton>
+                  <label [for]="'rbStatus_' + opt.value">{{opt.label}}</label>
+                </div>
+              </ng-template>
+
+                </p-accordionTab>
+
+                <p-accordionTab>
+          <ng-template pTemplate="header">Ordenar por fecha</ng-template>
+          <ng-template pTemplate="content">
+  <div id="opciones" *ngFor="let opt of dateSortOptions" class="p-field-radiobutton">
+    <p-radioButton
+      name="dateSort"
+      [value]="opt.value"
+      [(ngModel)]="dateSortMode"
+      (onClick)="applyFilters()"
+      [inputId]="'rbDate_' + opt.value"
+    ></p-radioButton>
+    <label 
+      [for]="'rbDate_' + opt.value" 
+      class="ml-2"
+    >
+      {{ opt.label }}
+    </label>
+  </div>
+</ng-template>
+        </p-accordionTab>
+              
+              </p-accordion>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="body">
+  <div class="titulo" @fadeUp>
+    <span>PRÉSTAMOS</span>
+  </div>
+
+  <div class="lista">
+    <div class="usuarios">
+      <div class="contenido">
+        <div class="lis">
+
+          <p-table
+            #dt
+            [value]="rows"
+            dataKey="idPrestamo"
+            rowGroupMode="subheader"
+            groupRowsBy="groupKey"
+            sortField="groupName"
+            sortMode="single"
+            [paginator]="true"
+            [rows]="10"
+            [rowsPerPageOptions]="[10,25,50]"
+            [globalFilterFields]="['idPrestamo','groupName','groupEmail','libroTitulo']"
+            [tableStyle]="{'min-width':'72rem'}"
+            
+            responsiveLayout="scroll"
+            scrollable="true"
+          scrollHeight="460px"
+          [loading]="loading"
+          @fadeSimple
+          >
+            <!-- Barra de búsqueda global -->
+            <ng-template #caption>
+              <div class="toolbar">
+                <span class="p-input-icon-left ml-auto">
+                  <i class="pi pi-search"></i>
+                  <input #gb pInputText type="text"
+                         placeholder="Buscar por ID, usuario, correo o libro"
+                         (input)="dt.filterGlobal(gb.value, 'contains')" />
+                </span>
+              </div>
+            </ng-template>
+
+            <!-- Encabezado -->
+            <ng-template #header>
+              <tr>
+                <th style="width:10rem" pSortableColumn="idPrestamo">
+                  # Préstamo <p-sortIcon field="idPrestamo"></p-sortIcon>
+                </th>
+                <th pSortableColumn="libroTitulo">
+                  Libro <p-sortIcon field="libroTitulo"></p-sortIcon>
+                </th>
+                <th pSortableColumn="fechaPrestamo">
+                  Fecha préstamo <p-sortIcon field="fechaPrestamo"></p-sortIcon>
+                </th>
+                <th pSortableColumn="fechaEntrega">
+                  Fecha devolución <p-sortIcon field="fechaEntrega"></p-sortIcon>
+                </th>
+                <th>
+                  Estado
+                  <p-columnFilter field="estadoKey" matchMode="equals" [showMenu]="false">
+                    <ng-template #filter let-value let-filter="filterCallback">
+                      <p-dropdown
+                        [options]="estadoOptions"
+                        [ngModel]="value"
+                        (ngModelChange)="filter($event)"
+                        placeholder="Todos"
+                        [showClear]="true"
+                        styleClass="w-full md:w-14rem"
+                      ></p-dropdown>
+                    </ng-template>
+                  </p-columnFilter>
+                </th>
+                <th style="width:10rem">
+                  Multa
+                  <!-- ahora filtramos por multaFlag (0/1) con equals -->
+                  <p-columnFilter field="multaFlag" matchMode="equals" [showMenu]="false">
+                    <ng-template #filter let-value let-filter="filterCallback">
+                      <p-dropdown
+                        [options]="multaOptions"
+                        [ngModel]="value"
+                        (ngModelChange)="filter($event)"
+                        placeholder="Todas"
+                        [showClear]="true"
+                        styleClass="w-full md:w-10rem"
+                      ></p-dropdown>
+                    </ng-template>
+                  </p-columnFilter>
+                </th>
+                <th style="width:16rem">Acciones</th>
+              </tr>
+            </ng-template>
+
+            <!-- Cabecera de grupo (USUARIO) con toggler -->
+            <ng-template #groupheader let-row let-expanded="expanded">
+              <tr class="p-rowgroup-header">
+                <td colspan="7">
+                  <button
+                    type="button"
+                    pButton
+                    pRipple
+                    [pRowToggler]="row"
+                    text
+                    rounded
+                    plain
+                    class="mr-2"
+                    [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
+                  </button>
+
+                  <img
+                    [alt]="row.groupName"
+                    [src]="row.groupAvatar || 'assets/user_icon.png'"
+                    class="avatar" />
+
+                  <span class="font-bold ml-2">{{ row.groupName }}</span>
+                  <small class="correo ml-2">{{ row.groupEmail }}</small>
+                </td>
+              </tr>
+            </ng-template>
+
+            <!-- Pie de grupo -->
+            <ng-template #groupfooter let-row>
+              <tr class="p-rowgroup-footer">
+                <td colspan="6" style="text-align:right">Total de préstamos del usuario</td>
+                <td>{{ calcularTotalPorUsuario(row.groupKey) }}</td>
+              </tr>
+            </ng-template>
+
+            <!-- Filas dentro del grupo (expandibles) -->
+            <ng-template #expandedrow let-row >
+              <tr class="clickable-row cursor-pointer" (click)="onRowClick(row)"
+    tabindex="0">
+                <td>#{{ row.idPrestamo }}</td>
+                <td>{{ row.libroTitulo }}</td>
+                <td>{{ row.fechaPrestamo | date:'dd/MM/yyyy' }}</td>
+                <td>{{ row.fechaEntrega | date:'dd/MM/yyyy' }}</td>
+                <td>
+                  <p-tag [value]="row.estadoLabel" [severity]="row.estadoSeverity"></p-tag>
+                </td>
+                <td class="text-right">
+                  <ng-container *ngIf="row.multa > 0; else sinMulta">
+                    ${{ row.multa | number:'1.2-2' }}
+                  </ng-container>
+                  <ng-template #sinMulta>—</ng-template>
+                </td>
+                <td class="acciones" (click)="$event.stopPropagation()"
+        (mousedown)="$event.stopPropagation()">
+                  <button
+                    pButton
+                    pRipple
+                    label="Pagar multa"
+                    icon="pi pi-wallet"
+                    class="p-button-sm p-button-danger"
+                    (click)="confirmPagarMulta(row)"
+                    [disabled]="row.multa <= 0 || row.devuelto == 1 || loadingIds.has(row.idPrestamo)"
+                  ></button>
+
+                  <button
+                    pButton
+                    pRipple
+                    label="Marcar devuelto"
+                    icon="pi pi-check"
+                    class="p-button-sm p-button-success"
+                    (click)="confirmMarcarDevuelto(row)"
+                    [disabled]="row.devuelto === 1 || row.multa > 0 || loadingIds.has(row.idPrestamo)"
+                  ></button>
+                </td>
+              </tr>
+            </ng-template>
+
+            <!-- Vacío -->
+            <ng-template #emptymessage>
+              <tr>
+                <td colspan="7">No se encontraron préstamos.</td>
+              </tr>
+            </ng-template>
+
+            <!-- LOADING ICON (opcional) -->
+          <ng-template pTemplate="loadingicon">
+            <ng-lottie
+              [options]="spinner"
+              style="width:80px; height:80px; margin:auto"
+              autoplay
+              loop
+            ></ng-lottie>
+          </ng-template>
+          </p-table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="boton">
+      <div [style]="{ position: 'relative' }">
+        
+        <p-speeddial [model]="items" direction="up" [style]="{ position: 'absolute', right: 0, bottom: 0 }" [buttonProps]="{  rounded: true }" [tooltipOptions]="{ tooltipPosition: 'left' }" />
+    </div>
+    </div>
+  <p-confirmDialog></p-confirmDialog>
+  <p-toast></p-toast>
+</div>

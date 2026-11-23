@@ -1,0 +1,439 @@
+
+<!-- <div class="body">
+  <div class="titulo">
+    <span>
+      LIBROS
+    </span>
+  </div>
+  <div class="navbar">
+    <div class="busqueda">
+      <input
+        id="bus"
+        type="text"
+        pInputText
+        placeholder="Buscar por título, autor, editorial o ISBN"
+        [(ngModel)]="busqueda"
+        (input)="filtrarLibros()"
+        class="w-full"
+      />
+    </div>
+    <div class="btnBuscar">
+      <button [routerLink]="['/admin/app-crear-libro']">
+        <span>Registrar nuevo libro</span>
+      </button>
+    </div>
+  </div>
+  <div class="lista">
+    <div class="usuarios">
+      <div class="contenido">
+        <div class="lis">
+          <p-scrollpanel [style]="{ width: '100%', height: '320px' }">
+            <div
+              class="lis grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+            >
+              <ng-container *ngFor="let libro of librosPaginados">
+                <div
+                  id="usuario"
+                  class="flex flex-col items-center text-center shadow rounded"
+                >
+                  <div id="dentro" class="datos">
+                    <img
+                      [src]="libro.fotoUsr ? 'http://localhost:8000/storage/' + libro.fotoUsr : 'assets/book_icon.png'"
+                      [alt]="libro.titulo"
+                      id="ima"
+                      class="w-16 h-24 rounded mb-3"
+                    />
+                    <div class="text-sm font-bold">{{ libro.titulo }}</div>
+                    <div class="text-xs text-gray-600">{{ libro.autor }}</div>
+                    <div class="text-xs text-gray-500">
+                      ISBN: {{ libro.isbn }}
+                    </div>
+                    <div class="text-xs text-gray-500">
+                      Estado: {{ estadosLibro[libro.idEstadoLibro] ||
+                      'Desconocido' }}
+                    </div>
+                  </div>
+                  
+                  <div class="mt-2 flex justify-center gap-2">
+                    <button
+                      id="edi"
+                      class="btn btn-editar"
+                      (click)="editarLibro(libro.isbn)"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                        color="#000000"
+                        fill="none"
+                      >
+                        <defs />
+                        <path
+                          fill="currentColor"
+                          d="M10.143,19.996 C9.872,19.867 9.519,19.679 9.081,19.445 L9.063,19.436 C8.209,18.981 7.006,18.516 5.444,18.222 L5.402,18.214 L5.402,18.214 C4.52,18.048 3.803,17.913 3.257,17.753 C2.707,17.592 2.191,17.368 1.836,16.934 C1.494,16.516 1.365,16.016 1.307,15.484 C1.25,14.972 1.25,14.326 1.25,13.548 L1.25,7.038 C1.25,6.197 1.25,5.478 1.34,4.905 C1.438,4.284 1.656,3.73 2.164,3.301 C2.656,2.884 3.196,2.746 3.792,2.75 C4.323,2.754 4.951,2.872 5.661,3.005 L5.721,3.017 C8.252,3.493 10.019,4.4 11,5.17 C11.981,4.4 13.748,3.493 16.279,3.017 L16.339,3.005 C17.049,2.872 17.677,2.754 18.208,2.75 C18.804,2.746 19.344,2.884 19.836,3.301 C20.344,3.73 20.562,4.284 20.66,4.905 C20.75,5.478 20.75,6.197 20.75,7.038 L20.75,10 C20.75,10.414 20.414,10.75 20,10.75 C19.586,10.75 19.25,10.414 19.25,10 L19.25,7.097 C19.25,6.18 19.248,5.581 19.178,5.139 C19.114,4.731 19.008,4.565 18.867,4.446 C18.71,4.313 18.545,4.248 18.217,4.25 C17.839,4.253 17.345,4.342 16.556,4.491 C13.937,4.983 12.356,5.95 11.724,6.52 C11.756,6.603 11.773,6.694 11.773,6.789 L11.773,19.789 C11.773,20.203 11.438,20.539 11.023,20.539 C10.713,20.539 10.447,20.351 10.333,20.082 C10.271,20.055 10.207,20.026 10.143,19.996 Z M3.783,4.25 C3.455,4.248 3.29,4.313 3.133,4.446 C2.992,4.565 2.886,4.731 2.822,5.139 C2.752,5.581 2.75,6.18 2.75,7.097 L2.75,13.504 C2.75,14.337 2.751,14.899 2.798,15.32 C2.843,15.731 2.922,15.893 2.997,15.984 C3.058,16.058 3.208,16.176 3.679,16.314 C4.145,16.451 4.788,16.572 5.721,16.748 C7.427,17.069 8.775,17.583 9.768,18.112 C9.959,18.214 10.126,18.303 10.273,18.38 L10.273,6.789 C10.273,6.706 10.287,6.626 10.312,6.552 C9.704,5.987 8.113,4.993 5.444,4.491 C4.655,4.342 4.161,4.253 3.783,4.25 Z M21.394,12.408 L22.089,13.1 C22.97,13.978 22.971,15.402 22.092,16.282 L18.447,19.98 C18.056,20.369 17.557,20.632 17.015,20.735 L14.768,21.221 C13.884,21.412 13.087,20.63 13.279,19.737 L13.757,17.511 C13.861,16.969 14.126,16.471 14.517,16.081 L18.205,12.408 C19.086,11.531 20.513,11.531 21.394,12.408 Z M19.264,13.471 L15.576,17.144 C15.396,17.323 15.276,17.551 15.23,17.798 L15.226,17.817 L14.827,19.674 L16.708,19.267 C16.715,19.266 16.722,19.264 16.729,19.263 C16.978,19.217 17.207,19.097 17.386,18.919 L21.03,15.222 C21.324,14.929 21.324,14.456 21.03,14.163 L20.335,13.471 C20.04,13.176 19.559,13.176 19.264,13.471 Z"
+                        />
+                      </svg>
+                    </button>
+                    
+                    <button
+                      *ngIf="libro.idEstadoLibro != 5"
+                      id="eli"
+                      class="btn btn-eliminar"
+                      (click)="confirmarAccionLibro($event, libro)"
+
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                        color="#000000"
+                        fill="none"
+                      >
+                        <defs />
+                        <path
+                          fill="currentColor"
+                          d="M13.103,1.25 C13.474,1.251 13.797,1.256 14.075,1.281 C14.444,1.314 14.788,1.386 15.122,1.559 C15.255,1.628 15.381,1.707 15.5,1.796 C15.802,2.021 16.016,2.299 16.207,2.617 C16.387,2.916 16.569,3.293 16.784,3.736 L17.276,4.75 L21.75,4.75 C22.164,4.75 22.5,5.086 22.5,5.5 C22.5,5.914 22.164,6.25 21.75,6.25 L20.955,6.25 L20.376,15.61 C20.299,16.858 20.238,17.848 20.113,18.639 C19.984,19.45 19.778,20.126 19.366,20.717 C18.989,21.257 18.504,21.714 17.941,22.056 C17.326,22.431 16.639,22.595 15.821,22.674 C15.024,22.75 14.032,22.75 12.781,22.75 L12.704,22.75 C11.452,22.75 10.459,22.75 9.66,22.674 C8.842,22.595 8.154,22.431 7.539,22.055 C6.975,21.712 6.49,21.255 6.113,20.713 C5.701,20.121 5.496,19.445 5.368,18.632 C5.244,17.84 5.184,16.849 5.108,15.599 L4.544,6.25 L3.75,6.25 C3.336,6.25 3,5.914 3,5.5 C3,5.086 3.336,4.75 3.75,4.75 L8.321,4.75 L8.74,3.831 C8.949,3.371 9.127,2.981 9.304,2.671 C9.492,2.342 9.705,2.052 10.011,1.818 C10.131,1.726 10.259,1.643 10.394,1.572 C10.734,1.391 11.085,1.317 11.463,1.282 C11.818,1.25 12.247,1.25 12.752,1.25 Z M19.452,6.25 L6.047,6.25 L6.603,15.47 C6.682,16.767 6.738,17.687 6.85,18.4 C6.96,19.1 7.114,19.526 7.344,19.857 C7.602,20.227 7.934,20.54 8.32,20.775 C8.663,20.984 9.098,21.113 9.804,21.18 C10.522,21.249 11.443,21.25 12.743,21.25 C14.04,21.25 14.961,21.249 15.678,21.181 C16.383,21.113 16.817,20.985 17.16,20.775 C17.546,20.541 17.878,20.229 18.136,19.859 C18.366,19.529 18.52,19.104 18.631,18.404 C18.744,17.692 18.802,16.774 18.882,15.479 Z M10.25,9.75 C10.664,9.75 11,10.086 11,10.5 L11,16.5 C11,16.914 10.664,17.25 10.25,17.25 C9.836,17.25 9.5,16.914 9.5,16.5 L9.5,10.5 C9.5,10.086 9.836,9.75 10.25,9.75 Z M15.25,9.75 C15.664,9.75 16,10.086 16,10.5 L16,16.5 C16,16.914 15.664,17.25 15.25,17.25 C14.836,17.25 14.5,16.914 14.5,16.5 L14.5,10.5 C14.5,10.086 14.836,9.75 15.25,9.75 Z M13.199,2.751 L12.408,2.751 C12.063,2.752 11.808,2.757 11.599,2.776 C11.333,2.8 11.198,2.843 11.098,2.896 C11.037,2.929 10.979,2.966 10.924,3.008 C10.834,3.077 10.739,3.183 10.607,3.414 C10.468,3.658 10.318,3.985 10.091,4.482 L9.969,4.75 L15.609,4.75 L15.448,4.419 C15.216,3.939 15.062,3.624 14.921,3.389 C14.787,3.166 14.693,3.065 14.603,2.998 C14.549,2.958 14.492,2.922 14.432,2.89 C14.333,2.839 14.2,2.798 13.941,2.775 C13.746,2.758 13.512,2.752 13.199,2.751 Z"
+                        />
+                      </svg>
+                    </button>
+
+                    <button
+                      *ngIf="libro.idEstadoLibro === 5"
+                      id="eli"
+                      class="btn btn-eliminar"
+                      (click)="confirmarAccionLibro($event, libro)"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                        color="#000000"
+                        fill="none"
+                      >
+                        <defs />
+                        <path
+                          fill="currentColor"
+                          d="M12.752,1.25 L12.816,1.25 C13.309,1.25 13.727,1.25 14.075,1.281 C14.444,1.314 14.788,1.386 15.122,1.559 C15.255,1.628 15.381,1.707 15.5,1.796 C15.802,2.021 16.016,2.299 16.207,2.617 C16.387,2.916 16.569,3.293 16.784,3.736 L16.784,3.736 L17.276,4.75 L21.75,4.75 C22.164,4.75 22.5,5.086 22.5,5.5 C22.5,5.914 22.164,6.25 21.75,6.25 L20.94,6.25 L20.497,11.562 C20.463,11.975 20.101,12.282 19.688,12.247 C19.275,12.213 18.968,11.851 19.003,11.438 L19.435,6.25 L6.047,6.25 L6.603,15.492 C6.682,16.791 6.738,17.713 6.85,18.428 C6.96,19.13 7.115,19.558 7.345,19.889 C7.603,20.26 7.935,20.574 8.32,20.809 C8.739,21.066 9.287,21.198 10.29,21.251 C10.703,21.273 11.021,21.626 10.999,22.04 C10.977,22.453 10.624,22.771 10.21,22.749 C9.14,22.692 8.283,22.545 7.538,22.089 C6.975,21.745 6.489,21.287 6.113,20.744 C5.701,20.152 5.496,19.474 5.368,18.66 C5.244,17.867 5.184,16.873 5.108,15.62 L4.544,6.25 L3.75,6.25 C3.336,6.25 3,5.914 3,5.5 C3,5.086 3.336,4.75 3.75,4.75 L8.321,4.75 L8.74,3.831 L8.74,3.831 C8.949,3.371 9.127,2.981 9.304,2.671 C9.492,2.342 9.705,2.052 10.011,1.818 C10.131,1.726 10.259,1.643 10.394,1.572 C10.733,1.391 11.085,1.317 11.463,1.282 C11.818,1.25 12.247,1.25 12.752,1.25 L12.752,1.25 Z M17.979,13.413 C19.276,13.761 20.304,14.614 20.906,15.702 C21.107,16.064 20.976,16.52 20.613,16.721 C20.251,16.921 19.794,16.79 19.594,16.428 C19.181,15.682 18.479,15.1 17.591,14.862 C15.857,14.397 14.075,15.426 13.611,17.16 C13.537,17.435 13.314,17.645 13.034,17.701 C12.755,17.757 12.468,17.651 12.293,17.425 L11.157,15.96 C10.903,15.632 10.963,15.161 11.29,14.907 C11.618,14.654 12.089,14.713 12.343,15.041 L12.705,15.508 C13.778,13.767 15.902,12.856 17.979,13.413 Z M19.889,18.842 C19.963,18.567 20.186,18.358 20.465,18.301 C20.744,18.245 21.031,18.352 21.206,18.576 L22.342,20.04 C22.596,20.368 22.537,20.839 22.21,21.093 C21.883,21.347 21.412,21.287 21.157,20.96 L20.795,20.493 C19.723,22.236 17.598,23.146 15.521,22.589 C14.254,22.25 13.243,21.428 12.636,20.376 C12.429,20.017 12.552,19.559 12.911,19.352 C13.269,19.145 13.728,19.267 13.935,19.626 C14.352,20.347 15.042,20.908 15.909,21.14 C17.642,21.605 19.425,20.576 19.889,18.842 Z M15.609,4.75 L15.448,4.419 C15.216,3.939 15.062,3.624 14.921,3.389 C14.787,3.166 14.693,3.065 14.603,2.998 C14.549,2.958 14.492,2.922 14.432,2.89 C14.333,2.839 14.2,2.798 13.941,2.775 C13.668,2.751 13.318,2.75 12.785,2.75 C12.238,2.75 11.878,2.751 11.599,2.776 C11.333,2.8 11.198,2.843 11.098,2.896 C11.037,2.929 10.979,2.966 10.924,3.008 C10.834,3.077 10.739,3.183 10.607,3.414 C10.468,3.658 10.318,3.985 10.091,4.482 L9.969,4.75 Z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+
+              <div
+                *ngIf="librosFiltrados.length === 0"
+                class="text-center text-gray-600 p-4 col-span-4"
+              >
+                No se encontraron libros.
+              </div>
+            </div>
+          </p-scrollpanel>
+        </div>
+
+        <div
+          class="card flex justify-center"
+          style="border-color: transparent;"
+        >
+          <p-paginator
+            class="paginador-transparente"
+            [first]="first"
+            [rows]="rows"
+            [totalRecords]="librosFiltrados.length"
+            [rowsPerPageOptions]="[8,12,16]"
+            (onPageChange)="onPageChange($event)"
+          >
+          </p-paginator>
+        </div>
+      </div>
+
+      <div class="filtros">
+        <div id="fil" class="p-m-2">
+          <div class="p-m-2 w-full">
+            <span id="tit">Filtros</span>
+
+            <div class="filtros">
+              <p-accordion class="w-full md:w-80 filters-accordion">
+
+                <p-scrollpanel [style]="{ width: '100%', height: '290px' }">
+                <p-accordionTab>
+                  <ng-template pTemplate="header">
+                    Ordenar por
+                  </ng-template>
+                  <ng-template pTemplate="content">
+                    <div
+                      id="opciones"
+                      *ngFor="let opt of sortFields"
+                      class="p-field-radiobutton"
+                    >
+                      <p-radioButton
+                        name="sortField"
+                        [value]="opt.value"
+                        [(ngModel)]="selectedSortField"
+                        (onClick)="aplicarFiltros()"
+                        [inputId]="'rbSort_'+opt.value"
+                      >
+                      </p-radioButton>
+                      <label [for]="'rbSort_'+opt.value">{{ opt.label }}</label>
+                    </div>
+                  </ng-template>
+                </p-accordionTab>
+
+                <p-accordionTab>
+                  <ng-template pTemplate="header">
+                    Orden
+                  </ng-template>
+                  <ng-template pTemplate="content">
+                    <div
+                      id="opciones"
+                      *ngFor="let opt of sortOrders"
+                      class="p-field-radiobutton"
+                    >
+                      <p-radioButton
+                        name="sortOrder"
+                        [value]="opt.value"
+                        [(ngModel)]="selectedSortOrder"
+                        (onClick)="aplicarFiltros()"
+                        [inputId]="'rbOrder_'+opt.value"
+                      >
+                      </p-radioButton>
+                      <label [for]="'rbOrder_'+opt.value"
+                        >{{ opt.label }}</label
+                      >
+                    </div>
+                  </ng-template>
+                </p-accordionTab>
+                <p-accordionTab>
+                  <ng-template pTemplate="header">
+                    Estado del libro
+                  </ng-template>
+                  <ng-template pTemplate="content">
+                    <div
+                      id="opciones"
+                      *ngFor="let estadoId of [1,2,3,4,5]"
+                      class="p-field-checkbox"
+                    >
+                      <p-checkbox
+                        name="estadoFilter"
+                        [inputId]="'estado_' + estadoId"
+                        [value]="estadoId"
+                        [(ngModel)]="filtroEstadosSeleccionados"
+                        (onChange)="onFilterChange()"
+                      >
+                      </p-checkbox>
+                      <label [for]="'estado_' + estadoId"
+                        >{{ estadosLibro[estadoId] }}</label
+                      >
+                    </div>
+                  </ng-template>
+                </p-accordionTab>
+                </p-scrollpanel>
+              </p-accordion>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<p-confirmDialog />
+<div class="body">
+  
+  <div class="titulo" @fadeUp>
+    
+    <span>LIBROS</span>
+  </div>
+
+  <div class="lista">
+    
+    <div class="usuarios">
+      <div class="contenido">
+        <p-table
+          #dt
+          [value]="libros"
+          dataKey="isbn"
+          [paginator]="true"
+          [rows]="rows"
+          [rowsPerPageOptions]="[8,12,16]"
+          [loading]="loading"
+          [globalFilterFields]="['isbn','titulo']"
+          [filters]="filters"
+          [tableStyle]="{ 'min-width': '30rem' }"
+          
+          scrollable="true"
+          scrollHeight="460px"
+          @fadeSimple
+        >
+
+          <!-- GLOBAL FILTER -->
+          <ng-template pTemplate="caption">
+            <div class="flex">
+              <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputText
+                  type="text"
+                  placeholder="Buscar ISBN o Título"
+                  (input)="dt.filterGlobal($any($event.target).value,'contains')"
+                />
+              </span>
+            </div>
+          </ng-template>
+
+          <!-- COLUMN DEFINITIONS -->
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="isbn">
+                ISBN <p-sortIcon field="isbn"></p-sortIcon>
+              </th>
+              <th pSortableColumn="titulo">
+                Título <p-sortIcon field="titulo"></p-sortIcon>
+              </th>
+              <th pSortableColumn="autor">
+                Autor <p-sortIcon field="autor"></p-sortIcon>
+              </th>
+              <th pSortableColumn="edicion">
+                Edición <p-sortIcon field="edicion"></p-sortIcon>
+              </th>
+              <th pSortableColumn="cantidad">
+                Cantidad <p-sortIcon field="cantidad"></p-sortIcon>
+              </th>
+              <th>Estado</th>
+              <th>Género</th>
+              <th>Acciones</th>
+            </tr>
+            <tr>
+              <th>
+                
+              </th>
+              <th>
+                
+              </th>
+              <th>
+                
+              </th>
+              <th>
+                
+              </th>
+              <th>
+                
+              </th>
+<th>
+  <p-columnFilter
+    field="idEstadoLibro"
+    matchMode="equals"
+    [showMenu]="false"
+  >
+    <ng-template #filter let-value let-filter="filterCallback">
+      <p-dropdown
+        [options]="statusOptions" 
+        [ngModel]="value"
+        (ngModelChange)="filter($event)"
+        placeholder="Estado"
+        [showClear]="true"
+      >
+        <ng-template pTemplate="item" let-opt>
+          <p-tag
+            [value]="opt.label"
+            [severity]="getSeverityById(opt.value)"
+          ></p-tag>
+        </ng-template>
+      </p-dropdown>
+    </ng-template>
+  </p-columnFilter>
+</th>
+
+              <th>
+                <p-columnFilter
+                  field="idGenero"
+                  matchMode="equals"
+                  [showMenu]="false"
+                >
+                  <ng-template #filter let-value let-filter="filterCallback">
+                    <p-dropdown
+                      [options]="genreOptions"
+                      [ngModel]="value"
+                      (ngModelChange)="filter($event)"
+                      placeholder="Género"
+                      [showClear]="true"
+                    ></p-dropdown>
+                  </ng-template>
+                </p-columnFilter>
+              </th>
+              <th></th>
+            </tr>
+          </ng-template>
+
+          <!-- ROW TEMPLATE -->
+          <ng-template pTemplate="body" let-libro>
+            <tr (click)="viewDetails(libro.isbn)" class="clickable-row">
+              <td>{{ libro.isbn }}</td>
+              <td>{{ libro.titulo }}</td>
+              <td>{{ libro.autor }}</td>
+              <td>{{ libro.edicion }}</td>
+              <td>{{ libro.cantidad }}</td>
+              <td>
+  <p-tag
+    [value]="estadoLabel(libro.idEstadoLibro)"
+    [severity]="getSeverityById(libro.idEstadoLibro)"
+  ></p-tag>
+</td>
+              <td>
+                <p-tag
+                  [value]="genreMap[libro.idGenero]"
+                  severity="secondary"
+                ></p-tag>
+              </td>
+              <td>
+  <td>
+  <button
+    pButton
+    type="button"
+    [icon]="!isEliminado(libro) ? 'pi pi-trash' : 'pi pi-replay'"
+    [class.p-button-danger]="!isEliminado(libro)"
+    [class.p-button-success]="isEliminado(libro)"
+    class="p-button-rounded p-button-text"
+    [title]="!isEliminado(libro) ? 'Eliminar libro' : 'Restaurar libro'"
+    (click)="confirmarAccionLibro($event, libro); $event.stopPropagation()"
+  ></button>
+</td>
+            </tr>
+          </ng-template>
+
+          <!-- EMPTY MESSAGE -->
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="8">No se encontraron libros.</td>
+            </tr>
+          </ng-template>
+
+          <!-- LOADING ICON (opcional) -->
+          <ng-template pTemplate="loadingicon">
+            <ng-lottie
+              [options]="spinner"
+              style="width:80px; height:80px; margin:auto"
+              autoplay
+              loop
+            ></ng-lottie>
+          </ng-template>
+        </p-table>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+<div class="boton">
+      <div [style]="{ position: 'relative' }">
+        
+        <p-speeddial [model]="items" direction="up" [style]="{ position: 'absolute', right: 0, bottom: 0 }" [buttonProps]="{  rounded: true }" [tooltipOptions]="{ tooltipPosition: 'left' }" />
+    </div>
+    </div>
+    
+
+</div>
+

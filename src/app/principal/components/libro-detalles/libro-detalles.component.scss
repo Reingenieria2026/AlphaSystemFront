@@ -1,0 +1,463 @@
+@use '../../../styles/variables' as *;
+
+:host ::ng-deep .p-carousel .p-carousel-item .product-card {
+    /* Asegura que cada tarjeta se expanda al mismo alto y
+       mantenga la distribución vertical del contenido */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;          /* Se estira para ocupar todo el espacio */
+    box-sizing: border-box;
+      animation-duration: 300ms;
+      transition-duration: 300ms;
+      background-color: $color-beige;
+      
+
+    &:hover{
+      transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+      animation-duration: 300ms;
+      transition-duration: 300ms;
+    }
+  }
+
+  #cast{
+  width: 100% !important;
+  margin: 0px ;
+  border: transparent;
+  background-color: $blanco ;
+}
+
+#anim{
+  transition: transform 0.3s ease;
+  width: 100%;
+  max-width: 180px;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+#im{
+  width: 100%;
+  max-width: 180px;
+  height: 30vh;
+  object-fit: cover;
+  object-position: center;
+  aspect-ratio: 2 / 3 !important;
+}
+
+
+.estes{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+#titulo{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  .princi{
+    margin-top: 10px;
+    font-size: 17px;
+    font-weight: 500;
+    color: $color-marron;
+    width: 120%;
+  }
+  .secu{
+    font-size: 15px;
+    font-weight: 400;
+    color: $color-marron;
+    opacity: 0.5;
+  }
+}
+
+
+
+
+.spinner-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.spinner {
+  width: 80px;
+  height: 80px;
+}
+
+.book-details {
+  .cover {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 6px 6px 12px rgba(0,0,0,0.2);
+    margin-bottom: 1rem;
+  }
+  h2 {
+    margin: 0.5rem 0;
+  }
+  p {
+    margin: 0.25rem 0;
+  }
+}
+.sinopsis-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.loader-ai {
+  width: 100vh;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+    align-items: center; 
+    margin-top: 30px;
+    margin-bottom: 30px;
+    animation: rainbow-bg 8s ease-in-out infinite;
+    border-radius: 16px;
+    ng-lottie {
+        width: 150px;
+    }   
+}
+
+@keyframes rainbow-bg {
+  0%   { background-color: $color-marron;    }
+  16%  { background-color: $color-naranja; }
+  33%  { background-color: $color-beige; }
+  50%  { background-color: $blanco;  }
+  66%  { background-color: $blanco_opciones;   }
+  83%  { background-color: $color-marron-opaco; }
+  100% { background-color: $color-marron; }
+}
+
+
+.prin{
+    margin: 32px;
+    .opcion{
+    cursor: pointer;
+    transition: scale 0.3s ease;
+    border-radius: 99999px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .boton{
+        border-radius: 166666px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background-color: $color-naranja;
+        span{
+            color: $blanco;
+            font-size: 32px;
+            display: flex;
+    flex-direction: row;
+        }
+    }
+    &:hover{
+        scale: 1.05;
+        transition: scale 0.3s ease;
+    }
+}
+.cuerpo{
+    .contenido{
+        background-color: transparent;
+        .titulo{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            
+            .opcion{
+                margin-left: 90px;
+            }
+            .nombre{
+                margin-left: 0px;
+                display: flex;
+        flex-direction: column;
+        font-size: 40px;
+          font-weight: 500;
+          top: 11%;
+          color: $color-marron;
+          gap: 0.002em; 
+            }
+            .autor{
+                height: 40px;
+                margin-left: 8px;
+                margin-top: 16px;
+        font-size: 24px;
+          font-weight: 400;
+          top: 11%;
+          color: $color-marron;
+          opacity: 0.5;
+            }
+            .pestana{
+                margin-left: 10px;
+                font-weight: 400;
+                font-size: 24px;
+                color: $color-naranja;
+            }
+        }
+        .contenidoabajo{
+            
+            display: flex;
+            flex-direction: row;
+            margin-top: 3%;
+            justify-content: center;
+            align-items: center;
+            .imagen{
+                img{
+                    border-radius: 16px !important;
+                    aspect-ratio: 2 / 3 !important;
+                    object-fit: cover !important;
+                    width: 200px;
+                }
+            }
+            .detalles{
+                margin-left: 32px;
+                background-color: $color-beige;
+                padding: 10px;
+                border-radius: 16px;
+                .etiquetas{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    .importantes{
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        justify-content: flex-start;
+                        gap: 16px;
+                        .isbn{
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            justify-content: flex-start;
+                            
+                            .numero{
+                                font-size: 16px;
+                                
+                                color: $color-marron;
+                                opacity: 0.5;
+                            }
+                            .letras{
+                                font-size: 16px;
+                                font-weight: 500;
+                                color: $color-marron;
+                                opacity: 0.5;
+                            }
+                        }
+                        .disponibilidad{
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            .disponible{
+                                color: $color-naranja;
+                                font-size: 16px;
+                                font-weight: 500;
+                            }
+                            .Nodisponible{
+                                color: $color-marron;
+                                font-size: 16px;
+                                font-weight: 500;
+                            }
+                        }
+                    }
+                    .capsulas{
+                        display: flex;
+                        flex-direction: row;
+                        gap:10px;
+                        height: 10%;
+                        margin-top: 16px;
+                        #google{
+                            width: 48px;
+                        }
+
+                        .logoGoogle{
+                            margin-top: 3px;
+                            margin-left: 16px;
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 8px;
+                            background-color: $color-beige;
+                            span{
+                                font-size: 11px;
+                                color: $color-marron;
+                                opacity: 0.5;
+                            }
+                        }
+
+                        .cali{
+                            background-color: $color-naranja;
+                            padding: 12px;
+                            border-radius: 16666px;
+                            color: $blanco;
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: center;
+                            span{
+                            }
+                        }
+
+                        .genero{
+                            background-color: $color-beige;
+                            
+                            border-radius: 32px;
+                            color: $blanco;
+                            display: flex;
+                            flex-direction: column;
+
+                        }
+                        .calificacion, #cal{
+                            background-color: $color-beige;
+                            
+                            border-radius: 32px;
+                            color: $blanco;
+                            display: flex;
+                            flex-direction: column;
+                            svg{
+                                margin-right:5px;
+                            }
+
+                        }
+                        .paginas{
+                            background-color: $color-beige;
+                            
+                            border-radius: 32px;
+                            color: $blanco;
+                            display: flex;
+                            flex-direction: column;
+                            svg{
+                                margin-right:5px;
+                            }
+
+                        }
+                    }
+                }
+                .sipnosis{
+                    width: 100%;
+                    .loader-ai{
+
+                    }
+                    .texto{
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        .sip{
+                            width: 100vh;
+                            margin-top: 2vh;
+                            margin-left: 0vh;
+                            margin-right: 5vh;
+                            font-size: 16px;
+                            color: $color-marron;
+                        }
+                        .logoOpen{
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-end;
+                            img{
+                                width: 64px;
+                                margin-right: 16px;
+                            }
+                            span{
+                                font-size: 11px;
+                                color: $color-marron;
+                                opacity: 0.5;
+                                margin-right: 16px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.relacionado{
+    margin-top: 3%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .tit{
+        display: flex;
+        flex-direction: column;
+        span{
+            color: $color-marron;
+            opacity: 0.5;
+            font-size: 16px;
+        }
+        .priri{
+            color: $color-marron;
+            font-size: 24px;
+            font-weight: 400;
+            opacity: 1;
+        }
+    }
+    .relacionAutor{
+
+    }
+
+}
+
+}
+
+#es{
+    display: flex;
+    flex-direction: row;
+}
+
+
+::ng-deep .p-scrollpanel-bar {
+  background-color: $color-marron-opaco !important; 
+  border-radius: 8px;
+  opacity: 0.5;
+}
+
+::ng-deep .p-scrollpanel-bar:hover {
+  background-color: $color-marron !important; 
+}
+
+.nohay{
+    display: flex;justify-content: center;
+    align-items: center;
+    height: 30vh;
+}
+
+.spinner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.spinner {
+  width: 120px;
+  height: 120px;
+}
+
+#cali{
+  margin-top: 10px;
+  background-color: $color-marron;
+}

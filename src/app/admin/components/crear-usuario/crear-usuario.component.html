@@ -1,0 +1,212 @@
+<p-toast position="top-right"></p-toast>
+
+<div *ngIf="ID && isLoading" class="w-full h-[300px] flex items-center justify-center">
+  <ng-lottie [options]="spinner" style="width:140px;height:140px;"></ng-lottie>
+</div>
+
+<div id="comienzo" class="" *ngIf="!ID || !isLoading">
+  
+           
+        
+  <div class="titulo" @fadeUp>
+  <span *ngIf="!ID">CREAR USUARIO</span>
+  <span *ngIf="ID">PERFIL</span>
+</div>
+
+    <div id="derecho" class="mx-10" @fadeUp>
+      <div class="imagen">
+        <img [src]="perfilUsuario
+        ? perfilUsuario
+        : 'assets/user_icon.png'" alt="Perfil" />
+      </div>
+      <div class="botones">
+        <div class="arriba">
+          <div #boto class="">
+            <!-- p-fileupload se queda igual para la imagen -->
+            <p-fileupload #fileUpload
+            mode="basic"
+  name="fotoUsr"
+  accept="image/*"
+  [auto]="false"
+  chooseLabel="Seleccionar imagen"
+  (onSelect)="onFileSelect($event)"
+  styleClass="compact-upload">
+            </p-fileupload>
+            <button
+      *ngIf="perfilUsuario !== '../../../../assets/user_icon.png'"
+      (click)="perfilUsuario = defaultAvatar;
+    CrearActualizarFormulario.patchValue({ fotoUsr: '' });
+    selectedFile = null;
+    removePhoto = true;
+    fileUpload.clear(); "
+      class="mt-2  w-full" id="eliminarFoto">
+      Eliminar foto
+    </button>
+          </div>
+        </div>
+        <div class="abajo">
+            <!-- Botón externo al formulario, asociado mediante el atributo form -->
+            <button id="guardar" type="submit" form="usuarioForm" class="mt-3">Guardar</button>
+            <button id="cancelar" type="button" (click)="Cancelar()" class="mt-3">
+              {{ ID ? 'Atrás' : 'Cancelar' }}
+            </button>
+        </div>
+      </div>
+    </div>
+  
+    <div id="izquierdo" @fadeSimple>
+      <p-scrollpanel [style]="{ width: '100%', height: '350px' }">
+        <div class="">
+          <div id="cartaimport { FileUploadModule } from 'primeng/fileupload';" class="">
+            <form id="usuarioForm" [formGroup]="CrearActualizarFormulario" (ngSubmit)="Guardar()" novalidate>
+              <!-- Fila 1: Nombre y Apellidos -->
+               DATOS GENERALES
+              <div class="row row-cols-1 row-cols-md-3">
+                
+                <div class="mb-3 col">
+                  <label class="form-label">Nombre <span class="text-danger">*</span></label>
+                  <input type="text" pInputText formControlName="nombreUsr" class="p-inputtext p-component" style="min-width: 100%;     max-width: 100%;">
+                  <div *ngIf="isValid('nombreUsr')" class="text-danger text-[14px]">El nombre es requerido.</div>
+                </div>
+                <div class="mb-3 col">
+                  <label class="form-label">Apellido Paterno <span class="text-danger">*</span></label>
+                  <input type="text" pInputText formControlName="apellidoP" class="p-inputtext p-component" style="min-width: 100%;     max-width: 100%;">
+                  <div *ngIf="isValid('apellidoP')" class="text-danger text-[14px]">El apellido paterno es requerido.</div>
+                </div>
+                <div class="mb-3 col">
+                  <label class="form-label">Apellido Materno <span class="text-danger">*</span></label>
+                  <input type="text" pInputText formControlName="apellidoM" class="p-inputtext p-component" style="min-width: 100%;     max-width: 100%;">
+                  <div *ngIf="isValid('apellidoM')" class="text-danger text-[14px]">El apellido materno es requerido.</div>
+                </div>
+                
+              </div>
+    
+              <!-- Fila 2: Teléfono y Correo -->
+              <div class="grid grid-cols-3 gap-4 mb-4">
+                <div>
+                  <label>Teléfono <span class="text-red-600">*</span></label>
+                  <input pInputText formControlName="telefonoUsr" class="w-full" />
+                  <div *ngIf="isValid('telefonoUsr')" class="text-red-600 text-sm">
+                    Requerido y 10 dígitos númericos.
+                  </div>
+                </div>
+                <div>
+                  <label>Correo <span class="text-red-600">*</span></label>
+                  <input pInputText formControlName="correoUsr" class="w-full" />
+                  <div *ngIf="isValid('correoUsr')" class="text-red-600 text-sm">
+                    Requerido y formato válido.
+                  </div>
+                </div>
+                
+                
+              </div>
+
+              ADMINISTRACIÓN
+              <div class="grid grid-cols-3 gap-4 mb-4">
+                
+                
+                <div *ngIf="ID" >
+                  <label>Estado de Usuario <span class="text-red-600">*</span></label> 
+                  <p-dropdown
+                    formControlName="idEstadoUsr"
+                    [options]="estadosUsuario"
+                    placeholder="Selecciona estado"
+                    class="w-full">
+                  </p-dropdown>
+                  <div *ngIf="isValid('idEstadoUsr')" class="text-red-600 text-sm">Requerido.</div>
+                </div>
+                <div>
+                  <label>Tipo de Usuario <span class="text-red-600">*</span></label>
+                  <p-dropdown
+                    formControlName="idTipoUsr"
+                    [options]="tiposUsuarios"
+                    placeholder="Selecciona tipo"
+                    class="w-full"
+                    styleClass="custom-dropdown">
+                  </p-dropdown>
+                  <div *ngIf="isValid('idTipoUsr')" class="text-red-600 text-sm">Requerido.</div>
+                </div>
+                <div class="">
+                  <label>Contraseña <span *ngIf="!ID " class="text-red-600">*</span>  </label>
+                  <p-password id="contra"
+                  [(ngModel)]="value" [toggleMask]="true"
+                    formControlName="contrasena"
+                    class="w-full" 
+                    promptLabel="Ingresa una contraseña"
+                    weakLabel="Muy débil"
+  mediumLabel="Media"
+  strongLabel="Fuerte"/>
+                  <small *ngIf="ID " > <br> Deja en blanco para no cambiar contraseña</small>
+                  <div *ngIf="isValid('contrasena')" class="text-red-600 text-sm">
+                    Requerida, mínimo 6 caracteres.
+                  </div>
+                </div>
+                
+              </div>
+    
+              <!-- Fila 3: Estado y Municipio -->
+               UBICACIÓN
+              <div class="grid grid-cols-4 gap-4 mb-4">
+                
+                  
+                <div>
+                  <label>Estado <span class="text-red-600">*</span></label>
+                  <p-dropdown
+                    formControlName="idEstadoGeo"
+                    [options]="estadosGeo"
+                    placeholder="Selecciona Estado"
+                    class="w-full"
+                    styleClass="custom-dropdown">
+                    
+                  </p-dropdown>
+                  <div *ngIf="isValid('idEstadoGeo')" class="text-red-600">Debes seleccionar un estado.</div>
+                  </div>
+                <div>
+                  <label>Municipio <span class="text-red-600">*</span></label>
+                    <p-dropdown
+                      formControlName="idMunicipio"
+                      [options]="municipiosOpts"
+                      placeholder="Selecciona Municipio"
+                      class="w-full"
+                      styleClass="custom-dropdown">
+                    </p-dropdown>
+                    <div *ngIf="isValid('idMunicipio')" class="text-red-600">Debes seleccionar un municipio.</div>
+                  </div>
+                
+                
+
+                <div class="mb-3 col">
+                  <label id="quitar" class="form-label">Colonia <span class="text-danger">*</span></label>
+                  <input type="text" pInputText formControlName="colonia" class="p-inputtext p-component" style="width: 100%;">
+                  <div *ngIf="isValid('colonia')" class="text-danger text-[14px]">La colonia es requerida.</div>
+                </div>
+                
+                <div class="mb-3 col">
+                  <label id="quitar" class="form-label">Calle y # <span class="text-danger">*</span></label>
+                  <input type="text" pInputText formControlName="calle" class="p-inputtext p-component" style="width: 100%;">
+                  <div *ngIf="isValid('calle')" class="text-danger text-[14px]">La calle y número son requeridos.</div>
+                </div>
+              </div>
+    
+              <!-- Fila 4: Colonia y Calle y # -->
+               
+              <div class="row row-cols-1 row-cols-md-1">
+                <div>
+                  <label> <span ></span></label> <br><br><br><br><br><br>
+                  
+                </div>
+                
+                
+              </div>
+              
+    
+
+    
+              
+            </form>
+          </div>
+        </div>
+        </p-scrollpanel>
+      </div>
+    </div>
+    

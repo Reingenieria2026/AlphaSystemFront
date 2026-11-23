@@ -1,0 +1,619 @@
+@use '../../../styles/variables' as *;
+
+svg {
+    width: 24px;
+    height: 24px;
+    fill: transparent;
+    stroke: $color-marron !important;
+    color: $color-marron;
+    
+  }
+
+//DISEÑO ANTERIOR
+.top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: #E41F1F;
+    z-index: 1000;  // Se asegura que se muestre encima de otros elementos
+  }
+  
+  nav {
+    position: fixed;
+    top: 10px; /* Se ubica justo debajo de .top */
+    left: 0;
+    width: 100%;
+    z-index: 999; /* Puede ser menor que el de .top si se quiere que éste siempre esté encima */
+    
+    div {
+      height: 7vh;
+      
+      #logo {
+        width: 100px;
+      }
+      
+      #hola {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        
+        a {
+          display: flex;
+          flex-direction: row;
+          padding: 10px;
+        }
+      }
+    }
+  }
+  
+  .main-content {
+    padding-top: calc(10px + 11vh);
+  }
+
+
+  #foot{
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+    background-color: rgb(164, 164, 164);
+    .redes{
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      padding-right: 10vh;
+      .logo{
+        width: 50vh;
+      }
+      .redeslink{
+        display: flex;
+        justify-content: space-between;
+        a{
+          svg{
+            width: 30px;
+            height: 30px;
+          }
+          img{
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+    }
+    .informacion{
+      display: flex;
+      align-items: center;
+      align-content: center;
+      text-wrap: none;
+    }
+  }
+
+
+.si{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+#tes{
+  font-family: "Roboto", sans-serif;
+  align-items: center;
+  font-size: medium;
+  
+}
+
+
+//DISEÑO NUEVO
+
+#contanier{
+  background-color: $color-beige;
+}
+
+#top{
+  height: 100vh;
+
+  .contenido{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .logo{
+      display: flex;
+      flex-direction: row;
+      margin-top: 40px;
+      .imagen{
+        width: 100%;
+        height: 100%;
+        max-width: 64px;
+        max-height: 64px;
+      }
+      .nombre{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Euclid', sans-serif;
+        margin-left: 8px;
+        .principal{
+          font-size: 32px;
+          font-weight: 700;
+          position: relative;
+          top: -10px;
+          color: $color-marron;
+        }
+        .secundario{
+          font-size: 16px;
+          font-weight: 400;
+          position: absolute;
+          top: 10%;
+          color: $color-marron;
+        }
+        .debajo{
+          font-size: 13px;
+          font-weight: 400;
+          position: absolute;
+          top: 12.5%;
+          color: $color-naranja;
+        }
+      }
+    }
+
+    .iconos{
+      margin-top: 36px;
+      height: auto;
+      height: 72vh;
+      width: 100%;
+      margin-left: 42px;
+
+      .opciones{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; 
+        height: 100%;
+
+        a, .cont{
+          color: black;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          width: 30vh;
+          height: 50px;
+          padding: 16px 12px;
+          margin: 4px 0px;
+          border-radius: 16px;
+            transition: background-color 300ms ease;
+            background-color: transparent;
+          span{
+            margin-left: 8px;
+            font-family: 'Euclid', sans-serif;
+            font-size: 16px;
+            color: $color-marron;
+          }
+          svg{
+            color: $color-marron ;
+          }
+          path{
+            color: $color-marron ;
+            stroke: $color-marron !important;
+          }
+
+          &:hover{
+            animation-duration: 300ms;
+            transition-duration: 300ms;
+            background-color: $blanco;
+          }
+
+          
+        }
+.activo{
+            background-color: $blanco;
+          }
+        #bot, .cont{
+          padding-left: 0px;
+        }
+
+        #exclusivo {
+  position: relative;
+  display: inline-block;
+  padding: 2px; // quitamos padding externo
+  border-radius: 16px;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 0;
+  path{
+            color: transparent !important;
+            stroke: transparent !important;
+            stroke: transparent;
+          }
+
+  // capa que simula el borde arcoíris
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1px; // grosor del "borde"
+    background: linear-gradient(
+    90deg,
+    $color-marron,
+    $color-naranja,
+    $blanco,
+    $color-beige,
+    $color-marron-opaco,
+    $color-marron
+  );
+    background-size: 300% 300%;
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  // el div interior blanco encima del borde
+  .contenido-exclusivo {
+    background-color: transparent; // fondo beige claro o blanco
+    border-radius: inherit;
+    padding: 0px 10px;
+    width: 29.4vh;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:hover{
+      background-color: $blanco;
+    }
+    
+  }
+  
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    stroke: currentColor;
+    transition: transform 0.4s linear;
+    transform-origin: center center;
+    color: $color-marron;
+    
+  }
+
+  span {
+    font-family: 'Euclid', sans-serif;
+    font-size: 16px;
+    color: $color-marron;
+    transition: all 0.3s ease;
+    margin-left: 0px;
+  }
+
+  &:hover svg {
+  animation: spin-slow 6s cubic-bezier(1, 0, 0.3, 1) infinite, rainbow-fill 5s linear infinite;
+}
+  
+}
+#exclusivo.activo-exclusivo::before {
+  opacity: 1;
+  animation: border-rainbow-move 8s linear infinite;
+}
+
+#exclusivo.activo-exclusivo svg {
+  animation: spin-slow 6s cubic-bezier(1, 0, 0.3, 1) infinite, rainbow-fill 5s linear infinite;
+}
+
+#exclusivo.activo-exclusivo span {
+  animation: text-glow 1.5s ease-in-out infinite;
+}
+
+#exclusivo.activo-exclusivo .contenido-exclusivo {
+  background-color: $blanco;
+}
+
+
+#cargar{
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; // Centra horizontalmente si está en bloque
+}
+
+#exclusivo:hover span {
+  background: linear-gradient(
+    90deg,
+    $color-marron,
+    $color-naranja,
+    $color-beige,
+    $color-marron-opaco,
+    $color-marron
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-text 10s linear infinite;
+}
+
+
+
+        .arriba{
+          display: flex;
+      flex-direction: column;
+          
+
+        }
+        .abajo{
+          display: flex;
+      flex-direction: column;
+
+        }
+      }
+
+    }
+
+    .logout{
+
+    }
+  }
+}
+
+#left{
+  background-color: transparent;
+  height: 100%;
+
+  .info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: transparent;
+    height: 80%;
+    margin: 10px;
+    align-items: center;
+
+
+    .barraBusqueda {
+  margin-left: 28%;
+  background-color: $blanco;
+  border-radius: 16px;
+  width: 40%;
+
+  .busqueda {
+    display: flex;
+    background-color: $blanco;
+    flex-direction: row;
+    align-items: center;
+    padding: 6px;
+    border: 1px solid #b9b9b9;
+    border-radius: 16px;
+    transition: transform 0.25s cubic-bezier(0.33, 1, 0.68, 1), 
+                box-shadow 0.25s ease;
+
+    &:hover,
+    &:focus-within {
+      transform: scale(1.03);
+      box-shadow: 0 0 6px rgba(114, 91, 58, 0.4);
+    }
+
+    input {
+      background-color: transparent;
+      width: 100%;
+      height: 5vh;
+      border: none;
+      border-radius: 16px;
+      padding: 8px 12px;
+      font-family: 'Euclid', sans-serif;
+      font-size: 14px;
+      color: $color-marron;
+      outline: none;
+    }
+
+    button {
+      margin-left: 8px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 28px;
+        height: 28px;
+        color: $color-marron;
+        transition: transform 0.2s ease;
+      }
+      path{
+        stroke: $color-marron;
+      }
+
+      &:hover svg {
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+
+    .estLogeado{
+      padding-right: 40px;
+      span{
+        font-family: 'Euclid', sans-serif;
+        font-size: 18px;
+        color: $color-marron;
+      }
+    }
+
+    .noEstaLogeado{
+      padding-right: 40px;
+      font-family: 'Euclid', sans-serif;
+        font-size: 18px;
+        color: $color-marron;
+        display: flex;
+        flex-direction: row;
+         transition: transform 0.2s ease;
+        a{
+          display: flex;
+          flex-direction: row;
+          padding: 8px 16px;
+          border-radius: 16px;
+          svg{
+            width: 36px;
+            height: 36px;
+            color: $color-marron;
+          }
+          path{
+            color: $color-marron;
+            stroke: $color-marron !important;
+          }
+          span{
+            margin-left: 8px;
+        font-family: 'Euclid', sans-serif;
+        font-size: 18px;
+        color: $color-marron;
+      }
+        }
+
+        &:hover{
+           transition: transform 0.2s ease;
+          transform: scale(1.03);
+          a{
+            background-color: $blanco;
+          }
+        }
+    }
+  }
+
+  .papas{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 40px;
+    width: 150vh;
+    margin-left: 5vh;
+    .dentro{
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      .lottie{
+        width: 100px; 
+        height: 100px;
+      }
+      .mensaje {
+  background: white;
+  border: 3px solid black;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-width: 80vw;
+  line-height: 1.4;
+  overflow-y: auto;
+  align-self: flex-start;
+}
+    }
+    font-family: 'Press Start 2P', monospace;
+font-size: 10px;
+  }
+  
+}
+
+#center{
+  background-color: $blanco;
+  height: 100%;
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: 16px;
+  padding-bottom: 0px;
+  margin-right: 32px;
+}
+
+#hola{
+  color: $color-marron;
+}
+
+
+@keyframes rainbow-text {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes border-rainbow-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rainbow-fill {
+  0% {
+    color: $color-marron;
+  }
+  20% {
+    color: $color-naranja;
+  }
+  40% {
+    color: $blanco;
+  }
+  60% {
+    color: $color-beige;
+  }
+  80% {
+    color: $color-marron-opaco;
+  }
+  100% {
+    color: $color-marron;
+  }
+}
+
+@keyframes text-glow {
+  0%, 100% {
+    color: 0 0 6px #fff, 0 0 12px #ff00cc;
+  }
+  50% {
+    color: 0 0 10px #fff, 0 0 20px #00ccff;
+  }
+}
+
+@keyframes appear {
+  from {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}

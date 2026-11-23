@@ -1,0 +1,568 @@
+
+
+// .body {
+//   padding: 1vh 15vh;
+//   width: 100%;
+//   height: 100%;
+
+//   .titulo {
+//     font-size: 10vh;
+//     font-family: "Playfair Display", serif;
+//     font-optical-sizing: auto;
+//   }
+
+//   .navbar {
+//     background-color: #ffffff;
+//     width: 100%;
+//     height: 8vh;
+//     border-radius: 999px;
+//     margin: 10px;
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: flex-start;
+//     gap: 10px;
+
+//     .busqueda {
+//       height: 100%;
+//       width: 70%;
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+
+//       #bus {
+//         width: 100%;
+//         padding-left: 16px !important;
+//         padding-right: 16px !important;
+//         border-radius: 999px !important;
+//         margin-left: 16px;
+//       }
+//     }
+
+//     .btnBuscar {
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       width: 28%;
+//       height: 100%;
+//       background-color: #68d60d;
+//       border-radius: 999px;
+//       transition-duration: 300ms;
+//       font-family: "Roboto", sans-serif;
+//       font-size: 2.7vh;
+
+//       &:hover {
+//         background-color: #347400;
+//         transition-duration: 300ms;
+//         transform: scale(1.02);
+//       }
+
+//       button {
+//         color: white;
+//       }
+//     }
+//   }
+
+//   .lista {
+//     background-color: #ffffff;
+//     width: 100%;
+//     height: 60vh;
+//     margin: 10px;
+//     border-radius: 16px;
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: flex-start;
+//     align-items: center;
+//     gap: 15px;
+
+//     .usuarios {
+//       background-color: #ffffff;
+//       width: 100%;
+//       height: 95%;
+//       border: 10px;
+//       border-radius: 16px;
+//       padding: 10px;
+//       display: flex;
+//       flex-direction: row;
+//       gap: 15px;
+//       justify-content: flex-start;
+//       align-items: flex-start;
+//       .barra{
+//                 border-radius: 16px;
+//                 background-color: chartreuse;
+//                 width: 100%;
+//                 height: 5vh;
+                
+//             }
+//       .contenido {
+//         border-radius: 16px ;
+//                 background-color: #ffffff;
+//                 width: 90%;
+//                 height: 100%;
+//                 padding: 10px;
+//                 display: flex;
+//                 width: 98%;
+//                 flex-direction: column;
+//       }
+//     }
+
+//     .filtros {
+//       background-color: #f9f9f9;
+//       width: 40%;
+//       height: 95%;
+//       border-radius: 16px;
+
+//       #fil {
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+
+//         label {
+//           text-align: center;
+//         }
+
+//         div {
+//           display: flex;
+//           align-items: center;
+//           flex-direction: column;
+//           margin-bottom: 10px;
+
+//           label {
+//             font-weight: 500;
+//             font-family: "Roboto", sans-serif;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// #usuario {
+//   padding: 10px;
+//   background-color: #f9f9f9;
+//   border-radius: 16px;
+//   margin: 10px;
+//   transition-duration: 300ms;
+//   font-family: "Roboto", sans-serif;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: space-between;
+//   height: 40vh;
+
+//   &:hover {
+//     background-color: #d9d9d9;
+//     transition-duration: 300ms;
+//     transform: scale(1.02);
+//   }
+
+//   img {
+//     border-radius: 8px;
+//   }
+
+//   #tipok {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+//     width: 100%;
+//     font-size: 0.875rem;
+//   }
+// }
+
+// :host ::ng-deep .filters-accordion {
+//   .p-accordionheader {
+//     background-color: transparent;
+//     border: transparent;
+//     font-family: "Roboto", sans-serif;
+//   }
+
+//   .p-accordioncontent {
+//     background-color: transparent;
+//     border: transparent;
+//     border-top: none;
+//     display: flex !important;
+//     flex-direction: column;
+//   }
+
+//   .opciones {
+//     margin-bottom: 0.75rem;
+//   }
+
+//   #opciones {
+//     border: transparent;
+//     display: flex !important;
+//     flex-direction: row !important;
+//     background-color: transparent !important;
+
+//     label {
+//       margin-left: 10px;
+//     }
+//   }
+// }
+
+// #tit {
+//   font-family: "Playfair Display", serif;
+//   font-size: 5vh;
+//   color: #000000;
+//   text-align: center;
+//   margin-bottom: 10px;
+//   display: flex;
+//   justify-content: flex-start;
+//   align-items: center;
+//   width: 100%;
+//   padding-left: 20px;
+//   margin: 0;
+// }
+
+// :host ::ng-deep .paginador-transparente {
+//   border: none !important;
+//   box-shadow: none !important;
+//   background-color: transparent !important;
+// }
+
+// #edi{
+//     border-color: #347400;
+//     animation-duration: 300ms !important;
+//     transition-duration: 300ms !important;
+//     padding: 5px;
+//     svg{
+//         color: #347400;
+//     }
+//     &:hover{
+//         animation-duration: 300ms !important;
+//         transition-duration: 300ms !important;
+//         background-color: #347400;
+//         svg{
+//             color: #f9f9f9;
+//         }
+        
+//     }
+    
+// }
+
+// #eli{
+//     padding: 6px !important;
+//     border-color: crimson;
+//     background-color: transparent;
+//     svg{
+//         color: crimson !important;
+//     }
+//     animation-duration: 300ms !important;
+//     transition-duration: 300ms !important;
+//     &:hover{
+//         svg{
+//             color: #f9f9f9 !important;
+//         }
+//         background-color: crimson;
+//         animation-duration: 300ms !important;
+//         transition-duration: 300ms !important;
+//     }
+    
+// }
+
+// #ima{
+//   max-height: 14vh;
+//   object-fit: cover !important;
+//   aspect-ratio: 1/16;
+// }
+
+// #dentro{
+//   display: flex !important;
+//   flex-direction: column !important;
+//   align-items: center !important;
+//   justify-content: center !important;
+//   width: 100% !important;
+//   height: 50vh !important;
+// }
+
+
+@use '../../../styles/variables' as *;
+@use "sass:color";
+
+.body{
+    padding: 1vh 1vh;
+    width: 100%;
+    height: 100%;
+    font-family: 'Euclid', sans-serif !important;
+    .titulo{
+        font-size: 5vh;
+    font-family: 'Euclid', sans-serif;
+    font-optical-sizing: auto;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $color-marron;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    }
+    .navbar{
+        background-color: #ffffff;
+        width: 100%;
+        height: 8vh;
+        border-radius: 999px;
+        margin: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 10px;
+        .busqueda{
+            height: 100%;
+            width: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            #bus{
+                width: 100%;
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+                border-radius: 999px !important;
+                margin-left: 16px;
+            }
+        }
+        .btnBuscar{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 28%;
+            height: 100%;
+            background-color: #68D60D;
+            border-radius: 999px;
+            transition-duration: 300ms;
+            font-family: "Roboto", sans-serif;
+            font-size: 2.7vh;
+            &:hover{
+                background-color: #347400;
+                transition-duration: 300ms;
+                transform: scale(1.02);
+            }
+            button{
+                color: white;
+
+            }
+        }
+        #nave{
+            p-toolbar{
+                border-radius: 100rem;
+            }
+        }
+    }
+    .lista{
+        background-color: transparent;
+        width: 100%;
+        height: 88%;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        
+        .usuarios{
+            background-color: $blanco;
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+            display: flex;
+                flex-direction: row;
+                gap: 15px;
+                justify-content: center;
+                align-items: center;
+            .barra{
+                border-radius: 16px;
+                background-color: chartreuse;
+                width: 100%;
+                height: 5vh;
+                
+            }
+            .contenido{
+                border-radius: 16px ;
+                background-color: #ffffff;
+                width: 100%;
+                height: 100%;
+                padding: 10px;
+                display: flex;
+                width: 100%;
+                flex-direction: column;
+            }
+        }
+        .filtros{
+            background-color: #f9f9f9;
+            width: 40%;
+            height: 95%;
+            border-radius: 16px;
+            #fil{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                label{
+                    text-align: center;
+                }
+                div{
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    margin-bottom: 10px;
+                    label{
+                        font-weight: 500;
+                        font-family: "Roboto", sans-serif;
+                    }
+                }
+                p-checkbox{
+
+                }
+            }
+        }
+    }
+}
+
+#fil{
+    width: 100%;
+    height: 100%;
+    display: flex
+;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 10px;
+}
+
+#usuario{
+    padding: 10px;
+    background-color: $blanco;
+    border-radius: 16px;
+    margin: 10px;
+    transition-duration: 300ms;
+
+    &:hover{
+        background-color: #D9D9D9;
+        transition-duration: 300ms;
+        transform: scale(1.02);
+    }
+
+    #tipok{
+        display: flex
+        ;
+            flex-direction: row;
+            width: 22%;
+            justify-content: space-between;
+    }
+
+}
+
+/* rompe el encapsulado para llegar a los estilos de PrimeNG */
+:host ::ng-deep .filters-accordion {
+
+    /* cabecera de cada tab */
+    .p-accordionheader {
+        background-color: transparent; 
+        border: transparent;
+        font-family: "Roboto", sans-serif;
+
+      }
+  
+    /* contenedor desplegable */
+    .p-accordioncontent {
+      background-color: transparent;
+      border: transparent;
+      border-top: none;
+      display: flex !important;
+      flex-direction: column;
+    }
+  
+    /* espaciado entre cada radiobutton */
+    .opciones {
+      margin-bottom: 0.75rem;
+    }
+  
+    /* etiqueta al lado del circle */
+    #opciones {
+        border: transparent;
+      display: flex !important;
+      flex-direction: row !important;
+      background-color: transparent !important;
+      label{
+        margin-left: 10px;
+      }
+    }
+  }
+  
+
+#tit{
+    font-family: "Playfair Display", serif;
+    font-size: 5vh;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-left: 20px;
+    margin: 0;
+}
+
+:host ::ng-deep .p-scrollpanel .p-datatable-table tbody > tr {
+  cursor: pointer;
+}
+
+/* hover sobre cualquier fila */
+:host ::ng-deep 
+  .p-scrollpanel 
+  .p-datatable-table 
+  tbody > tr:hover {
+  /* un degradado ligero sobre tu marrón */
+  @include theme-prop(
+  background-color,
+  color-marron-lighten-20,
+  color.adjust($color-marron, $lightness: 20%)
+);
+
+  //background-color: color.adjust($color-marron, $lightness: 20%) !important;
+  color: #ffffff !important;
+}
+
+/* fila seleccionada (usa selectionMode="single" y [(selection)]="selectedUser" en tu <p-table>) */
+:host ::ng-deep 
+  .p-scrollpanel 
+  .p-datatable-table 
+  tbody > tr.p-highlight {
+  background-color: $color-naranja !important;
+  color: #ffffff !important;
+}
+
+/* opcional: si quieres que todo el contenido td también herede el color */
+:host ::ng-deep 
+  .p-scrollpanel 
+  .p-datatable-table 
+  tbody > tr:hover td,
+:host ::ng-deep 
+  .p-scrollpanel 
+  .p-datatable-table 
+  tbody > tr.p-highlight td {
+  color: inherit;
+}
+
+/* 1. Cursor pointer en filas clickables */
+:host ::ng-deep .p-datatable-scrollable-table tbody > tr.clickable-row {
+  cursor: pointer;
+}
+
+/* 2. Hover: fondo degradado y texto blanco */
+:host ::ng-deep
+  .p-datatable-scrollable-table tbody > tr.clickable-row:hover {
+  background-color: color.adjust($color-marron, $lightness: 20%) !important;
+  color: #ffffff !important;
+}
+
+/* 3. Fila seleccionada */
+:host ::ng-deep
+  .p-datatable-scrollable-table tbody > tr.p-highlight {
+  background-color: $color-naranja !important;
+  color: #ffffff !important;
+}
+
+/* Asegura que las celdas hereden el color en hover/selección */
+:host ::ng-deep
+  .p-datatable-scrollable-table tbody > tr.clickable-row:hover td,
+:host ::ng-deep
+  .p-datatable-scrollable-table tbody > tr.p-highlight td {
+  color: inherit;
+}

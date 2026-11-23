@@ -1,0 +1,291 @@
+
+
+<!-- <div class="titulo text-5xl text-center font-serif mb-10">NUEVO PRÉSTAMO</div>
+
+<form [formGroup]="formulario" class="space-y-8">
+  <p-scrollpanel [style]="{ width: '100%', height: '522px' }">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-10">
+
+      <div class="p-5 bg-gray-100 rounded-xl shadow">
+        <label class="block mb-2 font-medium">Selecciona el libro</label>
+        <p-dropdown
+          formControlName="idLibro"
+          [options]="bookOptions"
+          optionLabel="titulo"
+          optionValue="isbn"
+          [filter]="true"
+          filterBy="titulo"
+          placeholder="Elige un libro"
+          (onChange)="onBookSelect()"
+          class="w-full">
+        </p-dropdown>
+        <small *ngIf="isValid('idLibro')" class="text-red-500">Requerido.</small>
+
+        <ng-container *ngIf="libro?.titulo && libro?.autor && libro?.edicion">
+          <div class="mb-2">
+            <label class="block text-sm">Nombre del Libro</label>
+            <input pInputText [value]="libro.titulo" disabled class="w-full" />
+          </div>
+          <div class="mb-2">
+            <label class="block text-sm">Autor</label>
+            <input pInputText [value]="libro.autor" disabled class="w-full" />
+          </div>
+          <div class="mb-2">
+            <label class="block text-sm">Edición</label>
+            <input pInputText [value]="libro.edicion" disabled class="w-full" />
+          </div>
+          <div>
+            <label class="block text-sm">Género</label>
+            <input pInputText [value]="libro.genero?.nombreGenero || libro.idGenero" disabled class="w-full" />
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="p-5 bg-gray-100 rounded-xl shadow">
+        <label class="block mb-2 font-medium">Selecciona el usuario</label>
+        <p-dropdown
+          formControlName="idUsuario"
+          [options]="userOptions"
+          optionLabel="label"
+          optionValue="value"
+          [filter]="true"
+          filterBy="label"
+          placeholder="Elige un usuario"
+          (onChange)="onUserSelect()"
+          class="w-full">
+        </p-dropdown>
+        <small *ngIf="isValid('idUsuario')" class="text-red-500">Requerido.</small>
+
+        <ng-container *ngIf="usuario?.nombreUsr">
+          <div class="mb-2">
+            <label class="block text-sm">Nombre del usuario</label>
+            <input pInputText [value]="usuario.nombreUsr + ' ' + usuario.apellidoP" disabled class="w-full" />
+          </div>
+          <div class="mb-2">
+            <label class="block text-sm">Total de préstamos</label>
+            <input pInputText [value]="usuario.totalPrestamos" disabled class="w-full" />
+          </div>
+          <div>
+            <label class="block text-sm">Total de deudas</label>
+            <input
+              pInputText
+              [ngClass]="{ 'text-red-600 font-semibold': usuario.totalDeuda > 0 }"
+              [value]="'$' + usuario.totalDeuda"
+              disabled
+              class="w-full"
+            />
+          </div>
+          <div *ngIf="usuario.totalDeuda > 0" class="text-red-500 mt-2">
+            El usuario tiene una deuda activa. No se puede realizar el préstamo.
+          </div>
+          <div *ngIf="usuario.totalPrestamos >= 3" class="text-yellow-600 mt-2">
+            El usuario ya tiene 3 o más préstamos activos.
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div *ngIf="usuario?.nombreUsr && libro?.titulo && fechaEntrega" class="resumen mx-10 p-6 bg-white rounded-xl shadow-lg border mt-5">
+      <h3 class="text-xl font-bold mb-4">Resumen de Préstamo</h3>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+        <div>
+          <label class="block text-sm">Nombre del Libro</label>
+          <input pInputText [value]="libro.titulo" disabled class="w-full" />
+        </div>
+        <div>
+          <label class="block text-sm">Autor</label>
+          <input pInputText [value]="libro.autor" disabled class="w-full" />
+        </div>
+        <div>
+          <label class="block text-sm">Nombre del usuario</label>
+          <input pInputText [value]="usuario.nombreUsr" disabled class="w-full" />
+        </div>
+        <div>
+          <label class="block text-sm">Se tendrá que entregar antes del</label>
+          <input pInputText [value]="fechaEntrega" disabled class="w-full" />
+        </div>
+      </div>
+
+      <button
+        pButton
+        label="REALIZAR PRÉSTAMO"
+        class="w-full bg-lime-500 text-white"
+        [disabled]="usuario.totalDeuda > 0 || usuario.totalPrestamos >= 3"
+        (click)="realizarPrestamo()"
+      ></button>
+    </div>
+  </p-scrollpanel>
+</form> -->
+
+
+<div class="nuevo-prestamo-wrapper">
+  <div class="back-floating">
+  <button
+    pButton
+    pRipple
+    icon="pi pi-arrow-left"
+    label="Regresar"
+    class="back-btn"
+    (click)="goBack()"
+  ></button>
+</div>
+  <form class="nuevo-prestamo-wrapper" [formGroup]="formulario" (ngSubmit)="realizarPrestamo()">
+  <!-- GRID 7x7 -->
+  <div class="grid grid-cols-7 grid-rows-7 gap-3">
+
+    <!-- 4) Header -->
+    <header class="col-span-7 col-start-1 row-start-1 header-card" @fadeUp>
+      <div class="header-content">
+        <div class="header-dot"></div>
+        <h1 class="header-title">Nuevo préstamo</h1>
+      </div>
+      <p class="header-subtitle">Selecciona un libro y un usuario, revisa el resumen y confirma.</p>
+    </header>
+
+    <!-- 1) Libro -->
+    <section class="col-span-3 row-span-3 col-start-1 row-start-2 card" @fadeSimple>
+      <h2 class="card-title">Libro</h2>
+
+      <p-dropdown
+        formControlName="idLibro"
+        [options]="bookOptions"
+        optionLabel="titulo"
+        optionValue="isbn"
+        [filter]="true"
+        filterBy="titulo"
+        placeholder="Elige un libro"
+        (onChange)="onBookSelect()"
+        class="w-full mb-4">
+      </p-dropdown>
+      <small *ngIf="isValid('idLibro')" class="msg-error">Requerido.</small>
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Título</label>
+          <input pInputText [value]="libro?.titulo || '—'" disabled />
+        </div>
+        <div class="field">
+          <label>Autor</label>
+          <input pInputText [value]="libro?.autor || '—'" disabled />
+        </div>
+        <div class="field">
+          <label>Edición</label>
+          <input pInputText [value]="libro?.edicion || '—'" disabled />
+        </div>
+        <div class="field">
+          <label>Género</label>
+          <input pInputText [value]="libro?.genero?.nombreGenero || libro?.idGenero || '—'" disabled />
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) Usuario -->
+    <section class="col-span-3 row-span-3 col-start-1 row-start-5 card" @fadeSimple>
+      <h2 class="card-title">Usuario</h2>
+
+      <p-dropdown
+        formControlName="idUsuario"
+        [options]="userOptions"
+        [filter]="true"
+        filterBy="label"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Elige un usuario"
+        (onChange)="onUserSelect()"
+        class="w-full mb-4"
+      >
+        <!-- Avatar + nombre en la lista -->
+        <ng-template pTemplate="item" let-item>
+          <div class="dd-item">
+            <div class="avatar" [ngStyle]="{ 'background-color': avatarColor(item?.value) }">
+              <img *ngIf="item?.fotoUsr" [src]="photoUrl(item.fotoUsr)" alt="" />
+              <span *ngIf="!item?.fotoUsr">{{ initials(item?.label) }}</span>
+            </div>
+            <span class="dd-label">{{ item?.label }}</span>
+          </div>
+        </ng-template>
+
+        <!-- Avatar + nombre cuando está seleccionado -->
+        <ng-template pTemplate="selectedItem" let-selected>
+          <div class="dd-selected" *ngIf="selected">
+            <div class="avatar" [ngStyle]="{ 'background-color': avatarColor(selected?.value) }">
+              <img *ngIf="selected?.fotoUsr" [src]="photoUrl(selected.fotoUsr)" alt="" />
+              <span *ngIf="!selected?.fotoUsr">{{ initials(selected?.label) }}</span>
+            </div>
+            <span class="dd-label">{{ selected?.label }}</span>
+          </div>
+        </ng-template>
+      </p-dropdown>
+      <small *ngIf="isValid('idUsuario')" class="msg-error">Requerido.</small>
+
+      <div class="fields-grid">
+        <div class="field">
+          <label>Nombre completo</label>
+          <input pInputText [value]="(usuario?.nombreUsr || '—') + ' ' + (usuario?.apellidoP || '')" disabled />
+        </div>
+        <div class="field">
+          <label>Total préstamos activos</label>
+          <input pInputText [value]="usuario ? usuario.totalPrestamos : '—'" disabled />
+        </div>
+        <div class="field">
+          <label>Deuda</label>
+          <input
+            pInputText
+            [ngClass]="{ 'text-danger-strong': (usuario?.totalDeuda || 0) > 0 }"
+            [value]="usuario ? ('$' + usuario.totalDeuda) : '—'"
+            disabled
+          />
+        </div>
+      </div>
+
+      <div class="warnings">
+        <p *ngIf="usuario?.totalDeuda > 0" class="warn-badge danger">Tiene deuda activa. No se puede prestar.</p>
+        <p *ngIf="usuario?.totalPrestamos >= 3" class="warn-badge warn">Ya tiene 3 o más préstamos activos.</p>
+      </div>
+    </section>
+
+    <!-- 3) Resumen y CTA -->
+    <aside class="col-span-4 row-span-6 col-start-4 row-start-2 card resume-card" @fadeUp>
+      <h2 class="card-title">Resumen</h2>
+
+      <div class="resume-grid">
+        <div class="resume-block">
+          <label>Libro</label>
+          <div class="resume-value">{{ libro?.titulo || '—' }}</div>
+        </div>
+
+        <div class="resume-block">
+          <label>Autor</label>
+          <div class="resume-value">{{ libro?.autor || '—' }}</div>
+        </div>
+
+        <div class="resume-block">
+          <label>Usuario</label>
+          <div class="resume-value">{{ usuario?.nombreUsr || '—' }} {{ usuario?.apellidoP || '' }}</div>
+        </div>
+
+        <div class="resume-block">
+          <label>Entrega</label>
+          <div class="resume-value">{{ fechaEntrega || '—' }}</div>
+        </div>
+      </div>
+
+      <button
+        pButton
+        class="btn-cta"
+        [ngClass]="{ 'btn-cta--disabled': !puedePrestar }"
+        [disabled]="!puedePrestar"
+        label="REALIZAR PRÉSTAMO"
+      ></button>
+
+      <div class="cta-hint" *ngIf="!puedePrestar">
+        Completa selección de <strong>libro</strong> y <strong>usuario</strong> (sin deuda ni límite) para activar.
+      </div>
+    </aside>
+
+  </div>
+</form>
+
+
+</div>

@@ -1,0 +1,206 @@
+<!-- 
+<div class="contendor">
+
+  <nz-carousel id="es" nzAutoPlay [nzEffect]="strategy">
+    <div nz-carousel-content>
+      <img  src="../../../../assets/inicio2.jpg"  alt="">
+    </div>
+    <div nz-carousel-content>
+      <img src="../../../../assets/inicio1.jpg"  alt="">
+    </div>
+    <div nz-carousel-content>
+      <img src="../../../../assets/inicio3.jpg" alt="">
+    </div>
+  </nz-carousel>
+      
+</div>
+        
+<div class="text">
+  <h1 id="tit" class="text-center mt-4">Libros destacados</h1>
+  <p class="text-center">Explora nuestra selección de libros destacados y sumérgete en nuevas historias.</p>
+</div>
+
+  <div id="cast" class="card" style="width: 1000px; margin-top: 20px; margin-bottom: 20px;">
+    <p-carousel 
+    [value]="books" 
+    [numVisible]="5" 
+    [numScroll]="5" 
+    [circular]="true" 
+    [responsiveOptions]="responsiveOptions" 
+    [showIndicators]="true"
+    class="w-100">
+    
+    <ng-template pTemplate="item" let-product>
+      <div class="product-card rounded m-2 p-4 " (click)="openBookModal(product)" style="cursor: pointer;">
+        <div class="">
+          <div class="">
+            <img id="im" [src]="product.fotoUsr" [alt]="product.titulo" class=" rounded-border" />
+          </div>
+        </div>
+        <div class="estes flex justify-between items-center">
+          <div id="titulo" class="mb-4 font-medium">
+            <div class=" text-base " >{{ product.titulo }}</div>
+            <div class="font-light text-gray-400" >{{ product.autor }}</div>
+            <div class="font-light text-gray-400" >{{ product.anioPubli }}</div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+      </p-carousel>
+    </div>
+    
+<div class="destacado">
+  <img id="exlusivo" src="../../../../assets/EXCLUSIVO.png" alt="">
+</div> -->
+
+<!-- 
+NUEVO DISEÑO -->
+
+<div *ngIf="loading" class="spinner-overlay">
+  <ng-lottie [options]="options" class="spinner"></ng-lottie>
+</div>
+
+<ng-container *ngIf="!loading">
+  <div class="contenedor">
+    <div class="novedades">
+      <div class="texto">
+        <div class="titulo">
+          <span>LIBROS</span>
+          <span>MÁGICOS</span>
+        </div>
+        <div class="descripcion">
+          <span
+            >Estos libros estan siendo muy recomendados, te sugerimos
+            explorarlos!</span
+          >
+        </div>
+        <div class="boton">
+          <a [routerLink]="['/catalogo']">
+            <span>Visita el catálogo</span>
+          </a>
+        </div>
+      </div>
+      <!-- aqui se deben mostrar solo los libros destacados dependeindo del array que esta en el ts -->
+      <div class="librosseleccion">
+        <img [routerLink]="['/libro', libro.isbn]" style="cursor: pointer;"
+          *ngFor="let libro of librosdestacados"
+          [src]="libro.fotoUsr ? 'http://localhost:8000/storage/' + libro.fotoUsr : 'assets/book_icon.png'"
+          [alt]="libro.titulo"
+        />
+      </div>
+    </div>
+    <div class="seleccion">
+      <div class="libros">
+        <div class="fantasia">
+          <div class="titulo">
+            <span class="principal">Ficción</span>
+            <span class="subtitulo"
+              >Descubre estos nuevos libros sobre ficción que te podrían
+              encantar.</span
+            >
+          </div>
+          <div class="carousel">
+            <div
+              id="cast"
+              class="card"
+              style="width: 100vh; margin-top: 20px; margin-bottom: 20px;"
+            >
+              <p-carousel
+                [value]="librosFiccion"
+                [numVisible]="4"
+                [numScroll]="2"
+                [circular]="true"
+                [responsiveOptions]="responsiveOptions"
+                [showIndicators]="false"
+                class="w-100"
+              >
+                <ng-template pTemplate="item" let-product>
+                  <div
+                  id="anim" 
+                    class="rounded m-2 p-4"
+                    [routerLink]="['/libro', product.isbn]" style="cursor: pointer;"
+                    style="cursor: pointer;"
+                  >
+                    <div id="anim" class="anim">
+                      <div class="">
+                        <img
+                          id="im"
+                          [src]="product.fotoUsr ? 'http://localhost:8000/storage/' + product.fotoUsr : 'assets/book_icon.png'"
+                          [alt]="product.titulo"
+                          class="rounded-border"
+                        />
+                      </div>
+                    </div>
+                    <div class="estes  ">
+                      <div id="titulo" class="">
+                        <div class="princi ">{{ product.titulo }}</div>
+                        <div class=" secu font-light text-gray-400">
+                          {{ product.autor }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </p-carousel>
+            </div>
+          </div>
+        </div>
+
+        <div class="ciencia">
+          <div class="titulo">
+            <span class="principal">Ciencia</span>
+            <span class="subtitulo"
+              >Estos libros sobre ciencia te los recomendamos por su contenido y
+              exploración.</span
+            >
+          </div>
+          <div class="carousel">
+            <div
+              id="cast"
+              class="card"
+              style="width: 100vh; margin-top: 20px; margin-bottom: 20px;"
+            >
+              <p-carousel
+                [value]="librosCiencia"
+                [numVisible]="4"
+                [numScroll]="2"
+                [circular]="true"
+                [responsiveOptions]="responsiveOptions"
+                [showIndicators]="false"
+                class="w-100 "
+              >
+                <ng-template pTemplate="item" let-product>
+                  <div
+                  id="anim" 
+                    class="rounded m-2 p-4 "
+                    [routerLink]="['/libro', product.isbn]" style="cursor: pointer;"
+                    style="cursor: pointer;"
+                  >
+                    <div id="anim" class="">
+                      <div class="">
+                        <img
+                          id="im"
+                          [src]="product.fotoUsr ? 'http://localhost:8000/storage/' + product.fotoUsr : 'assets/book_icon.png'"
+                          [alt]="product.titulo"
+                          class="rounded-border"
+                        />
+                      </div>
+                    </div>
+                    <div class="estes ">
+                      <div id="titulo" class="mb-4">
+                        <div class=" princi ">{{ product.titulo }}</div>
+                        <div class=" secu font-light text-gray-400">
+                          {{ product.autor }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </p-carousel>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

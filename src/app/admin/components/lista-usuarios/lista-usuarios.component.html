@@ -1,0 +1,180 @@
+<div class="body">
+        <div class="titulo" @fadeUp>
+            <span>
+                USUARIOS
+            </span>
+        </div>
+        <!-- <div class="navbar">
+            <div class="busqueda">
+                <input id="bus" type="text" pInputText placeholder="Buscar por ID o nombre" [(ngModel)]="searchTerm" (input)="onSearchChange($event)" class="w-full" />
+            </div>
+            <div class="btnBuscar">
+                <button [routerLink]="['/admin/crear-usuario/']">
+                    <span  >Crear nuevo usuario</span>
+                </button>
+            </div>
+        </div> -->
+
+
+        <div class="lista">
+    <div class="usuarios">
+      <div class="contenido">
+        <div class="lis" @fadeSimple>
+          <p-scrollpanel [style]="{ width: '100%', height: '565px' }">
+          <p-table
+             #dt
+  [value]="users"
+  dataKey="idUsr"
+  [paginator]="true"
+  [rows]="10"
+  [rowsPerPageOptions]="[10,25,50]"
+  [loading]="loading"
+  [globalFilterFields]="['idUsr','nombreUsr']"
+  [filters]="filters"
+  [tableStyle]="{'min-width':'60rem'}"
+  [tableStyle]="{ 'min-width': '30rem' }"
+  
+          scrollable="true"
+          scrollHeight="440px"
+          @fadeSimple >
+
+            <!-- GLOBAL FILTER -->
+            <ng-template pTemplate="caption">
+              <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                  <i class="pi pi-search"></i>
+                  <input
+                    pInputText
+                    type="text"
+                    placeholder="Buscar ID o Nombre"
+                    (input)="dt.filterGlobal($any($event.target).value,'contains')"
+                  />
+                </span>
+              </div>
+            </ng-template>
+
+            <!-- COLUMN HEADERS -->
+            <ng-template pTemplate="header">
+              <tr>
+                <th pSortableColumn="idUsr">
+                  ID <p-sortIcon field="idUsr"></p-sortIcon>
+                </th>
+                <th pSortableColumn="nombreUsr">
+        Usuario <p-sortIcon field="nombreUsr"></p-sortIcon>
+      </th>
+                <th>Estatus</th>
+                <th>Rol</th>
+              </tr>
+              <tr>
+                <th></th>
+                <th>
+                </th>
+                <th>
+                  <p-columnFilter
+                    field="idEstadoUsr"
+                    matchMode="equals"
+                    [showMenu]="false"
+                  >
+                    <ng-template #filter let-value let-filter="filterCallback">
+                      <p-dropdown
+                        [options]="statusOptions"
+                        [ngModel]="value"
+                        (ngModelChange)="filter($event)"
+                        placeholder="Estatus"
+                        [showClear]="true"
+                      >
+                        <ng-template pTemplate="item" let-opt>
+                          <p-tag
+                            [value]="opt.label"
+                            [severity]="getSeverity(opt.value)"
+                          ></p-tag>
+                        </ng-template>
+                      </p-dropdown>
+                    </ng-template>
+                  </p-columnFilter>
+                </th>
+                <th>
+                  <p-columnFilter
+                    field="idTipoUsr"
+                    matchMode="equals"
+                    [showMenu]="false"
+                  >
+                    <ng-template #filter let-value let-filter="filterCallback">
+                      <p-dropdown
+                        [options]="roleOptions"
+   [ngModel]="value"
+   (ngModelChange)="filter($event)"
+   placeholder="Rol"
+   [showClear]="true"
+                      ></p-dropdown>
+                    </ng-template>
+                  </p-columnFilter>
+                </th>
+              </tr>
+            </ng-template>
+
+            <!-- ROW TEMPLATE -->
+            <ng-template pTemplate="body" let-user>
+    <tr (click)="viewProfile(user.idUsr)" class="clickable-row">
+      <td>{{ user.idUsr }}</td>
+      <td>
+        <div class="flex items-center gap-2">
+          <img
+            [src]="
+              user.fotoUsr
+                ? 'http://localhost:8000/storage/' + user.fotoUsr
+                : 'assets/user_icon.png'
+            "
+            [alt]="user.nombreUsr"
+            class="w-10 h-10 rounded-full"
+          />
+          <span>{{ user.nombreUsr }} {{ user.apellidoP }}</span>
+        </div>
+      </td>
+      <td>
+        <p-tag
+          [value]="estadoLabel(user.idEstadoUsr)"
+          [severity]="getSeverity(user.idEstadoUsr)"
+        ></p-tag>
+      </td>
+      <td>
+        <p-tag
+          [value]=" user.idTipoUsr === 1 ? 'Administrador' : 'Usuario' "
+          [severity]=" user.idTipoUsr === 1 ? 'warn' : 'info' "
+        ></p-tag>
+      </td>
+    </tr>
+  </ng-template>
+
+            <!-- EMPTY MESSAGE -->
+            <ng-template pTemplate="emptymessage" @fadeSimple>
+              <tr>
+                <td colspan="5">No se encontraron usuarios.</td>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="loadingicon" @fadeSimple>
+              <!-- Emberca aquí tu componente Lottie -->
+                <ng-lottie
+                  [options]="spinner"
+                  style="width: 250px; height: 250px; margin: auto;"
+                  autoplay
+                  loop
+                ></ng-lottie>
+            </ng-template>
+
+          </p-table>
+          <!-- <br><br><br><br><br><br> -->
+          </p-scrollpanel>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+<div class="boton">
+      <div [style]="{ position: 'relative' }">
+        
+        <p-speeddial [model]="items" direction="up" [style]="{ position: 'absolute', right: 0, bottom: 0 }" [buttonProps]="{  rounded: true }" [tooltipOptions]="{ tooltipPosition: 'left' }" />
+    </div>
+    </div>

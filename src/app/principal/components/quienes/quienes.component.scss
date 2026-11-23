@@ -1,0 +1,263 @@
+@use '../../../styles/variables' as *;
+
+::ng-deep .p-scrollpanel-bar {
+  background-color: $color-marron-opaco !important; 
+  border-radius: 8px;
+  opacity: 0.5;
+}
+
+::ng-deep .p-scrollpanel-bar:hover {
+  background-color: $color-marron !important; 
+}
+
+.titulo{
+  margin-top: 10px;
+}
+
+.contendor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Estilos específicos para el Bootstrap Carousel */
+  #carouselExampleControls {
+    .carousel-inner {
+      .carousel-item {
+        width: 100%;
+        aspect-ratio: 1400 / 480; // Mantiene la proporción original
+        // Si deseas que el contenedor tenga este aspect ratio, pero luego limites la altura,
+        // podrías quitar o ajustar esta propiedad según convenga.
+        
+        img {
+          max-height: 100vh;         // Limita la altura de la imagen
+          width: 100%;
+          object-fit: contain;       // Muestra la imagen completa sin recortar
+          object-position: center;
+          margin: auto;
+        }
+      }
+    }
+  }
+
+  article{
+    display: flow-root;
+  }
+
+  #es{
+    height: 580px;
+  }
+  
+[nz-carousel-content] {
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantiene la proporción de la imagen */
+    object-position: center; /* Centra la imagen en el contenedor */
+  }
+}
+
+nz-radio-group {
+  margin-bottom: 8px;
+}
+
+ng-lottie{
+  width: 10px;
+}
+
+.cuerpo{
+  margin-right: 15vh;
+  margin-left: 15vh;
+
+
+  .titulo{
+    display: flex;
+        flex-direction: column;
+        font-size: 50px ;
+          font-weight: 500;
+          top: 11%;
+          color: $color-marron;
+          gap: 0.002em; 
+  }
+  .descripcion, .cuerpo{
+     margin-top: 16px;
+        font-size: 16px;
+          font-weight: 200;
+          top: 11%;
+          color: $color-marron;
+          opacity: 0.7;
+  }
+
+
+  .nombre{
+     display: flex;
+        flex-direction: row;
+        font-size: 50px;
+          font-weight: 500;
+          top: 11%;
+          color: $color-marron;
+          gap: 0.002em; 
+          justify-content: center;
+          margin-top: 20vh;
+  }
+  .queEs{
+    margin-top: 16px;
+        font-size: 16px;
+          font-weight: 200;
+          top: 0%;
+          color: $color-marron;
+          opacity: 0.8;
+          justify-content: center;
+          text-align: center;
+          span{
+                display: contents;
+          }
+  }
+  .porQue{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15vh;
+    justify-content: center;
+    text-align: center;
+    .titulo{
+      display: flex;
+        flex-direction: column;
+        font-size: 50px;
+          font-weight: 500;
+          color: $color-marron;
+          gap: 0.002em; 
+
+    }
+    .cuerpo{
+
+    }
+    .caja{
+      height: 200vh;
+      margin-top: 5vh;
+      .info{
+        width: 65vh;
+        height: 30vh;
+        justify-content: center;
+        align-items: center;
+        .titulo{
+          display: flex;
+          flex-direction: column;
+          font-size: 20px;
+          font-weight: 500;
+          color: $color-marron;
+          text-align:start;
+        }
+        .descripcion{
+          text-align:start;
+        }
+        ng-lottie{
+          justify-content: flex-start;
+        }
+      }
+    }
+
+    .gri{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .arriba, .enmedio, .abajo{
+        display: flex;
+        flex-direction: row;
+        width: 150vh;
+        height: 60vh;
+        justify-content: center;
+        align-items: flex-end;
+        
+        .titulo{
+          display: flex;
+          flex-direction: column;
+          font-size: 20px;
+          font-weight: 500;
+          color: $color-marron;
+          gap: 0.002em; 
+          text-align:start;
+          margin-right: 30px;
+        }
+        .descripcion{
+          text-align:start;
+          width: 70vh;
+          margin-right: 30px;
+        }
+        .lottie{
+          width: 30vh;
+          height: 30vh;
+          margin-right: 30px;
+        }
+      }
+    }
+  }
+  .quien{
+    margin-top: 20vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .titulo{
+
+    }
+    .cuerpo{
+      text-align: center;
+    }
+    .imagen{
+      width: 40vh;
+      height: 40vh;
+      img{
+
+      }
+    }
+  }
+  .tecnologias{
+    margin-top: 20vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    .cartas{
+      margin-top: 5vh;
+        .titulo{
+          display: flex;
+          flex-direction: column;
+          font-size: 20px;
+          font-weight: 500;
+          color: $color-marron;
+          gap: 0.002em; 
+          text-align:start;
+        }
+        .descripcion{
+          text-align:start;
+          width: 30vh;
+          margin-right: 30px;
+        }
+        .lottie{
+          width: 20vh;
+          height: 20vh;
+          margin-right: 30px;
+        }
+    }
+
+  }
+  .objetivos{
+    margin-top: 20vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .lista{
+
+    }
+  }
+  .creditos{
+    margin-top: 15vh;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+
+  }
+}

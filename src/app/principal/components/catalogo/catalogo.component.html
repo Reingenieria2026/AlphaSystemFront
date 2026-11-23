@@ -1,0 +1,305 @@
+<!-- <div class="titulo p-5">
+  <h1 id="tuto" class="text-3xl font-bold text-center">Catálogo</h1>
+  <p class="text-center text-gray-600">Explora nuestra colección de libros y recursos.</p>
+</div>
+
+<div id="BarraBusqueda" class="flex justify-center p-2">
+  <div id="busbus" class="bg-white flex px-4 py-3 border-b border-[#333] focus-within:border-red-500 overflow-hidden max-w-md mx-auto">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="18px" class="fill-gray-600 mr-3">
+      <path d="M190.707 180.101l-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"></path>
+    </svg>
+    <input type="text" placeholder="Buscar por título, autor" class="w-full outline-none text-sm"
+      [(ngModel)]="searchTerm" (input)="onSearchChange()" />
+  </div>
+</div>
+
+<div class="body">
+  <div class="derecha">
+
+
+    
+    <div class="filtros">
+      
+      <div id="fil" class="p-m-2">
+            <div class="p-m-2 w-full">
+
+            <span id="tit" >Filtros</span>
+
+            <div class="filtros">
+
+
+
+              <p-accordion styleClass="filters-accordion w-full ">
+                
+                <p-accordionTab header="Género">
+                  <div id="opciones" *ngFor="let g of genres" class="p-field-radiobutton">
+                    <p-radioButton
+                      name="genre"
+                      [value]="g.value"
+                      [(ngModel)]="selectedGenre"
+                      (onClick)="onFilterChange()"
+                      [inputId]="'genre_' + g.value"
+                    ></p-radioButton>
+                    <label [for]="'genre_' + g.value">{{ g.label }}</label>
+                  </div>
+                </p-accordionTab>
+          
+                <p-accordionTab header="Estado">
+                  <div id="opciones"  *ngFor="let s of states" class="p-field-radiobutton">
+                    <p-radioButton
+                      name="state"
+                      [value]="s.value"
+                      [(ngModel)]="selectedState"
+                      (onClick)="onFilterChange()"
+                      [inputId]="'state_' + s.value"
+                    ></p-radioButton>
+                    <label [for]="'state_' + s.value">{{ s.label }}</label>
+                  </div>
+                </p-accordionTab>
+          
+                <p-accordionTab header="Ordenar por">
+                  <div id="opciones"  *ngFor="let opt of sortFields" class="p-field-radiobutton">
+                    <p-radioButton
+                      name="sortField"
+                      [value]="opt.value"
+                      [(ngModel)]="selectedSortField"
+                      (onClick)="onFilterChange()"
+                      [inputId]="'sortField_' + opt.value"
+                    ></p-radioButton>
+                    <label [for]="'sortField_' + opt.value">{{ opt.label }}</label>
+                  </div>
+                </p-accordionTab>
+          
+                <p-accordionTab header="Orden">
+                  <div id="opciones"  *ngFor="let opt of sortOrders" class="p-field-radiobutton">
+                    <p-radioButton
+                      name="sortOrder"
+                      [value]="opt.value"
+                      [(ngModel)]="selectedSortOrder"
+                      (onClick)="onFilterChange()"
+                      [inputId]="'sortOrder_' + opt.value"
+                    ></p-radioButton>
+                    <label [for]="'sortOrder_' + opt.value">{{ opt.label }}</label>
+                  </div>
+                </p-accordionTab>
+              </p-accordion>
+          
+              <button
+                pButton
+                type="button"
+                label="Limpiar filtros"
+                class="p-button-secondary mt-4"
+                (click)="clearFilters()"
+              ></button>
+
+
+
+
+
+            </div>
+
+
+
+          </div>
+      </div>
+  </div>
+
+
+
+  </div>
+  <div class="izquierda">
+    <div class="card">
+      <p-dataview #dv [value]="paginatedBooks" [layout]="layout" [emptyMessage]="' '">
+        <ng-template #header>
+          <div class="flex justify-end">
+            <p-selectbutton [(ngModel)]="layout" [options]="options" [allowEmpty]="false">
+              <ng-template #item let-item>
+                <i class="pi" [ngClass]="{ 'pi-bars': item === 'list', 'pi-table': item === 'grid' }"></i>
+              </ng-template>
+            </p-selectbutton>
+          </div>
+        </ng-template>
+
+        <ng-template #list let-items>
+          <div *ngFor="let book of items; let first = first" (click)="openBookModal(book)" 
+          style="cursor: pointer;">
+            <div  id="carta" class="flex flex-col sm:flex-row sm:items-center p-6 gap-4" [ngClass]="{ 'border-t border-surface-200 dark:border-surface-700': !first }">
+              <div class="md:w-40">
+                <img class="block mx-auto rounded w-full" [src]="book.fotoUsr ? 'http://localhost:8000/storage/' + book.fotoUsr : 'assets/book_icon.png'" [alt]="book.titulo" />
+              </div>
+              <div class="flex flex-col flex-1 gap-2">
+                <div class="text-lg font-medium">{{ book.titulo }}</div>
+                <div class="text-sm">Autor: {{ book.autor }}</div>
+                <div class="text-sm">Editorial: {{ book.editorial }}</div>
+                <div class="text-sm">Año: {{ book.anioPubli }}</div>
+                <div class="text-sm">Edición: {{ book.edicion }}</div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template #grid let-items>
+          <div id="cartad" class="grid grid-cols-15 gap-6">
+            <div  id="carta" *ngFor="let book of items" class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3 p-2" (click)="openBookModal(book)" 
+            style="cursor: pointer;">
+              <div id="cartadentro" class="p-6 border border-surface-200 bg-surface-0 rounded flex flex-col">
+                <div class="bg-surface-50 flex justify-center rounded p-4" style="width:150px; height:230px;">
+                  <img id="imagen" class="rounded" [src]="book.fotoUsr ? 'http://localhost:8000/storage/' + book.fotoUsr : 'assets/book_icon.png'" [alt]="book.titulo" style="width:200px; height:200px; object-fit: cover; object-position: center;" />
+                </div>
+                <div class="pt-6">
+                  <div class="text-lg font-medium">{{ book.titulo }}</div>
+                  <div class="text-sm">Autor: {{ book.autor }}</div>
+                  <div class="text-sm">Editorial: {{ book.editorial }}</div>
+                  <div class="text-sm">Año: {{ book.anioPubli }}</div>
+                  <div class="text-sm">Edición: {{ book.edicion }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-dataview>
+    </div>
+    <div *ngIf="filteredBooks.length === 0" class="text-center p-4 text-gray-600">
+      No se encontraron libros :(
+    </div>
+  </div>
+  
+</div> -->
+
+
+<div *ngIf="loading" class="spinner-overlay">
+  <ng-lottie [options]="options" class="spinner"></ng-lottie>
+</div>
+
+
+<ng-container *ngIf="!loading">
+<div class="contenedor">
+  
+
+  <div class="textoPrincipal">
+    <div *ngIf="!busquedaIngresada" class="textPrin">
+      <span class="titulo">Catálogo</span>
+      <span class="subtitulo">Explora nuestro gran catálogo disponible solo para tí.</span>
+    </div>
+    <div *ngIf="busquedaIngresada" class="busqueda">
+      <div class="titulo">Libros encontrados para " {{busquedaIngresada}} " </div>
+    </div>
+    <!-- <div class="genero">
+      <div class="titulo">Libros del genero {{generoSeleccionado}}  </div>
+    </div> -->
+  </div>
+
+  <div class="filtros">
+    <p-splitButton [model]="generosMenu" rounded severity="help">
+    <ng-template pTemplate="label">
+      <span><i class="pi pi-fw pi-tags"></i> Géneros</span>
+    </ng-template>
+  </p-splitButton>
+
+  <p-splitbutton [model]="estadosMenu" rounded severity="help">
+  <ng-template pTemplate="label">
+    <span class="btn-label">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
+        <path d="M2 7L11 2L22 7V17L11 22L2 17V7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+      Estado del libro
+    </span>
+  </ng-template>
+</p-splitbutton>
+
+<p-splitbutton [model]="datosLibroMenu" rounded severity="help">
+  <ng-template pTemplate="label">
+    <span class="btn-label">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
+        <path d="M2 6C2 4.9 2.9 4 4 4H10V20H4C2.9 20 2 19.1 2 18V6ZM20 4H14V20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4Z" stroke="currentColor" stroke-width="2"/>
+      </svg>
+      Datos de libro
+    </span>
+  </ng-template>
+</p-splitbutton>
+
+<p-splitbutton [model]="ordenMenu" rounded severity="help">
+  <ng-template pTemplate="label">
+    <span class="btn-label">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
+        <path d="M3 6H21M6 12H18M9 18H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Orden
+    </span>
+  </ng-template>
+</p-splitbutton>
+
+<p-button label="Borrar filtros" (onClick)="clearFilters()" [rounded]="true" severity="help" />
+  </div>
+
+  <!-- Aqui iran los chips de los filtros activos -->
+  <div class="chips chips-container">
+    <p-chip *ngFor="let chip of filterChips"
+          [label]="chip.label"
+          removable="true"
+          (onRemove)="removeFilter(chip)">
+  </p-chip>
+  </div>
+
+
+  <div class="catalogoCompleto">
+    <div class="card">
+      <p-dataview #dv [value]="paginatedBooks" [layout]="layout" [emptyMessage]="' '">
+        <ng-template #header>
+          <div class="flex justify-end">
+            <p-selectbutton [(ngModel)]="layout" [options]="options1" [allowEmpty]="false">
+              <ng-template #item let-item>
+                <i class="pi" [ngClass]="{ 'pi-bars': item === 'list', 'pi-table': item === 'grid' }"></i>
+              </ng-template>
+            </p-selectbutton>
+          </div>
+        </ng-template>
+
+        <ng-template #list let-items>
+          <div *ngFor="let book of items; let first = first" [routerLink]="['/libro', book.isbn]"
+          style="cursor: pointer;">
+            <div  id="carta" class="flex flex-col sm:flex-row sm:items-center p-6 gap-4" [ngClass]="{ 'border-t border-surface-200 dark:border-surface-700': !first }">
+              <div class="md:w-40">
+                <img class="block mx-auto rounded w-full" [src]="book.fotoUsr ? 'http://localhost:8000/storage/' + book.fotoUsr : 'assets/book_icon.png'" [alt]="book.titulo" />
+              </div>
+              <div class="flex flex-col flex-1 gap-2">
+                <div class="text-lg font-medium">{{ book.titulo }}</div>
+                <div class="text-sm">{{ book.autor }}</div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template #grid let-items>
+          <div id="cartad" class="grid grid-cols-15 gap-6">
+            <div  id="carta" *ngFor="let book of items" class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3 p-2" [routerLink]="['/libro', book.isbn]"
+            style="cursor: pointer;">
+              <div id="cartadentro" class="p-6 border border-surface-200 bg-surface-0 rounded flex flex-col">
+                <div class="bg-surface-50 flex justify-center rounded p-4" style="width:150px; height:230px;">
+                  <img id="imagen" class="rounded" [src]="book.fotoUsr ? 'http://localhost:8000/storage/' + book.fotoUsr : 'assets/book_icon.png'" [alt]="book.titulo" style="width:200px; height:200px; object-fit: cover; object-position: center;" />
+                </div>
+                <div class="pt-6">
+                  <div class="text-lg font-medium">{{ book.titulo }}</div>
+                  <div class="text-sm">{{ book.autor }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-dataview>
+    </div>
+    <div *ngIf="filteredBooks.length === 0" class="text-center p-4 text-gray-600">
+      No se encontraron libros :(
+    </div>
+  </div>
+
+  <div class="paginator">
+    <div class="card flex justify-center">
+      <!-- Actualiza totalRecords usando filteredBooks.length y vincula (onPageChange) -->
+      <p-paginator [first]="first" [rows]="rows" [totalRecords]="filteredBooks.length"
+        [rowsPerPageOptions]="[5,10,15]" (onPageChange)="onPageChange($event)">
+      </p-paginator>
+    </div>
+  </div>
+</div>
+</ng-container>

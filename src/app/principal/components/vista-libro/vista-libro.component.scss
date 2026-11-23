@@ -1,0 +1,85 @@
+.vista-libro{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    .imagen{
+        max-height: 50vh;         // Limita la altura de la imagen
+          width: 20%;
+          object-fit: contain;       // Muestra la imagen completa sin recortar
+          object-position: center;
+          margin: 15px;
+          display: flex !important;
+          align-items: center;
+          height: 100%;
+          
+    }
+    .datos{
+        width: 80%;
+        font-family: "Roboto", sans-serif;
+        font-size: 1.2em;
+        padding: 20px;
+        border-radius: 16px;
+    }
+}
+
+.vista-libro {
+    position: relative;
+    overflow: hidden; /* Evita que el contenido se desborde */
+    padding: 20px; /* Ajusta según tu diseño */
+  }
+  
+  /* El div que contiene la imagen de fondo */
+  .fondo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    /* Filtro en blanco y negro y ajuste de brillo */
+    filter: grayscale(100%) brightness(01);
+    z-index: 1;
+  }
+  
+  /* Overlay para atenuar el fondo aún más (opcional) */
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+  }
+  
+  /* Contenido, posicionado sobre el fondo y el overlay */
+  .contenido {
+    position: relative !important;
+    z-index: 3 !important;
+    color: #fff; /* Si quieres que el texto se destaque sobre fondo oscuro */
+    display: flex;
+    
+  }
+  
+  #pills{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #dat{
+    div{
+        p{
+            text-align: center !important;
+        }
+    }
+    
+  }
+
+  p{
+    text-align: center;
+  }

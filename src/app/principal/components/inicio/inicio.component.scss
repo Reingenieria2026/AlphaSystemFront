@@ -1,0 +1,331 @@
+
+  
+  /* Estilos específicos para el Bootstrap Carousel */
+  
+  
+  /* Estilos específicos para el PrimeNG Carousel en la tarjeta */
+@use '../../../styles/variables' as *;
+ 
+  :host ::ng-deep .p-carousel .p-carousel-item .product-card {
+    /* Asegura que cada tarjeta se expanda al mismo alto y
+       mantenga la distribución vertical del contenido */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;          /* Se estira para ocupar todo el espacio */
+    box-sizing: border-box;
+      animation-duration: 300ms;
+      transition-duration: 300ms;
+      background-color: #f9f3ee;
+
+    &:hover{
+      transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+      animation-duration: 300ms;
+      transition-duration: 300ms;
+    }
+  }
+
+  .destacado{
+    display: flex;         // Flexbox para centrar el contenido
+    justify-content: center; // Centra horizontalmente
+    align-items: center;   // Centra verticalmente
+    height: 50%;        // Altura igual al viewport
+    width: 100%;         // Ancho igual al viewport
+  #exlusivo {
+    max-height: 100vh;         // Limita la altura de la imagen
+          width: 100%;
+          object-fit: contain;       // Muestra la imagen completa sin recortar
+          object-position: center;
+  }
+
+}
+
+#foot{
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+  background-color: rgb(164, 164, 164);
+  .redes{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-right: 10vh;
+    .logo{
+      width: 50vh;
+    }
+    .redeslink{
+      display: flex;
+      justify-content: space-between;
+      a{
+        svg{
+          width: 30px;
+          height: 30px;
+        }
+        img{
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+  }
+  .informacion{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    text-wrap: none;
+  }
+}
+
+#titulo{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  .princi{
+    margin-top: 10px;
+    font-size: 17px;
+    font-weight: 500;
+    color: $color-marron;
+    width: 120%;
+  }
+  .secu{
+    font-size: 15px;
+    font-weight: 400;
+    color: $color-marron;
+    opacity: 0.5;
+  }
+}
+
+.estes{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+#cast{
+  width: 100% !important;
+  margin: 0px ;
+  border: transparent;
+  background-color: $blanco;
+}
+
+#es{
+  height: 580px;
+}
+
+[nz-carousel-content] {
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantiene la proporción de la imagen */
+    object-position: center; /* Centra la imagen en el contenedor */
+  }
+}
+
+nz-radio-group {
+  margin-bottom: 8px;
+}
+
+#tit{
+  font-family: "Playfair Display", serif;
+}
+
+#im{
+  width: 100%;
+  height: 30vh;
+  object-fit: cover;
+  object-position: center;
+  aspect-ratio: 2 / 3 !important;
+  box-shadow:
+    /* sombra cercana y ligeramente más intensa */
+    6px 6px 10px rgba(0, 0, 0, 0.25),
+    /* sombra más difusa y suave */
+    12px 12px 20px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    /* intensificar ligeramente la sombra al pasar el cursor */
+    box-shadow:
+      8px 8px 14px rgba(0, 0, 0, 0.3),
+      16px 16px 28px rgba(0, 0, 0, 0.2);
+  }
+}
+
+img{
+        border-radius: 16px !important;
+        aspect-ratio: 2 / 3 !important;
+  object-fit: cover !important;
+      }
+
+.spinner-overlay {
+  width: 100% ;
+  height: 100% ;
+}
+
+.contenedor{
+  padding: 30px;
+  padding-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  .novedades{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    .texto{
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+      margin-right: 10px;
+      .titulo{
+        display: flex;
+        flex-direction: column;
+        font-size: 40px;
+          font-weight: 500;
+          top: 11%;
+          color: $color-marron;
+          gap: 0.002em; 
+      }
+      .descripcion{
+        margin-top: 16px;
+        font-size: 16px;
+          font-weight: 400;
+          top: 11%;
+          color: $color-marron;
+          opacity: 0.5;
+      }
+      .boton{
+        margin-top: 30px;
+        width: 150px;
+        height: 40px;
+        background-color: $color-naranja;
+        color: $blanco;
+        border-radius: 16px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: scale 0.3s ease;
+        padding: 30px;
+        span{
+          font-size: 19px;
+          font-weight: 600;
+          color: $blanco;
+        }
+        cursor: pointer;
+        &:hover{
+          scale: 1.05;
+          transition: scale 0.3s ease;
+        }
+        
+      }
+
+    }
+    .librosseleccion{
+      display: flex;
+      flex-direction: row;
+      margin-left: 30px;
+      justify-content: space-between;
+      gap: 8%;
+      animation-duration: 300ms;
+        transition-duration: 300ms;
+
+      
+      img{
+        animation-duration: 300ms;
+        transition-duration: 300ms;
+        max-width: 30vh;
+        &:hover{
+        transform: scale(1.05); 
+        animation-duration: 300ms;
+        transition-duration: 300ms;
+      }
+      }
+
+    }
+  }
+
+#anim{
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+  .seleccion{
+    margin-top: 50px;
+  padding-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+    .libros{
+      display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100vh;
+      .fantasia, .ciencia{
+        display: flex;
+        flex-direction: row;
+        width: 100vh;
+        
+        .titulo{
+          display: flex;
+      flex-direction: column;
+      width: 70vh ;
+      margin-right: 50px;
+          .principal{
+            margin-top: 40px;
+            display: flex;
+        flex-direction: column;
+        font-size: 50px;
+          font-weight: 500;
+          top: 11%;
+          color: $color-marron;
+          gap: 0.002em; 
+          width: 30vh;
+          }
+          .subtitulo{
+            margin-top: 16px;
+        font-size: 16px;
+          font-weight: 400;
+          top: 11%;
+          color: $color-marron;
+          opacity: 0.5;
+          width: 100%;
+          }
+        }
+        .carousel{
+          width: 130%;
+
+        }
+      }
+
+    }
+  }
+}
+
+::ng-deep .p-scrollpanel-bar {
+  background-color: $color-marron-opaco !important; 
+  border-radius: 8px;
+  opacity: 0.5;
+}
+
+::ng-deep .p-scrollpanel-bar:hover {
+  background-color: $color-marron !important; 
+}
+
+.spinner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.spinner {
+  width: 120px;
+  height: 120px;
+}

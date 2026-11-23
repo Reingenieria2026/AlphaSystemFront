@@ -1,0 +1,608 @@
+@use '../../../styles/variables' as *;
+@use "sass:color";
+
+#body{
+    height: 100vh;
+    width: 100vw;
+}
+
+.jaja{
+    width: 100%;
+    height: 100%;
+}
+
+#nab{
+    width: 50vh;
+
+}
+
+#hola{
+    width: 100%;
+    height: 100%;
+}
+
+#logo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 300ms;
+    img{
+
+    }
+
+    
+    &:hover{
+        transform: scale(1.1);
+        transition-duration: 300ms;
+        svg{
+            
+        }
+    }
+}
+
+#botones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a{
+        border-radius: 8px;
+        border: 2px solid #f9f9f9;
+        background-color: #D70419;
+        transition-duration: 300ms;
+        button{
+            margin: 5px;
+            svg{
+                fill: #f9f9f9;
+            }
+        }
+
+        &:hover{
+            background-color: #f9f9f9;
+            color: #D70419;
+            border: 2px solid #374957;
+            transition-duration: 300ms;
+            button{
+                svg{
+                    fill: #374957;
+                }
+            }
+        }
+    }
+}
+
+
+#lista{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #D70419;
+        transition-duration: 300ms;
+            width: 10vh;
+        height: 10vh;
+        svg{
+            transition-duration: 300ms;
+            height: 40px !important;
+            width: 40px !important;
+            fill: #f9f9f9;
+
+        }
+
+        &:hover{
+            background-color: #f7e3e3;
+            color: #D70419;
+            transition-duration: 300ms;
+            svg{ 
+                transition-duration: 300ms;
+                fill: #374957;
+                
+            } 
+        }
+    }
+}
+
+#outlet{
+    background-color: #f9f9f9;
+    width: 100%;
+    margin: 20px;
+    margin-left: 0;
+    border-radius: 16px;
+}
+
+#lista a.active {
+    background-color: #f9f9f9;
+    color: #D70419;
+    transition-duration: 300ms;
+}
+
+#lista a.active svg {
+    transition-duration: 300ms;
+    fill: #374957;
+}
+
+#botones a.active {
+    background-color: #f9f9f9;
+    color: #D70419;
+    transition-duration: 300ms;
+}
+
+#botones a.active {
+    transition-duration: 300ms;
+    fill: #374957;
+    color: #374957;
+    stroke: #374957;
+    border: 2px solid #374957;
+    button{
+        svg{
+            fill: #374957;
+        }
+    }
+}
+
+
+#contanier{
+  background-color: $color-beige;
+  @include theme-prop(
+  background-color,
+  color-marron-lighten-30,
+  color.adjust($color-marron, $lightness: 0%)
+);
+
+//background-color: color.adjust($color-marron, $lightness: 30%) !important;
+}
+
+#top{
+  height: 100vh;
+  background-color: color.adjust($color-marron, $lightness: 0%) !important;
+    
+  .contenido{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 300ms;
+    transition-property: transform;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+    .logo{
+      display: flex;
+      flex-direction: row;
+      margin-top: 40px;
+      .imagen{
+        width: 100%;
+        height: 100%;
+        max-width: 64px;
+        max-height: 64px;
+        transition-property: filter;
+    transition-duration: 300ms;
+    transition-timing-function: ease;
+      }
+      .nombre{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Euclid', sans-serif;
+        margin-left: 8px;
+        .principal{
+          font-size: 32px;
+          font-weight: 700;
+          position: relative;
+          top: -10px;
+          color: $color-marron;
+        }
+        .secundario{
+          font-size: 16px;
+          font-weight: 400;
+          position: absolute;
+          top: 11%;
+          color: $color-marron;
+        }
+      }
+      &:hover{
+        transform: scale(1.05);
+        transition-duration: 300ms;
+        cursor: pointer;
+        .imagen img{
+          filter: brightness(2);
+        }
+      }
+    }
+
+    .iconos{
+      margin-top: 36px;
+      height: auto;
+      height: 80vh;
+      width: 100%;
+
+      .opciones{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between; 
+        height: 0%;
+
+        a, .cont{
+          color: black;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 13vh;
+          height: 80px;
+          padding: 16px 12px;
+          margin: 4px 0px;
+          border-radius: 16px;
+            transition: background-color 300ms ease;
+            background-color: transparent;
+          span{
+            text-align: center;
+            font-family: 'Euclid', sans-serif;
+            font-size: 16px;
+            color: $blanco;
+          }
+          svg{
+            color: $blanco ;
+          }
+          path{
+                stroke: $blanco !important;
+                } 
+
+          &:hover{
+            animation-duration: 300ms;
+            transition-duration: 300ms;
+            background-color: $color-beige;
+            span{
+                color: $color-marron !important;
+            }
+            path{
+                stroke: $color-marron !important;
+                } 
+          }
+
+          
+        }
+.activo{
+            background-color: $color-beige;
+            span{
+                color: $color-marron !important;
+            }
+            path{
+                stroke: $color-marron !important;
+                } 
+          }
+        #bot, .cont{
+            
+          height: 100px;
+        }
+
+        
+
+
+#cargar{
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; // Centra horizontalmente si está en bloque
+}
+
+#exclusivo:hover span {
+  background: linear-gradient(
+    90deg,
+    $color-marron,
+    $color-naranja,
+    $color-beige,
+    $color-marron-opaco,
+    $color-marron
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-text 10s linear infinite;
+}
+
+
+
+        .arriba{
+          display: flex;
+      flex-direction: column;
+          
+
+        }
+        .abajo{
+          display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 900px;
+      margin-top: 100px;
+            a{
+                height: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &:hover{
+                    background-color: transparent;
+                }
+            }
+        }
+      }
+
+    }
+
+    .logout{
+
+    }
+  }
+}
+
+#left{
+  background-color: transparent;
+  height: 50px;
+
+  .info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: transparent;
+    height: 86%;
+    margin: 6px;
+    margin-top: 15px;
+    align-items: center;
+
+
+    .barraBusqueda {
+    background-color: transparent;
+    width: 50%;
+    font-family: "Euclid", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: $color-beige;
+    font-optical-sizing: auto;
+
+  .busqueda {
+    display: flex;
+    background-color: $blanco;
+    flex-direction: row;
+    align-items: center;
+    padding: 6px;
+    border: 1px solid #b9b9b9;
+    border-radius: 16px;
+    transition: transform 0.25s cubic-bezier(0.33, 1, 0.68, 1), 
+                box-shadow 0.25s ease;
+
+    &:hover,
+    &:focus-within {
+      transform: scale(1.03);
+      box-shadow: 0 0 6px rgba(114, 91, 58, 0.4);
+    }
+
+    input {
+      background-color: transparent;
+      width: 100%;
+      height: 5vh;
+      border: none;
+      border-radius: 16px;
+      padding: 8px 12px;
+      font-family: 'Euclid', sans-serif;
+      font-size: 14px;
+      color: #b69148;
+      outline: none;
+    }
+
+    button {
+      margin-left: 8px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 28px;
+        height: 28px;
+        color: $color-marron;
+        transition: transform 0.2s ease;
+      }
+
+      &:hover svg {
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+
+    .estLogeado{
+      padding-right: 40px;
+      span{
+        font-family: 'Euclid', sans-serif;
+        font-size: 18px;
+        color: $color-marron;
+      }
+    }
+
+    .noEstaLogeado{
+      padding-right: 40px;
+      font-family: 'Euclid', sans-serif;
+        font-size: 18px;
+        color: $color-marron;
+        display: flex;
+        flex-direction: row;
+         transition: transform 0.2s ease;
+        a{
+          display: flex;
+          flex-direction: row;
+          padding: 8px 16px;
+          border-radius: 16px;
+          svg{
+            width: 36px;
+            height: 36px;
+            color: $color-marron;
+          }
+          span{
+            margin-left: 8px;
+        font-family: 'Euclid', sans-serif;
+        font-size: 18px;
+        color: $color-marron;
+      }
+        }
+
+        &:hover{
+           transition: transform 0.2s ease;
+          transform: scale(1.03);
+          a{
+            background-color: $blanco;
+          }
+        }
+    }
+  }
+
+  .papas{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 40px;
+    width: 150vh;
+    margin-left: 5vh;
+    .dentro{
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      .lottie{
+        width: 100px; 
+        height: 100px;
+      }
+      .mensaje {
+  background: white;
+  border: 3px solid black;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-width: 80vw;
+  line-height: 1.4;
+  overflow-y: auto;
+  align-self: flex-start;
+}
+    }
+    font-family: 'Press Start 2P', monospace;
+font-size: 10px;
+  }
+  
+}
+
+#center{
+  background-color: color.adjust($color-marron, $lightness: 75%) !important;
+  height: 100%;
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: 16px;
+  padding-bottom: 0px;
+  margin-right: 32px;
+   box-shadow:
+    0 8px 24px  color.adjust($color-marron, $lightness: 65%);
+}
+
+#hola{
+  color: $color-marron;
+}
+
+
+@keyframes rainbow-text {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes border-rainbow-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rainbow-fill {
+  0% {
+    color: $color-marron;
+  }
+  20% {
+    color: $color-naranja;
+  }
+  40% {
+    color: $blanco;
+  }
+  60% {
+    color: $color-beige;
+  }
+  80% {
+    color: $color-marron-opaco;
+  }
+  100% {
+    color: $color-marron;
+  }
+}
+
+@keyframes text-glow {
+  0%, 100% {
+    color: 0 0 6px #fff, 0 0 12px #ff00cc;
+  }
+  50% {
+    color: 0 0 10px #fff, 0 0 20px #00ccff;
+  }
+}
+
+@keyframes appear {
+  from {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+::ng-deep .p-scrollpanel-bar {
+  background-color: $color-marron-opaco !important; 
+  border-radius: 8px;
+  opacity: 0.5;
+}
+
+::ng-deep .p-scrollpanel-bar:hover {
+  background-color: $color-marron !important; 
+}

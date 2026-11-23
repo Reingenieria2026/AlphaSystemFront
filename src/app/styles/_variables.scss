@@ -1,0 +1,81 @@
+
+/*
+$color-marron: #725B3A; //Generalemte para textos
+$color-naranja: #FCA72C; //Generalmente para botones o resaltar texto
+$color-beige: #F2E5D0; //el fondo
+$blanco: #f9f3ee; //por si necesito balance 
+$blanco_opciones: #fdffff; //para resakltar cosas como hover
+$color-marron-opaco: #725b3a7f; //para el scrollbar
+*/
+
+//Estas son para todo el proyecto y el gestor de la biblioteca
+$color-marron: #44322D; //Generalemte para textos
+$color-naranja: #FF6F61; //Generalmente para botones o resaltar texto
+$color-beige: #FAF3ED; //el fondo
+$blanco: #ffffff; //por si necesito balance 
+$blanco_opciones: #fff5f0; //para resakltar cosas como hover
+$color-marron-opaco: #44322d60; //para el scrollbar
+$color-marron-suave: #7a635a; // Marrón claro suave derivado de #44322D
+$color-marron-pastel: #d9ccc7; // Marrón muy claro y cálido
+$color-blanco-suave: #fefefe;
+
+
+// $color-marron: #1B263B; // Azul oscuro elegante para textos
+// $color-naranja: #E53935; // Rojo brillante para botones
+// $color-beige: #ECEFF1; // Gris muy claro de fondo
+// $blanco: #FFFFFF; // Blanco puro
+// $blanco_opciones: #BBDEFB; // Azul pastel para hover
+// $color-marron-opaco: #1B263B80; // Azul oscuro con transparencia
+// $color-marron-suave: #9ec2ff; // Azul vibrante para resaltar
+// $color-marron-pastel: #C5CAE9; // Azul lavanda claro
+// $color-blanco-suave: #F5F5F5; // Blanco suave
+
+
+
+
+/* === Rojos que combinan con tu paleta === */
+$color-rojo:         #E15554;   // rojo cálido principal
+$color-rojo-oscuro:  #C43F3E;   // para títulos/hover/bordes
+$color-rojo-pastel:  #FDE4E3;   // fondos suaves / badges discretos
+$color-rojo-opaco:   #E1555466; // con alpha (anillos/sombras)
+
+
+$color-blanco-gris: #f3f3f3;
+
+/* === Amarillos que armonizan con tu paleta actual === */
+$color-amarillo:         #FFD166;   // ámbar cálido (combina con #44322D y #FF6F61)
+$color-amarillo-oscuro:  #E0B24A;   // para hover/bordes
+$color-amarillo-pastel:  #FFF3C9;   // fondos suaves / badges discretos
+$color-amarillo-opaco:   #FFD16660; // con transparencia (overlays/bars)
+
+
+
+//Esta paleta es para la vista del gestor que tiene el perfil de un usuario registrado osea cuando ve su perfil y eso
+// $color-morado-suave:      #c9b8f9; // Lavanda suave, similar al fondo de Canva
+// $color-morado-vivo:       #473b88; // Morado saturado tipo Canva Pro
+// $color-celeste-neón:      #aaf7f0; // Celeste claro con brillo, como los destellos
+// $color-rosado-claro:      #f7e6fb; // Fondo pastel rosado/violeta
+ $color-blanco:            #ffffff; // Blanco puro
+// $color-blanco-opaco:      #fef9ff; // Blanco levemente rosado, tipo hover
+// $color-morado-opaco:      #7b61ff60; // Versión opaca del morado Canva
+// $color-azul-opalino:      #e5f1ff; // Azul muy claro, como fondo tipo nube
+// $color-lila-pastel:       #e8dfff; // Lila claro pastel
+// $color-morado-suave2:     #d8c6ff; // Segundo tono lavanda suave
+// $color-lila-blanco:       #f0ecf8; // Lila claro pastel
+
+
+
+// :root {
+//   --color-marron:   #44322D;
+//   --color-naranja:  #FF6F61;
+//   --color-beige:    #FAF3ED;
+//   --blanco:         #ffffff;
+//   --blanco_opciones:#fff5f0;
+// }
+
+@mixin theme-prop($prop, $token, $fallback) {
+  // Fallback SASS (se calcula en build con tus $variables actuales)
+  #{$prop}: $fallback;
+  // Override en runtime (si existe --$token, lo usa; si no, respeta el fallback)
+  #{$prop}: var(--#{$token}, #{$fallback});
+}

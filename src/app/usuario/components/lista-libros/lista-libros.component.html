@@ -1,0 +1,34 @@
+<p-toast position="top-left"></p-toast>
+
+<div class="contenedor-principal">
+  <div class="tarjeta">
+
+<div class="notificaciones-container">
+  <h2 class="titulo">NOTIFICACIONES DE ENTREGA</h2>
+
+  <div class="notificaciones-scroll">
+    <div *ngFor="let n of notificaciones" class="notificacion-card" [ngClass]="{
+      'peligro': n.diasRestantes <= 0,
+      'advertencia': n.diasRestantes <= 2 && n.diasRestantes > 0
+    }">
+      <div class="contenido">
+        <h3>{{ n.titulo }}</h3>
+        <p *ngIf="n.diasRestantes > 0">Te quedan <strong>{{ n.diasRestantes }}</strong> días para entregar.</p>
+        <p *ngIf="n.diasRestantes === 0">¡Último día para entregar!</p>
+        <p *ngIf="n.diasRestantes < 0">Este libro ya venció hace {{ -n.diasRestantes }} días.</p>
+        <small>Fecha límite: {{ n.fechaEntrega }}</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <div class="mascota">
+      <img [src]="getMascotaUrl(numeroDeLibrosLeidos)" alt="Mascota animada" />
+        <div class="dialogo-retro">
+    <p>¡Checa y entrega!</p>
+  </div>
+    </div>
+
+</div>
+</div>
+

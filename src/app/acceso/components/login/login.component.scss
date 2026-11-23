@@ -1,0 +1,400 @@
+@use '../../../styles/variables' as *;
+@use "sass:color";
+
+#prin{
+    display: flex;
+    flex-direction: row;
+    
+    .ladoIzq{
+        width: 100vh;  /* 100% del ancho de la ventana */
+  height: 100vh;
+  img{
+    width: 100%;
+  height: 100%;
+  }
+        
+    }
+    .carta{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vh;
+        form{
+            input{
+                border-radius: 100px;
+                height: 50px;
+                width: 300px;
+                background-color: #D9D9D9;
+            }
+        }
+    }
+
+    #este{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #F6F3F3;
+    }
+
+    .foto{
+        img{
+            position: fixed;
+            top: -233px;
+            left: 4px;
+
+        }
+    }
+}
+
+#este {
+    opacity: 0;
+    box-shadow: 0 20px 40px rgba(133, 133, 133, 0.5);
+    transform: translateY(-30px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+
+
+    &.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    &:hover {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s ease !important; 
+        transform: scale(1.05) !important;
+    }
+}
+
+#boton {
+    background-color: #2C2C2C;
+    border-color: #2C2C2C;
+    transition: transform 0.3s ease !important;  
+
+    &:hover {
+        transform: scale(1.05) !important;
+        transition: transform 0.3s ease !important;  
+        box-shadow: 0px 4px 8px #8a8a8a;
+    }
+}
+
+.login-card {
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 450px;
+    height: 400px;
+}
+
+.login-logo {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+
+.shape {
+    height: 300px;
+    position: relative !important;
+  }
+  nz-float-button {
+    position: absolute !important;
+    background-color: red !important;
+  }
+
+
+  .login {
+  font-family: 'Euclid', sans-serif;
+  
+  min-height: 100vh;
+  position: relative;
+}
+
+.fondo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/assets/loginBase.gif');
+  background-size: 90% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  pointer-events: none;
+  background-color: $color-beige;
+}
+
+.contenido-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  padding-top: 6%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2rem;
+  cursor: pointer;
+  position: fixed;
+  right: 10%;
+  top: 10px;
+  transition: transform 0.3s ease-in-out;
+
+  
+
+  .imagen img {
+    width: 64px;
+    height: 64px;
+  }
+
+  .nombre {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    .principal {
+      font-size: 32px;
+          font-weight: 700;
+          position: relative;
+          top: -10px;
+          color: $color-marron;
+    }
+    .secundario {
+      font-size: 16px;
+          font-weight: 400;
+          position: absolute;
+          top: 55%;
+          //right: 10%;
+          right: 3%;
+          color: $color-marron;
+    }
+    .debajo{
+          font-size: 13px;
+          font-weight: 400;
+          position: absolute;
+          top: 90%;
+          right: 5%;
+          color: $color-naranja;
+        }
+  }
+
+  &:hover{
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+  }
+}
+
+.login-container {
+  background-color: $blanco;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  max-width: 400px;
+  width: 100%;
+  margin: 2rem 0;
+  color: $color-marron;
+  text-align: center;
+}
+
+.titulo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.subtitulo {
+  margin-bottom: 1.5rem;
+  //color: color.adjust($color-marron, $lightness: -15%);
+  @include theme-prop(
+  color,
+  color-marron-darken-15,
+  color.adjust($color-marron, $lightness: -15%)
+);
+}
+
+.campo {
+  margin-bottom: 1.5rem;
+  input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid $color-marron-opaco;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    background: $blanco;
+    color: $color-marron-opaco;
+    &::placeholder {
+      color: color.adjust($color-marron-suave, $lightness: 10%);
+    }
+    &:focus {
+      border-color: $color-naranja;
+    }
+    &.invalido {
+      border-color: red;
+    }
+    transition: transform 0.3s ease;
+  transform: scale(1); // estado base
+
+  &:hover,
+  &:focus,
+  &:active {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+  }
+
+  &:not(:hover):not(:focus):not(:active) {
+    transform: scale(1);
+  }
+  }
+}
+
+.password-group {
+  display: flex;
+  align-items: center;
+  input {
+    flex: 1;
+  }
+  .toggle {
+    margin-left: 0.5rem;
+    background: none;
+    border: none;
+    color: $color-naranja;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+.ayuda {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.boton-ingresar {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: $color-naranja;
+  color: $blanco;
+  border: none;
+  border-radius: 0.75rem;
+  font-weight: bold;
+  height: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  &:hover {
+    background-color: color.adjust($color-naranja, $lightness: -8%);
+    transform: scale(1.05);
+  }
+}
+
+.registro {
+  margin-top: 1rem;
+}
+
+.empresa {
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  color: $color-marron;
+}
+
+@keyframes bounce-grow {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.01); }
+  60%  { transform: scale(1.03); }
+  100% { transform: scale(1.05); }
+}
+
+.lottie-wrapper {
+  width: 30px;       // Ajusta al tamaño deseado
+  height: 30px;
+  
+  overflow: hidden;  // Previene desbordes
+  display: inline-block;
+
+  // Dentro hacemos que el ng-lottie ocupe el 100%
+  ng-lottie {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+.dialogo-legal {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #44322D; /* tu marrón principal */
+  text-align: justify; /* 🔹 Justifica el texto */
+
+  h2, h3 {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: #FF6F61; /* coral */
+    text-align: left; /* títulos alineados a la izquierda */
+  }
+
+  p {
+    margin-bottom: 0.8rem;
+  }
+
+  ul {
+    padding-left: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  li {
+    margin-bottom: 0.4rem;
+  }
+
+  strong {
+    color: #44322D;
+    font-weight: 600;
+  }
+
+  em {
+    color: #7a635a; /* marrón claro */
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    text-align: justify; /* 🔹 Justifica celdas también */
+
+    th {
+      background-color: #FAF3ED; /* beige */
+      color: #44322D;
+      font-weight: 600;
+      padding: 8px;
+      border-bottom: 2px solid #d9ccc7;
+      text-align: left;
+    }
+
+    td {
+      padding: 8px;
+      border-bottom: 1px solid #d9ccc7;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #fff5f0; /* rosado hover */
+    }
+  }
+}
+
+
+/* Scroll personalizado para diálogos */
+.dialogo-legal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dialogo-legal::-webkit-scrollbar-track {
+  background: #f3f3f3;
+  border-radius: 4px;
+}
+
+.dialogo-legal::-webkit-scrollbar-thumb {
+  background-color: #d9ccc7;
+  border-radius: 4px;
+}

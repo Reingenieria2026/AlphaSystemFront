@@ -1,0 +1,304 @@
+@use '../../../styles/variables' as *;
+
+#tuto{
+  
+  font-size: 8vh;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+
+.body{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+  .derecha{
+    width: 15%;
+    height: 100%;
+    display: flex;
+    padding-top: 11vh;
+  }
+  .izquierda{
+    width: 80%;
+    height: 100%;
+  }
+}
+
+#tit{
+  font-family: "Playfair Display", serif;
+  font-size: 5vh;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+.card {
+    width: 100%;
+    margin: 20px auto;
+  }
+  
+  /* Si necesitas sobrescribir estilos específicos de DataView o los elementos internos, puedes hacerlo aquí */
+  :host ::ng-deep .p-dataview .p-dataview-item {
+    /* Ejemplo: sin margen extra */
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #carta{
+    height: 100%;
+    transition-duration: 300ms;
+    &:hover{
+      transform: scale(1.02);
+      transition-duration: 300ms;
+    }
+  }
+
+  .card{
+    border: transparent;
+  }
+
+  #cartadentro{
+    height: 100%;
+  }
+
+  #imagen{
+    max-height: 90vh;         // Limita la altura de la imagen
+          width: 90%;
+          object-fit: contain;       // Muestra la imagen completa sin recortar
+          object-position: center;
+          max-width: fit-content;
+          aspect-ratio: 2 / 3; 
+  }
+
+  #cartad{
+    height: 100%;
+    width: 100%;
+  }
+
+  :host ::ng-deep .filters-accordion {
+
+    /* cabecera de cada tab */
+    .p-accordionheader {
+        background-color: transparent; 
+        border: transparent;
+        font-family: "Roboto", sans-serif;
+
+      }
+  
+    /* contenedor desplegable */
+    .p-accordioncontent {
+      background-color: transparent;
+      border: transparent;
+      border-top: none;
+      display: flex !important;
+      flex-direction: column;
+    }
+  
+    /* espaciado entre cada radiobutton */
+    #opciones {
+      margin-bottom: 0.75rem;
+    }
+  label{
+        margin-left: 10px;
+      }
+    /* etiqueta al lado del circle */
+    #opciones {
+        border: transparent;
+      display: flex !important;
+      flex-direction: row !important;
+      background-color: transparent !important;
+    }
+  }
+
+  #busbus{
+    width: 100%;
+  }
+
+.contenedor{
+  margin-top: 30px;
+  .filtros{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 10vh;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 30px;
+
+    
+  }
+
+  .textoPrincipal{
+    .textPrin, .busqueda, .genero{
+      margin-top: 10px;
+      margin-left: 10%;
+      .titulo{
+        display: flex;
+        flex-direction: column;
+        font-size: 40px;
+          font-weight: 500;
+          top: 11%;
+          color: $color-marron;
+          gap: 0.002em; 
+      }
+      .subtitulo{
+        margin-top: 16px;
+        font-size: 16px;
+          font-weight: 400;
+          top: 11%;
+          color: $color-marron;
+          opacity: 0.5;
+      }
+    }
+  }
+
+  .catalogoCompleto{
+    margin-left: 10vh;
+    margin-right: 10vh;
+  }
+
+  .paginator{
+
+  }
+
+}
+
+::ng-deep .p-splitbutton .p-button-help {
+  background-color: $color-naranja !important;
+  border: none;
+  color: $blanco !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: none !important;
+  
+  .p-button-label{
+    font-weight: 100 !important;
+  }
+
+}
+
+::ng-deep .p-splitbutton .p-button-help:hover {
+  background-color: $color-naranja !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+::ng-deep .p-button-help:hover {
+  background-color: $color-naranja !important;
+  cursor: default;
+  border-color: transparent;
+}
+
+::ng-deep .p-splitbutton .p-splitbutton-button {
+  cursor: default !important;
+}
+
+::ng-deep .p-splitbutton .p-splitbutton-dropdown {
+  cursor: pointer !important; 
+}
+
+::ng-deep .p-tieredmenu .p-tieredmenu-item-link {
+  transition: background-color 0.2s ease;
+  border-radius: 8px;
+}
+
+::ng-deep .p-tieredmenu .p-tieredmenu-item-link:hover {
+  background-color: $color-beige !important; // color del botón
+  color: $color-marron !important;             // texto oscuro sobre naranja
+}
+
+::ng-deep .btn-label {
+  display: flex;
+  align-items: center;
+  gap: 6px; // espacio entre icono y texto
+}
+
+::ng-deep .p-dataview-content .border,
+::ng-deep .p-dataview-content .p-card,
+::ng-deep #cartadentro {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+::ng-deep .p-button-help {
+  background-color: transparent !important;
+  color: $color-marron !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-family: 'Euclid', sans-serif;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  cursor: pointer !important; 
+}
+
+::ng-deep .p-button-help:hover {
+  background-color: $color-marron !important;
+  color: $blanco !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+::ng-deep #cartadentro .text-lg {
+  color: $color-marron !important; // Título del libro
+  
+}
+
+::ng-deep #cartadentro .text-sm {
+  color: $color-marron-opaco !important; // Autor o datos secundarios
+  
+}
+
+::ng-deep .p-scrollpanel-bar {
+  background-color: $color-marron-opaco !important; 
+  border-radius: 8px;
+  opacity: 0.5;
+}
+
+::ng-deep .p-scrollpanel-bar:hover {
+  background-color: $color-marron !important; 
+}
+
+.chips-container {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  margin-left: 10vh;
+    margin-right: 10vh;
+    justify-content: center;
+    
+}
+
+.spinner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.spinner {
+  width: 120px;
+  height: 120px;
+}

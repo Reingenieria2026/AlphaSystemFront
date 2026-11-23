@@ -1,0 +1,211 @@
+@use '../../../styles/variables' as *;
+@use 'sass:color';
+
+.detalle-prestamo-wrap {
+  padding: 1rem;
+  font-family: 'Euclid', sans-serif;
+  color: $color-marron;
+  position: relative;
+  overflow: visible;
+}
+
+/* Botón Regresar flotante / sticky */
+.back-floating {
+  position: sticky;
+  top: .75rem;
+  z-index: 10;
+  display: flex;
+  padding-left: .25rem;
+  margin-bottom: .5rem;
+}
+.back-btn {
+  border-radius: 999px;
+  background: rgba($color-beige, .9);
+  color: $color-marron;
+  border: 1px solid rgba($color-marron, .15);
+  box-shadow: 0 8px 22px rgba($color-marron, .12);
+  backdrop-filter: blur(8px);
+  font-weight: 700;
+}
+.back-btn:hover {
+  background: rgba($color-beige, 1);
+  box-shadow: 0 12px 28px rgba($color-marron, .18);
+}
+
+/* Loading */
+.loading {
+  display: grid;
+  place-items: center;
+  gap: .5rem;
+  min-height: 50vh;
+  color: $color-marron-suave;
+  .lottie { width: 120px; height: 120px; }
+}
+
+/* Card base */
+.card {
+  background: $blanco;
+  border: 1px solid rgba($color-marron, 0.06);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 6px 20px rgba($color-marron, 0.06);
+}
+
+/* Header */
+.header-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+
+  h1 {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: $color-marron;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+  }
+
+  .mini {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin-top: .25rem;
+
+    .chip {
+      display: inline-flex; align-items: center; gap: .35rem;
+      background: $color-beige;
+      border-radius: 999px;
+      padding: .25rem .6rem;
+      font-size: .85rem;
+      color: $color-marron-suave;
+    }
+  }
+
+  .right .multa {
+    font-weight: 700;
+    color: $color-marron;
+  }
+  .right .multa.deuda {
+    color: var(--p-red-700); /* rojo del tema */
+  }
+
+  /* Colores de Tag basados en variables del tema PrimeNG */
+  :host ::ng-deep .estado-tag.p-tag-success { background-color: var(--p-green-50);  color: var(--p-green-700); }
+  :host ::ng-deep .estado-tag.p-tag-warning { background-color: var(--p-amber-50);  color: var(--p-amber-700); }
+  :host ::ng-deep .estado-tag.p-tag-danger  { background-color: var(--p-red-50);    color: var(--p-red-700); }
+}
+
+/* Grid principal */
+.details-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @media (min-width: 980px) {
+    grid-template-columns: 1.2fr 1.2fr 1fr;
+  }
+}
+
+/* Libro */
+.book-card {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: .75rem;
+
+  .cover {
+    width: 120px;
+    height: 160px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: $color-blanco-suave;
+    border: 1px solid rgba($color-marron, .08);
+    display: grid; place-items: center;
+
+    img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cover-fallback {
+      color: $color-marron-suave; font-size: 1.5rem;
+      display: grid; place-items: center; width: 100%; height: 100%;
+    }
+  }
+
+  .info {
+    .title { margin: 0 0 .4rem 0; font-weight: 800; color: $color-marron; }
+    .rows { display: grid; gap: .35rem; }
+    .row { display: flex; justify-content: space-between; gap: .5rem; }
+    .row span { color: $color-marron-suave; font-size: .9rem; }
+    .row strong { color: $color-marron; }
+  }
+}
+
+/* Usuario */
+.user-card {
+  display: grid;
+  gap: .75rem;
+
+  .user {
+    display: flex; align-items: center; gap: .6rem;
+
+    .avatar {
+      width: 44px; height: 44px; border-radius: 999px; overflow: hidden;
+      background: $color-blanco-suave; border: 1px solid rgba($color-marron, .08);
+      display: grid; place-items: center; font-weight: 800; color: $color-marron;
+      img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    }
+    .uinfo {
+      .name { margin: 0; font-weight: 800; color: $color-marron; }
+      .sub { color: $color-marron-suave; font-size: .9rem; }
+    }
+  }
+
+  .rows { display: grid; gap: .35rem; }
+  .row { display: flex; justify-content: space-between; gap: .5rem; }
+  .row span { color: $color-marron-suave; font-size: .9rem; }
+  .row strong { color: $color-marron; }
+}
+
+/* Resumen / acciones */
+.resume-card {
+  position: sticky; top: 1rem; align-self: start;
+
+  .resume-title { margin: 0 0 .5rem 0; font-weight: 800; color: $color-marron; }
+  .resume-rows { display: grid; gap: .5rem; margin-bottom: .75rem; }
+  .r { display: flex; justify-content: space-between; gap: .5rem; }
+  .r span { color: $color-marron-suave; font-size: .9rem; }
+  .r strong { color: $color-marron; }
+  .r strong.deuda { color: var(--p-red-700); }
+
+  .actions {
+    display: grid; gap: .5rem;
+    button { width: 100%; }
+  }
+  .devuelto-msg {
+    margin-top: .5rem; text-align: center; color: var(--p-green-700); font-weight: 700;
+  }
+}
+
+/* Fallback para crear nuevo desde esta vista */
+.fallback-new {
+  text-align: center;
+  h2 { margin: 0 0 .5rem 0; }
+  p { color: $color-marron-suave; }
+}
+
+.header-card .mini {
+  .tiempo-tag { opacity: .95; }
+}
+
+/* p-tag por severidad usando solo variables del tema */
+:host ::ng-deep .p-tag.p-tag-info    { background-color: var(--p-blue-50);  color: var(--p-blue-700); }
+:host ::ng-deep .p-tag.p-tag-warning { background-color: var(--p-amber-50); color: var(--p-amber-700); }
+:host ::ng-deep .p-tag.p-tag-danger  { background-color: var(--p-red-50);   color: var(--p-red-700); }
+:host ::ng-deep .p-tag.p-tag-success { background-color: var(--p-green-50); color: var(--p-green-700); }
+
+.back-btn:hover {
+  background: $color-marron-suave;
+  box-shadow: 0 12px 28px rgba(68, 50, 45, 0.18);
+  border-color: transparent;
+  border: 0px solid;
+}

@@ -1,0 +1,136 @@
+@use '../../../styles/variables' as *;
+
+.contenedor-principal {
+  display: flex;
+  justify-content: center;
+ 
+  padding: 2rem ; // top, right, bottom, left
+  box-sizing: border-box;
+  overflow-x: hidden; 
+  overflow-y: hidden;
+}
+
+// Tarjeta centrada y contenida
+.tarjeta {
+    width: 100%;
+    padding: 2rem 2rem 2rem 2rem;
+    border-radius: 2rem;
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  
+}
+
+
+
+.notificaciones-container {
+  border-radius: 1.5rem;
+  width: 100%;
+
+  font-size: 1.8rem;
+  color: $color-marron;
+  text-align: center;
+  margin-bottom: 1.5rem;
+
+  .titulo {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: $color-marron;
+  }
+
+  .notificaciones-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; // se extiende al máximo dentro de .tarjeta
+    gap: 1.5rem;
+    padding: 1rem;
+    max-height: 60vh;
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $color-amarillo-oscuro;
+      border-radius: 4px;
+    }
+  }
+
+  .notificacion-card {
+    background-color: $color-amarillo-pastel;
+    border-left: 5px solid $color-amarillo-oscuro;
+        border-right: 5px solid $color-amarillo-opaco;
+
+    border-radius: 1rem;
+    padding: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 700px;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: $color-marron;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: $color-rojo-oscuro;
+      margin: 0.3rem 0;
+    }
+
+    small {
+      font-size: 0.8rem;
+      color: $color-marron-opaco;
+    }
+
+    &.peligro {
+      border-left-color: #ff4d4f;
+      background-color: #fff1f0;
+    }
+
+    &.advertencia {
+      border-left-color: $color-naranja;
+      background-color: #fff7e6;
+    }
+  }
+}
+
+
+.mascota {
+  position: relative; // necesario para z-index relativo
+  transform: translate(200%, -30px);
+
+  img {
+    height: 200px;
+    margin: auto;
+    position: relative;
+    z-index: 1; // la imagen por delante
+  }
+
+  .dialogo-retro {
+    position: absolute;
+    top: -50px; // ajusta según necesites
+    left: 20%;
+    transform: translateX(50%);
+    background-color: #fffbea;
+    border: 3px solid #222;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+    color: #333;
+    max-width: 200px;
+    line-height: 1.4;
+    box-shadow: 4px 4px 0 #000;
+    z-index: 2; // el texto por detrás de la imagen
+    text-align: center;
+  }
+}

@@ -1,0 +1,252 @@
+<!-- HTML PARA CREAR O ACTUALIZAR LIBRO -->
+
+<p-toast position="top-right"></p-toast>
+
+<div *ngIf="ID && isLoading" class="w-full h-[300px] flex items-center justify-center">
+  <ng-lottie [options]="spinner" style="width:140px;height:140px;"></ng-lottie>
+</div>
+
+<div class="titulo" @fadeUp *ngIf="!ID || !isLoading">
+  <span *ngIf="!ID">REGISTRAR LIBRO</span>
+  <span *ngIf="ID">ACTUALIZAR LIBRO</span>
+</div>
+
+<div id="comienzo" *ngIf="!ID || !isLoading">
+
+  <div *ngIf="loadingInfo" class="overlay">
+    <ng-lottie [options]="spinner"></ng-lottie>
+    <p class="mt-2">Buscando información del libro...</p>
+  </div>
+  
+  <div id="derecho" class="mx-10" @fadeSimple>
+    <div class="imagen">
+      <img [src]="portadaLibro" alt="Portada" />
+    </div>
+    <div class="botones">
+      <div class="arriba">
+        <div #boto class="card flex justify-center border-0 bg-transparent">
+          <p-fileupload
+            mode="basic"
+            name="fotoUsr"
+            accept="image/*"
+            [auto]="false"
+            chooseLabel="Seleccionar portada"
+            (onSelect)="onFileSelect($event)"
+            styleClass="compact-upload">
+            
+          </p-fileupload>
+          
+          <button *ngIf="portadaLibro !== '../../../../assets/book_icon.png'"
+            (click)="portadaLibro = '../../../../assets/book_icon.png'; CrearActualizarFormulario.patchValue({ fotoUsr: '' })"
+            class="mt-2 w-full">
+            Eliminar portada
+          </button>
+        </div>
+      </div>
+      <div class="abajo">
+        <button id="guardar" type="submit" form="libroForm" class="mt-3">Guardar</button>
+        <button id="cancelar" type="button" (click)="Cancelar()" class="mt-3">
+          {{ ID ? 'Atrás' : 'Cancelar' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="izquierdo" @fadeSimple>
+    <div class="card">
+      <div class="card-body flex flex-wrap gap-3 p-fluid bg-[#ffffff]">
+        <form id="libroForm" [formGroup]="CrearActualizarFormulario" (ngSubmit)="Guardar()" novalidate>
+          <div class="grid grid-cols-3 gap-4 mb-4">
+            <div>
+              <label>ISBN <span class="text-red-600">*</span></label>
+              <input pInputText formControlName="isbn" class="w-full" />
+              <div *ngIf="isValid('isbn')" class="text-red-600 text-sm">
+                Mínimo 10 caracteres.
+              </div>
+            </div>
+            <div>
+              <label>Título <span class="text-red-600">*</span></label>
+              <input pInputText formControlName="titulo" class="w-full" />
+              <div *ngIf="isValid('titulo')" class="text-red-600 text-sm">
+                Requerido.
+              </div>
+            </div>
+            <div>
+              <label>Autor <span class="text-red-600">*</span></label>
+              <input pInputText formControlName="autor" class="w-full" />
+              <div *ngIf="isValid('autor')" class="text-red-600 text-sm">
+                Requerido.
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4 mb-4">
+            
+            <div>
+              <label>Editorial <span class="text-red-600">*</span></label>
+              <input pInputText formControlName="editorial" class="w-full" />
+              <div *ngIf="isValid('editorial')" class="text-red-600 text-sm">
+                Requerido.
+              </div>
+            </div>
+            <div>
+              <label>Género <span class="text-red-600">*</span></label>
+              <p-dropdown
+                formControlName="idGenero"
+                [options]="generos"
+                placeholder="Selecciona género"
+                class="w-full"
+                appendTo="body"
+                scrollHeight="8rem" >
+
+                <ng-template pTemplate="footer">
+                  <button
+                  id="agregarGenero"
+                    pButton
+                    type="button"
+                    icon="pi pi-plus"
+                    label="Agregar género"
+                    class="w-full"
+                    (click)="openAddGenero()">
+                  </button>
+                </ng-template>
+              </p-dropdown>
+              <div *ngIf="isValid('idGenero')" class="text-red-600 text-sm">Requerido.</div>
+            </div>
+
+            <div *ngIf="ID; else estadoOculto">
+              <label>Estado del Libro <span class="text-red-600">*</span></label>
+              <p-dropdown
+                formControlName="idEstadoLibro"
+                [options]="estadosLibro"
+                placeholder="Selecciona estado"
+                class="w-full">
+              </p-dropdown>
+              <div *ngIf="isValid('idEstadoLibro')" class="text-red-600 text-sm">Requerido.</div>
+            </div>
+            <ng-template #estadoOculto>
+              <input type="hidden" formControlName="idEstadoLibro" />
+            </ng-template>
+
+          </div>
+
+          <!-- <div class="grid grid-cols-2 gap-4 mb-4">
+            <div>
+              <label>Género <span class="text-red-600">*</span></label>
+              <p-dropdown
+                formControlName="idGenero"
+                [options]="generos"
+                placeholder="Selecciona género"
+                class="w-full"
+                appendTo="body"
+                scrollHeight="8rem" >
+
+                <ng-template pTemplate="footer">
+                  <button
+                  id="agregarGenero"
+                    pButton
+                    type="button"
+                    icon="pi pi-plus"
+                    label="Agregar género"
+                    class="w-full"
+                    (click)="openAddGenero()">
+                  </button>
+                </ng-template>
+              </p-dropdown>
+              <div *ngIf="isValid('idGenero')" class="text-red-600 text-sm">Requerido.</div>
+            </div>
+
+            <div *ngIf="ID; else estadoOculto">
+              <label>Estado del Libro <span class="text-red-600">*</span></label>
+              <p-dropdown
+                formControlName="idEstadoLibro"
+                [options]="estadosLibro"
+                placeholder="Selecciona estado"
+                class="w-full">
+              </p-dropdown>
+              <div *ngIf="isValid('idEstadoLibro')" class="text-red-600 text-sm">Requerido.</div>
+            </div>
+            <ng-template #estadoOculto>
+              <input type="hidden" formControlName="idEstadoLibro" />
+            </ng-template>
+          </div> -->
+
+          <div class="grid grid-cols-3 gap-4 mb-4">
+            <div>
+              <label>Año de Publicación <span class="text-red-600">*</span></label>
+              <input type="number" pInputText formControlName="anioPubli" class="w-full" />
+              <div *ngIf="isValid('anioPubli')" class="text-red-600 text-sm">
+                Debe estar entre 1000 y el año actual.
+              </div>
+            </div>
+            <div>
+              <label>Edición</label>
+              <input pInputText formControlName="edicion" class="w-full" />
+              <div *ngIf="isValid('edicion')" class="text-red-600 text-sm">
+                Máximo 50 caracteres.
+              </div>
+            </div>
+            <div>
+              <label>Cantidad <span class="text-red-600">*</span></label>
+              <input type="number" pInputText formControlName="cantidad" class="w-full" />
+              <div *ngIf="isValid('cantidad')" class="text-red-600 text-sm">
+                Mínimo 1 unidad.
+              </div>
+            </div>
+          </div>
+
+          
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+
+<p-dialog
+  header="Nuevo Género"
+  [modal]="true"
+  [(visible)]="displayAddGeneroDialog"
+  [style]="{ width: '25rem' }"
+>
+  <span class="p-text-secondary block mb-6">
+    Agrega un nuevo género para los libros.
+  </span>
+
+  <form [formGroup]="nuevoGeneroForm">
+    <div class="flex items-center gap-4 mb-4">
+      <label for="nombreGenero" class="font-semibold w-24">Nombre</label>
+      <input
+        id="nombreGenero"
+        pInputText
+        formControlName="nombreGenero"
+        class="flex-auto"
+        autocomplete="off"
+        placeholder="Escribe el género"
+      />
+    </div>
+  </form>
+
+  <div class="flex justify-end gap-2">
+    <p-button
+      label="Cancelar"
+      severity="secondary"
+      (click)="displayAddGeneroDialog = false"
+    ></p-button>
+    <p-button
+    id="guardarGenero"
+      label="Guardar"
+      (click)="saveGenero()"
+      [disabled]="nuevoGeneroForm.invalid"
+    ></p-button>
+  </div>
+</p-dialog>
+
+<div id="buscarIA" *ngIf="!ID || !isLoading"
+  class="boton cursor-pointer"
+  (click)="autoFillBookInfo()">
+   <ng-lottie [options]="magic" ></ng-lottie>
+</div>

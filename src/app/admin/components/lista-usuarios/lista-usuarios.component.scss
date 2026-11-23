@@ -1,0 +1,262 @@
+@use '../../../styles/variables' as *;
+@use "sass:color";
+
+.body{
+    padding: 1vh 1vh;
+    width: 100%;
+    height: 100%;
+    font-family: 'Euclid', sans-serif !important;
+    .titulo{
+        font-size: 5vh;
+    font-family: 'Euclid', sans-serif;
+    font-optical-sizing: auto;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $color-marron;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    }
+    .navbar{
+        background-color: #ffffff;
+        width: 100%;
+        height: 8vh;
+        border-radius: 999px;
+        margin: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 10px;
+        .busqueda{
+            height: 100%;
+            width: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            #bus{
+                width: 100%;
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+                border-radius: 999px !important;
+                margin-left: 16px;
+            }
+        }
+        .btnBuscar{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 28%;
+            height: 100%;
+            background-color: #68D60D;
+            border-radius: 999px;
+            transition-duration: 300ms;
+            font-family: "Roboto", sans-serif;
+            font-size: 2.7vh;
+            &:hover{
+                background-color: #347400;
+                transition-duration: 300ms;
+                transform: scale(1.02);
+            }
+            button{
+                color: white;
+
+            }
+        }
+        #nave{
+            p-toolbar{
+                border-radius: 100rem;
+            }
+        }
+    }
+    .lista{
+        background-color: transparent;
+        width: 100%;
+        height: 88%;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        
+        .usuarios{
+            background-color: $blanco;
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+            display: flex;
+                flex-direction: row;
+                gap: 15px;
+                justify-content: center;
+                align-items: center;
+            .barra{
+                border-radius: 16px;
+                background-color: chartreuse;
+                width: 100%;
+                height: 5vh;
+                
+            }
+            .contenido{
+                border-radius: 16px ;
+                background-color: #ffffff;
+                width: 100%;
+                height: 100%;
+                padding: 10px;
+                display: flex;
+                width: 100%;
+                flex-direction: column;
+            }
+        }
+        .filtros{
+            background-color: #f9f9f9;
+            width: 40%;
+            height: 95%;
+            border-radius: 16px;
+            #fil{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                label{
+                    text-align: center;
+                }
+                div{
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    margin-bottom: 10px;
+                    label{
+                        font-weight: 500;
+                        font-family: "Roboto", sans-serif;
+                    }
+                }
+               
+            }
+        }
+    }
+}
+
+#fil{
+    width: 100%;
+    height: 100%;
+    display: flex
+;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 10px;
+}
+
+#usuario{
+    padding: 10px;
+    background-color: $blanco;
+    border-radius: 16px;
+    margin: 10px;
+    transition-duration: 300ms;
+
+    &:hover{
+        background-color: #D9D9D9;
+        transition-duration: 300ms;
+        transform: scale(1.02);
+    }
+
+    #tipok{
+        display: flex
+        ;
+            flex-direction: row;
+            width: 22%;
+            justify-content: space-between;
+    }
+
+}
+
+/* rompe el encapsulado para llegar a los estilos de PrimeNG */
+:host ::ng-deep .filters-accordion {
+
+    /* cabecera de cada tab */
+    .p-accordionheader {
+        background-color: transparent; 
+        border: transparent;
+        font-family: "Roboto", sans-serif;
+
+      }
+  
+    /* contenedor desplegable */
+    .p-accordioncontent {
+      background-color: transparent;
+      border: transparent;
+      border-top: none;
+      display: flex !important;
+      flex-direction: column;
+    }
+  
+    /* espaciado entre cada radiobutton */
+    .opciones {
+      margin-bottom: 0.75rem;
+    }
+  
+    /* etiqueta al lado del circle */
+    #opciones {
+        border: transparent;
+      display: flex !important;
+      flex-direction: row !important;
+      background-color: transparent !important;
+      label{
+        margin-left: 10px;
+      }
+    }
+  }
+  
+
+#tit{
+    font-family: "Playfair Display", serif;
+    font-size: 5vh;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-left: 20px;
+    margin: 0;
+}
+
+:host ::ng-deep .p-scrollpanel .p-datatable-table tbody > tr {
+  cursor: pointer;
+}
+
+/* hover sobre cualquier fila */
+:host ::ng-deep 
+  .p-scrollpanel 
+  .p-datatable-table 
+  tbody > tr:hover {
+  /* un degradado ligero sobre tu marrón */
+  @include theme-prop(
+  background-color,
+  color-marron-lighten-20,
+  color.adjust($color-marron, $lightness: 20%)
+);
+
+  //background-color: color.adjust($color-marron, $lightness: 20%) !important;
+  color: #ffffff !important;
+}
+
+/* fila seleccionada (usa selectionMode="single" y [(selection)]="selectedUser" en tu <p-table>) */
+:host ::ng-deep 
+  .p-scrollpanel 
+  .p-datatable-table 
+  tbody > tr.p-highlight {
+  background-color: $color-naranja !important;
+  color: #ffffff !important;
+}
+
+/* opcional: si quieres que todo el contenido td también herede el color */
+:host ::ng-deep 
+  .p-scrollpanel 
+  .p-datatable-table 
+  tbody > tr:hover td,
+:host ::ng-deep 
+  .p-scrollpanel 
+  .p-datatable-table 
+  tbody > tr.p-highlight td {
+  color: inherit;
+}

@@ -1,0 +1,296 @@
+<!-- <div class="contenedor">
+    <div class="lottie-wrapper">
+          <ng-lottie [options]="options"></ng-lottie>
+        </div>
+</div> -->
+
+<!-- 
+<div class="reco-wrapper">
+  <h2>Recomendación de libros por descripción</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="reco-form">
+    <textarea
+      pInputTextarea
+      rows="4"
+      placeholder="Describe lo que te gustaría leer..."
+      formControlName="descripcion"
+      class="w-full"
+    ></textarea>
+    <div class="error" *ngIf="isInvalid('descripcion')">
+      Ingresa al menos 5 caracteres.
+    </div>
+
+    <button pButton type="submit" label="Buscar" [disabled]="loading"></button>
+  </form>
+
+  <p-progressSpinner *ngIf="loading" styleClass="mt-4"></p-progressSpinner>
+
+  <div class="error mt-3" *ngIf="errorMsg">{{ errorMsg }}</div>
+
+  <div class="nores" *ngIf="!loading && resultados.length === 0 && !errorMsg && form.touched">
+    No se encontraron libros para tu descripción.
+  </div>
+
+  <div class="resultados" *ngIf="!loading && resultados.length > 0">
+    <div class="card" *ngFor="let l of resultados">
+      <img [src]="'http://localhost:8000/storage/' + l.fotoUsr" alt="Portada" />
+      <div class="info">
+        <span class="isbn">{{ l.isbn }}</span>
+        <span class="autor">{{ l.autor }}</span>
+        <span class="autor">{{ l.titulo }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3>Tu historial de recomendaciones</h3>
+
+<button pButton label="Borrar historial"
+        icon="pi pi-trash"
+        class="mb-3"
+        (click)="limpiarHistorial()"
+        [disabled]="clearing || loadingHist || !historial.length"></button>
+
+<p-progressSpinner *ngIf="loadingHist"></p-progressSpinner>
+
+<div *ngIf="!loadingHist && !historial.length">
+  No tienes historial aún.
+</div>
+
+
+<p-accordion [multiple]="true">
+  <p-accordionTab *ngFor="let h of historial; let i = index"
+                  [header]="h.desc + ' — ' + (h.fecha | date:'short')"
+                  (click)="onOpenHistItem(h)">
+
+    <div *ngIf="h.loadingBooks">
+      <p-progressSpinner></p-progressSpinner>
+    </div>
+
+    <div *ngIf="!h.loadingBooks && h.libros?.length" class="cards">
+      <div class="card" *ngFor="let b of h.libros">
+        <img [src]="'http://localhost:8000/storage/' + b.fotoUsr" alt="Portada">
+        <div class="txt">
+          <strong>{{ b.titulo }}</strong>
+          <div class="autor">{{ b.autor }}</div>
+          <div class="isbn">{{ b.isbn }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!h.loadingBooks && (!h.libros || !h.libros.length)">
+      No se encontraron datos de esos ISBN (puede que hayan sido eliminados).
+    </div>
+
+  </p-accordionTab>
+</p-accordion> -->
+
+<div class="contenedor">
+
+  <div class="prin">
+    <div class="vista">
+      <span class="titulo">
+        {{palabra}}
+      </span>
+      <span class="subtitulo">
+        {{subpalabra}}
+      </span>
+    </div>
+  </div>
+
+  <div class="fondo" *ngIf="fondoVisible" @fadeUp>
+    <div class="reco">
+      <div class="reco1">
+        <div class="arriba">
+          <div class="icono">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+    <defs />
+    <path fill="#141B34" d="M11.444,1.25 L12.556,1.25 C14.394,1.25 15.85,1.25 16.989,1.403 C18.161,1.561 19.11,1.893 19.859,2.641 C20.607,3.39 20.939,4.339 21.097,5.511 C21.25,6.65 21.25,8.106 21.25,9.944 L21.25,16.929 C21.25,16.941 21.25,16.952 21.249,16.964 L21.249,16.968 C21.25,16.978 21.25,16.989 21.25,17 C21.25,17.414 20.914,17.75 20.5,17.75 C19.534,17.75 18.75,18.534 18.75,19.5 C18.75,20.466 19.534,21.25 20.5,21.25 C20.914,21.25 21.25,21.586 21.25,22 C21.25,22.414 20.914,22.75 20.5,22.75 L6,22.75 C4.205,22.75 2.75,21.295 2.75,19.5 L2.75,9.944 C2.75,8.106 2.75,6.65 2.903,5.511 C3.061,4.339 3.393,3.39 4.141,2.641 C4.89,1.893 5.839,1.561 7.011,1.403 C8.15,1.25 9.606,1.25 11.444,1.25 Z M19.75,10 C19.75,8.093 19.748,6.739 19.61,5.711 C19.475,4.705 19.221,4.125 18.798,3.702 C18.375,3.279 17.795,3.025 16.789,2.89 C15.762,2.752 14.407,2.75 12.5,2.75 L11.5,2.75 C9.593,2.75 8.239,2.752 7.211,2.89 C6.205,3.025 5.625,3.279 5.202,3.702 C4.779,4.125 4.525,4.705 4.39,5.711 C4.252,6.739 4.25,8.093 4.25,10 L4.25,16.761 C4.755,16.438 5.356,16.25 6,16.25 L19.75,16.25 Z M17.761,21.25 C17.438,20.745 17.25,20.144 17.25,19.5 C17.25,18.856 17.438,18.255 17.761,17.75 L6,17.75 C5.034,17.75 4.251,18.533 4.25,19.498 L4.25,19.501 C4.25,20.467 5.034,21.25 6,21.25 Z M15.75,7 C15.75,7.414 15.414,7.75 15,7.75 L9,7.75 C8.586,7.75 8.25,7.414 8.25,7 C8.25,6.586 8.586,6.25 9,6.25 L15,6.25 C15.414,6.25 15.75,6.586 15.75,7 Z M12,11.75 L9,11.75 C8.586,11.75 8.25,11.414 8.25,11 C8.25,10.586 8.586,10.25 9,10.25 L12,10.25 C12.414,10.25 12.75,10.586 12.75,11 C12.75,11.414 12.414,11.75 12,11.75 Z" />
+</svg>
+          </div>
+          <div class="texto">Descubre tu próxima lectura favorita</div>
+        </div>
+        <span class="titulo">Describe lo que quieres leer y la IA hará el resto.</span>
+        <span class="sub">Ejemplo: "Un drama con romance ambientado en la Segunda Guerra Mundial"</span>
+      </div>
+      <div class="reco2">
+        <div class="arriba">
+          <div class="icono">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+    <defs />
+    <path fill="#141B34" d="M15.75,8.25 L17.25,8.25 L17.25,7 C17.25,6.586 17.586,6.25 18,6.25 C18.414,6.25 18.75,6.586 18.75,7 L18.75,8.301 C19.09,8.353 19.444,8.469 19.737,8.762 C20.031,9.056 20.147,9.41 20.199,9.75 L21.5,9.75 C21.914,9.75 22.25,10.086 22.25,10.5 C22.25,10.914 21.914,11.25 21.5,11.25 L20.25,11.25 L20.25,12.75 L21.5,12.75 C21.914,12.75 22.25,13.086 22.25,13.5 C22.25,13.914 21.914,14.25 21.5,14.25 L20.199,14.25 C20.147,14.59 20.031,14.944 19.737,15.237 C19.444,15.531 19.09,15.647 18.75,15.699 L18.75,17 C18.75,17.414 18.414,17.75 18,17.75 C17.586,17.75 17.25,17.414 17.25,17 L17.25,15.75 L15.75,15.75 L15.75,17 C15.75,17.414 15.414,17.75 15,17.75 C14.586,17.75 14.25,17.414 14.25,17 L14.25,15.699 C13.91,15.647 13.556,15.531 13.263,15.237 C12.969,14.944 12.853,14.59 12.801,14.25 L11.5,14.25 C11.086,14.25 10.75,13.914 10.75,13.5 C10.75,13.086 11.086,12.75 11.5,12.75 L12.75,12.75 L12.75,11.25 L11.5,11.25 C11.086,11.25 10.75,10.914 10.75,10.5 C10.75,10.086 11.086,9.75 11.5,9.75 L12.801,9.75 C12.853,9.41 12.969,9.056 13.263,8.762 C13.556,8.469 13.91,8.353 14.25,8.301 L14.25,7 C14.25,6.586 14.586,6.25 15,6.25 C15.414,6.25 15.75,6.586 15.75,7 Z M10,2.75 C9.033,2.75 8.25,3.533 8.25,4.5 C8.25,5.072 8.524,5.58 8.95,5.901 C9.282,6.149 9.348,6.619 9.1,6.951 C8.851,7.282 8.381,7.349 8.05,7.1 C7.478,6.67 7.051,6.055 6.86,5.342 C5.929,5.618 5.25,6.48 5.25,7.5 C5.25,7.928 5.369,8.325 5.574,8.665 C5.702,8.875 5.718,9.134 5.618,9.358 C5.519,9.583 5.315,9.744 5.074,9.79 C4.035,9.989 3.25,10.904 3.25,12 C3.25,12.936 3.822,13.74 4.636,14.079 C5.061,13.577 5.616,13.188 6.25,12.964 C6.641,12.825 7.069,13.03 7.207,13.421 C7.345,13.811 7.14,14.24 6.75,14.378 C6.258,14.552 5.842,14.894 5.574,15.335 C5.369,15.675 5.25,16.072 5.25,16.5 C5.25,17.743 6.257,18.75 7.5,18.75 C7.914,18.75 8.25,19.086 8.25,19.5 C8.25,20.466 9.033,21.25 10,21.25 C10.967,21.25 11.75,20.466 11.75,19.5 L11.75,18 C11.75,17.586 12.086,17.25 12.5,17.25 C12.914,17.25 13.25,17.586 13.25,18 L13.25,19.5 C13.25,21.295 11.795,22.75 10,22.75 C8.442,22.75 7.139,21.653 6.823,20.189 C5.075,19.871 3.75,18.34 3.75,16.5 C3.75,16.117 3.808,15.748 3.914,15.399 C2.636,14.802 1.75,13.505 1.75,12 C1.75,10.495 2.636,9.198 3.914,8.601 C3.808,8.252 3.75,7.883 3.75,7.5 C3.75,5.66 5.075,4.13 6.823,3.811 C7.139,2.347 8.442,1.25 10,1.25 C11.795,1.25 13.25,2.705 13.25,4.5 L13.25,6 C13.25,6.414 12.914,6.75 12.5,6.75 C12.086,6.75 11.75,6.414 11.75,6 L11.75,4.5 C11.75,3.533 10.967,2.75 10,2.75 Z M14.323,9.823 L14.322,9.826 C14.321,9.827 14.319,9.831 14.317,9.836 C14.308,9.858 14.293,9.906 14.28,10.002 C14.252,10.213 14.25,10.507 14.25,11 L14.25,13 C14.25,13.493 14.252,13.786 14.28,13.997 C14.293,14.094 14.308,14.142 14.317,14.164 C14.319,14.169 14.321,14.172 14.322,14.174 L14.323,14.177 L14.326,14.178 C14.328,14.179 14.331,14.181 14.336,14.183 C14.358,14.192 14.406,14.207 14.503,14.22 C14.713,14.248 15.007,14.25 15.5,14.25 L17.5,14.25 C17.993,14.25 18.287,14.248 18.497,14.22 C18.594,14.207 18.642,14.192 18.664,14.183 C18.669,14.181 18.672,14.179 18.674,14.178 L18.677,14.177 L18.678,14.174 C18.679,14.173 18.679,14.172 18.68,14.17 C18.681,14.169 18.682,14.167 18.683,14.164 C18.692,14.142 18.707,14.094 18.72,13.997 C18.748,13.786 18.75,13.493 18.75,13 L18.75,11 C18.75,10.507 18.748,10.213 18.72,10.002 C18.707,9.906 18.692,9.858 18.683,9.836 C18.682,9.834 18.681,9.832 18.68,9.83 C18.68,9.828 18.679,9.827 18.678,9.826 L18.677,9.823 L18.674,9.822 C18.673,9.821 18.672,9.821 18.671,9.82 C18.669,9.819 18.667,9.818 18.664,9.817 C18.642,9.808 18.594,9.793 18.497,9.78 C18.287,9.751 17.993,9.75 17.5,9.75 L15.5,9.75 C15.007,9.75 14.713,9.751 14.503,9.78 C14.406,9.793 14.358,9.808 14.336,9.817 L14.329,9.82 Z" />
+</svg>
+          </div>
+          <div class="texto">Recomendaciones personalizadas con IA</div>
+        </div>
+        <span class="titulo">Nuestra inteligencia artificial entiende tus gustos.</span>
+        <span class="sub">Solo escribe lo que te interesa y te sugeriremos libros que amarás.</span>
+      </div>
+      <div class="reco3">
+        <div class="arriba">
+          <div class="icono">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+    <defs />
+    <path fill="#141B34" d="M15.732,1.835 L16.27,4.227 C16.664,5.973 18.027,7.336 19.773,7.73 L22.165,8.268 C22.507,8.345 22.75,8.649 22.75,9 C22.75,9.351 22.507,9.655 22.165,9.732 L19.773,10.27 C18.027,10.664 16.664,12.027 16.27,13.773 L15.732,16.165 C15.655,16.507 15.351,16.75 15,16.75 C14.649,16.75 14.345,16.507 14.268,16.165 L13.73,13.773 C13.336,12.027 11.973,10.664 10.227,10.27 L7.835,9.732 C7.493,9.655 7.25,9.351 7.25,9 C7.25,8.649 7.493,8.345 7.835,8.268 L10.227,7.73 C11.973,7.336 13.336,5.973 13.73,4.227 L14.268,1.835 C14.345,1.493 14.649,1.25 15,1.25 C15.351,1.25 15.655,1.493 15.732,1.835 Z M7.732,11.835 L8.116,13.543 C8.379,14.71 9.29,15.621 10.457,15.884 L12.165,16.268 C12.507,16.345 12.75,16.649 12.75,17 C12.75,17.351 12.507,17.655 12.165,17.732 L10.457,18.117 C9.29,18.379 8.379,19.29 8.116,20.456 L7.732,22.165 C7.655,22.507 7.351,22.75 7,22.75 C6.649,22.75 6.345,22.507 6.268,22.165 L5.884,20.456 C5.621,19.29 4.71,18.379 3.543,18.117 L1.835,17.732 C1.493,17.655 1.25,17.351 1.25,17 C1.25,16.649 1.493,16.345 1.835,16.268 L3.543,15.884 C4.71,15.621 5.621,14.71 5.884,13.543 L6.268,11.835 C6.345,11.493 6.649,11.25 7,11.25 C7.351,11.25 7.655,11.493 7.732,11.835 Z M11.231,9 C12.995,9.616 14.384,11.005 15,12.769 C15.616,11.005 17.005,9.616 18.769,9 C17.005,8.384 15.616,6.995 15,5.231 C14.384,6.995 12.995,8.384 11.231,9 Z M4.866,17 C5.797,17.451 6.549,18.203 7,19.134 C7.451,18.203 8.203,17.451 9.134,17 C8.203,16.549 7.451,15.797 7,14.866 C6.549,15.797 5.797,16.549 4.866,17 Z" />
+</svg>  
+          </div>
+          <div class="texto">Explora más allá del catálogo</div>
+        </div>
+        <span class="titulo">No busques por título, busca por emociones, géneros o ideas.</span>
+        <span class="sub">Escribe algo como "Un thriller con giros inesperados" y sorpréndete.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="fondo1">
+    
+    <div class="buscar">
+      <form [formGroup]="form" (ngSubmit)="submit()" class="reco-form">
+      <div class="rainbow-border">
+<textarea
+        rows="1" cols="50"
+        placeholder="Describe lo que te gustaría leer..."
+        formControlName="descripcion"
+        class="w-full "
+        pTextarea
+        [autoResize]="true"
+      ></textarea>
+
+      </div>
+        
+      <!-- <div class="error" *ngIf="isInvalid('descripcion')">
+        Ingresa al menos 5 caracteres.
+      </div> -->
+
+      <button type="submit" label="Buscar" [disabled]="loading">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+    <defs />
+    <path fill="#141B34" d="M12,21.75 C11.586,21.75 11.25,21.414 11.25,21 C11.25,16.914 7.086,12.75 3,12.75 C2.586,12.75 2.25,12.414 2.25,12 C2.25,11.586 2.586,11.25 3,11.25 C7.086,11.25 11.25,7.086 11.25,3 C11.25,2.586 11.586,2.25 12,2.25 C12.414,2.25 12.75,2.586 12.75,3 C12.75,7.086 16.914,11.25 21,11.25 C21.414,11.25 21.75,11.586 21.75,12 C21.75,12.414 21.414,12.75 21,12.75 C16.914,12.75 12.75,16.914 12.75,21 C12.75,21.414 12.414,21.75 12,21.75 Z M6.418,12 C8.845,13.064 10.935,15.155 12,17.582 C13.064,15.155 15.155,13.065 17.582,12 C15.155,10.936 13.065,8.845 12,6.418 C10.936,8.845 8.845,10.935 6.418,12 Z M18.25,8 C18.25,7.847 17.984,7.295 17.345,6.655 C16.705,6.015 16.154,5.75 16,5.75 C15.586,5.75 15.25,5.414 15.25,5 C15.25,4.586 15.586,4.25 16,4.25 C16.153,4.25 16.705,3.984 17.345,3.345 C17.985,2.705 18.25,2.153 18.25,2 C18.25,1.586 18.586,1.25 19,1.25 C19.414,1.25 19.75,1.586 19.75,2 C19.75,2.153 20.016,2.705 20.655,3.345 C21.295,3.985 21.846,4.25 22,4.25 C22.414,4.25 22.75,4.586 22.75,5 C22.75,5.414 22.414,5.75 22,5.75 C21.847,5.75 21.295,6.016 20.655,6.655 C20.015,7.295 19.75,7.847 19.75,8 C19.75,8.414 19.414,8.75 19,8.75 C18.586,8.75 18.25,8.414 18.25,8 Z M4.499,22.756 C4.085,22.756 3.749,22.418 3.749,22.004 C3.707,21.543 2.463,20.299 1.995,20.253 L1.973,20.253 C1.568,20.242 1.246,19.911 1.246,19.503 C1.246,19.095 1.583,18.755 1.995,18.753 C2.463,18.708 3.704,17.467 3.749,16.999 L3.749,16.977 C3.76,16.572 4.091,16.25 4.499,16.25 C4.907,16.25 5.249,16.589 5.249,17.003 C5.291,17.463 6.535,18.708 7.003,18.753 L7.025,18.753 C7.43,18.764 7.752,19.095 7.752,19.503 C7.752,19.911 7.414,20.253 7,20.253 C6.54,20.295 5.295,21.539 5.25,22.007 L5.25,22.029 C5.239,22.434 4.908,22.756 4.5,22.756 Z M18.405,5.595 C18.554,5.745 18.778,5.982 19,6.27 C19.222,5.982 19.445,5.744 19.595,5.595 C19.745,5.446 19.982,5.222 20.27,5 C19.982,4.778 19.744,4.555 19.595,4.405 C19.446,4.255 19.222,4.018 19,3.73 C18.778,4.018 18.555,4.256 18.405,4.405 C18.255,4.554 18.018,4.778 17.73,5 C18.018,5.222 18.256,5.445 18.405,5.595 Z M3.638,19.503 C3.95,19.755 4.247,20.052 4.499,20.364 C4.751,20.052 5.048,19.755 5.36,19.503 C5.048,19.251 4.751,18.954 4.499,18.642 C4.247,18.954 3.95,19.251 3.638,19.503 Z" />
+</svg>
+      </button>
+    </form>
+    </div>
+  </div>
+
+  <div class="fondo2">
+    <div class="iconoCargando" *ngIf="loading" @fadeSimple>
+      <div class="spinner">
+        <ng-lottie [options]="cargando" class="spinner"></ng-lottie>
+      </div>
+      <span>Estamos buscando “{{ lastDesc }}”…</span>
+    </div>
+    <div class="iconoNoHay" *ngIf="!loading && resultados.length === 0 && lastDesc" @fadeSimple>
+      <div class="spinner">
+        <ng-lottie [options]="noHay" class="spinner"></ng-lottie>
+      </div>
+      <span>No hay, prueba con otra descripción >:(</span>
+    </div>
+    
+    <div class="libros"  *ngIf="!loading && resultados.length > 0" @fadeSimple>
+      <span id="subti" class="titulo">Estos son algunos resultados para “{{ lastDesc }}”:</span>
+      <div class="carousel">
+            <div
+              id="cast"
+              class="card"
+              style="width: 135vh; margin-top: 5px; margin-bottom: 20px;"
+            >
+              <p-carousel
+                [value]="resultados"
+                [numVisible]="4"
+                [numScroll]="2"
+                [circular]="true"
+                [responsiveOptions]="responsiveOptions"
+                [showIndicators]="false"
+                class="w-100"
+              >
+                <ng-template pTemplate="item" let-product>
+                  <div
+                  id="anim" 
+                    class="rounded m-2 p-4"
+                    [routerLink]="['/libro', product.isbn]" style="cursor: pointer;"
+                    style="cursor: pointer;"
+                  >
+                    <div id="anim" class="anim">
+                      <div class="">
+                        <img
+                          id="im"
+                          [src]="product.fotoUsr ? 'http://localhost:8000/storage/' + product.fotoUsr : 'assets/book_icon.png'"
+                          [alt]="product.titulo"
+                          class="rounded-border"
+                        />
+                      </div>
+                    </div>
+                    <div class="estes  ">
+                      <div id="titulo" class="">
+                        <div class="princi ">{{ product.titulo }}</div>
+                        <div class=" secu font-light text-gray-400">
+                          {{ product.autor }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </p-carousel>
+            </div>
+          </div>
+    </div>
+  </div>
+
+  <div class="fondo3">
+    <div *ngIf="!loadingHist && !user" class="no-user">
+    <span id="subti">Regístrate para ver tu historial...</span>
+    
+  </div>
+    <div class="default">
+      <div class="noHayhostorial" *ngIf="!loadingHist && user && historial.length === 0" @fadeSimple>
+        
+        <div class="con">
+          <ng-lottie [options]="options" class="spinner"></ng-lottie>
+        </div>
+        <span id="subti"  >No tienes historial aún.</span>
+        
+      </div>
+    </div>
+    <div class="historial" *ngIf="!loadingHist && historial.length > 0" @fadeSimple>
+      <span id="subti" class="titulo">Tu historial:</span>
+      <div class="eliminar">
+        <button
+  class="mb-3 mi-boton-historial"
+  (click)="limpiarHistorial()"
+  [disabled]="clearing || loadingHist || !historial.length">
+  <i class="pi pi-trash"></i>
+  Borrar historial
+</button>
+      </div>
+      <div class="lista">
+        <p-accordion [multiple]="true">
+          <p-accordionTab *ngFor="let h of historial; let i = index"
+                          [header]="h.desc + ' — ' + (h.fecha | date:'short')"
+                          (click)="onOpenHistItem(h)">
+
+            <div *ngIf="h.loadingBooks" @fadeUp>
+              Cargando...
+            </div>
+
+            <div *ngIf="!h.loadingBooks && h.libros?.length" class="cards" @fadeUp>
+              <div class="card" *ngFor="let b of h.libros" [routerLink]="['/libro', b.isbn]" style="cursor: pointer;" id="anim">
+                <img [src]="'http://localhost:8000/storage/' + b.fotoUsr" alt="Portada">
+                <div class="txt">
+                  <strong>{{ b.titulo }}</strong>
+                  <div class="autor">{{ b.autor }}</div>
+                  <div class="isbn">{{ b.isbn }}</div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="!h.loadingBooks && (!h.libros || !h.libros.length)">
+              No se encontraron datos de esos ISBN (puede que hayan sido eliminados).
+            </div>
+
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+    </div>
+  </div>
+
+</div>

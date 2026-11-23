@@ -1,0 +1,419 @@
+<!-- 
+<div *ngIf="loading" class="spinner-overlay">
+  <ng-lottie [options]="options" class="spinner"></ng-lottie>
+</div>
+
+<ng-container *ngIf="!loading && libro">
+  <div class="book-details">
+    <img
+      [src]="ruta + libro.fotoUsr"
+      [alt]="libro.titulo"
+      class="cover"
+    />
+    <h2>{{ libro.titulo }}</h2>
+    <p><strong>Autor:</strong> {{ libro.autor }}</p>
+    <p><strong>Editorial:</strong> {{ libro.editorial }}</p>
+    <p><strong>Año:</strong> {{ libro.anioPubli }}</p>
+    <p><strong>Edición:</strong> {{ libro.edicion }}</p>
+    <p><strong>Cantidad:</strong> {{ libro.cantidad }}</p>
+    <p><strong>Género:</strong> {{ generoNombre }}</p>
+    <div *ngIf="calificacionLibro !== null && paginasLibro !== null" class="info-google">
+  <p>⭐ Calificación: {{ calificacionLibro }} / 5</p>
+  <p>📄 Páginas: {{ paginasLibro }}</p>
+</div>
+<div class="">
+    <p-rating [(ngModel)]="calificacionLibro" [readonly]="true" />
+</div>
+
+    <h3>Sinopsis</h3>
+
+<div *ngIf="sinopsisLoading" class="sinopsis-loader">
+  <ng-lottie [options]="options1" class="loader-ai"></ng-lottie>
+</div>
+
+<p *ngIf="!sinopsisLoading">{{ sinopsis }}</p>
+  </div>
+</ng-container> -->
+<div class="prin">
+  <!-- <div class="opcion">
+    <div class="boton">
+        <span> < </span>
+    </div>
+</div> -->
+  <div class="cuerpo">
+    <div *ngIf="loading" class="spinner-overlay">
+      <ng-lottie [options]="options" class="spinner"></ng-lottie>
+    </div>
+
+    <ng-container *ngIf="!loading && libro">
+      <div class="contenido">
+        <div class="titulo">
+          <div class="opcion" (click)="volverAtras()">
+            <div class="boton">
+              <span> < </span>
+            </div>
+          </div>
+          <div class="nombre pestana">
+            <span>Información de libro</span>
+          </div>
+          <!--  <div class="autor">
+            <span>Detalles de libro</span>
+          </div> -->
+        </div>
+        <div class="contenidoabajo">
+          <div class="imagen">
+            <img
+              [src]="ruta + libro.fotoUsr"
+              [alt]="libro.titulo"
+              class="cover"
+            />
+          </div>
+          <div class="detalles">
+            <div class="etiquetas">
+              <div class="importantes">
+                <div class="isbn">
+                  <div class="titulo">
+                    <div class="nombre">
+                      <span>{{ libro.titulo }}</span>
+                    </div>
+                    <div class="autor">
+                      <span>{{ libro.autor }}</span>
+                    </div>
+                  </div>
+                  <span class="numero"> <span class="letras">ISBN</span> {{libro.isbn}}</span>
+                  
+                </div>
+              </div>
+              <div class="capsulas">
+                <div class="genero">
+                  <div class="cali">
+                  <ng-container
+                      *ngIf="infoGoogleLoading; else generoContent"
+                    >
+                      <ng-lottie
+                        [options]="options2"
+                        style="width: 20px; height: 20px;"
+                      ></ng-lottie>
+                    </ng-container>
+                    <ng-template #generoContent>
+                      
+                        <span id="es">{{ generoNombre }}</span>
+                      
+                    </ng-template>
+                  </div>
+                </div>
+                <div class="calificacion">
+                  <div class="cali">
+                    <span *ngIf="libro.cantidad > 0" class="disponible"
+                      >Hay existencias</span
+                    >
+                    <span *ngIf="!libro.cantidad" class="Nodisponible"
+                      >No hay existencias</span
+                    >
+                  </div>
+                </div>
+                <div class="calificacion">
+                  <!-- <div class="cali">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="20"
+                      height="20"
+                      color="#f9f3ee"
+                      fill="none"
+                    >
+                      <path
+                        d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05143L20.0969 8.58575C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1271 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58575L7.08837 8.05143C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z"
+                        stroke="#f9f3ee"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                    </svg>
+                    <span
+                      *ngIf="calificacionLibro !== null; else sinCalificacion"
+                    >
+                      {{ calificacionLibro }} / 5
+                    </span>
+                    <ng-template #sinCalificacion>
+                      <span>No disponible</span>
+                    </ng-template>
+                  </div> -->
+
+                  <div class="cali">
+                    <ng-container
+                      *ngIf="infoGoogleLoading; else calificacionContent"
+                    >
+                      <ng-lottie
+                        [options]="options2"
+                        style="width: 20px; height: 20px;"
+                      ></ng-lottie>
+                    </ng-container>
+                    <ng-template #calificacionContent>
+                      <span
+                        *ngIf="calificacionLibro !== null; else sinCalificacion"
+                        id="es"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          width="20"
+                          height="20"
+                          color="#f9f3ee"
+                          fill="none"
+                        >
+                          <path
+                            d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05143L20.0969 8.58575C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1271 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58575L7.08837 8.05143C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z"
+                            stroke="#f9f3ee"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          ></path>
+                        </svg>
+                        {{ calificacionLibro }} / 5
+                      </span>
+                      <ng-template #sinCalificacion>
+                        <span>Rate no disponible</span>
+                      </ng-template>
+                    </ng-template>
+                  </div>
+
+                  <div class="logoGoogle">
+                    <span>De: </span>
+                    <img id="google" [src]="iconoGoogle" alt="Google Books" />
+                  </div>
+                </div>
+                <div class="paginas">
+                  <!-- <div class="cali">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="20"
+                      height="20"
+                      color="#f9f3ee"
+                      fill="none"
+                    >
+                      <path
+                        d="M17.5055 2.01874C12.8289 2.83455 12 7.5 12 7.5V22C12 22 12.8867 17.1272 18.0004 16.5588C18.5493 16.4978 19 16.0576 19 15.5058V3.39309C19 2.5654 18.3216 1.87638 17.5055 2.01874Z"
+                        stroke="#f9f3ee"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                      <path
+                        d="M5.33333 5.00001C7.79379 4.99657 10.1685 5.88709 12 7.5V22C10.1685 20.3871 7.79379 19.4966 5.33333 19.5C3.77132 19.5 2.99032 19.5 2.64526 19.2792C2.4381 19.1466 2.35346 19.0619 2.22086 18.8547C2 18.5097 2 17.8941 2 16.6629V8.40322C2 6.97543 2 6.26154 2.54874 5.68286C3.09748 5.10418 3.65923 5.07432 4.78272 5.0146C4.965 5.00491 5.14858 5.00001 5.33333 5.00001Z"
+                        stroke="#f9f3ee"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                      <path
+                        d="M12 22.001C13.8315 20.3881 16.2062 19.4976 18.6667 19.501C20.2287 19.501 21.0097 19.501 21.3547 19.2802C21.5619 19.1476 21.6465 19.0629 21.7791 18.8558C22 18.5107 22 17.8951 22 16.6639V8.40424C22 6.97645 22 6.26256 21.4513 5.68388C20.9025 5.1052 20.1235 5.05972 19 5"
+                        stroke="#f9f3ee"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                    </svg>
+                    <span> {{ paginasLibro }} páginas</span>
+                  </div> -->
+
+                  <div class="cali">
+                    <ng-container
+                      *ngIf="infoGoogleLoading; else paginasContent"
+                    >
+                      <ng-lottie
+                        [options]="options2"
+                        style="width: 20px; height: 20px;"
+                      ></ng-lottie>
+                    </ng-container>
+                    <ng-template #paginasContent>
+                      <span
+                        *ngIf="paginasLibro !== null; else sinPaginas"
+                        id="es"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          width="20"
+                          height="20"
+                          color="#f9f3ee"
+                          fill="none"
+                        >
+                          <path
+                            d="M17.5055 2.01874C12.8289 2.83455 12 7.5 12 7.5V22C12 22 12.8867 17.1272 18.0004 16.5588C18.5493 16.4978 19 16.0576 19 15.5058V3.39309C19 2.5654 18.3216 1.87638 17.5055 2.01874Z"
+                            stroke="#f9f3ee"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          ></path>
+                          <path
+                            d="M5.33333 5.00001C7.79379 4.99657 10.1685 5.88709 12 7.5V22C10.1685 20.3871 7.79379 19.4966 5.33333 19.5C3.77132 19.5 2.99032 19.5 2.64526 19.2792C2.4381 19.1466 2.35346 19.0619 2.22086 18.8547C2 18.5097 2 17.8941 2 16.6629V8.40322C2 6.97543 2 6.26154 2.54874 5.68286C3.09748 5.10418 3.65923 5.07432 4.78272 5.0146C4.965 5.00491 5.14858 5.00001 5.33333 5.00001Z"
+                            stroke="#f9f3ee"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          ></path>
+                          <path
+                            d="M12 22.001C13.8315 20.3881 16.2062 19.4976 18.6667 19.501C20.2287 19.501 21.0097 19.501 21.3547 19.2802C21.5619 19.1476 21.6465 19.0629 21.7791 18.8558C22 18.5107 22 17.8951 22 16.6639V8.40424C22 6.97645 22 6.26256 21.4513 5.68388C20.9025 5.1052 20.1235 5.05972 19 5"
+                            stroke="#f9f3ee"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          ></path>
+                        </svg>
+                        {{ paginasLibro }} páginas
+                      </span>
+                      <ng-template #sinPaginas>
+                        <span>Páginas desconocidas</span>
+                      </ng-template>
+                    </ng-template>
+                  </div>
+
+                  <div class="logoGoogle">
+                    <span>De: </span>
+                    <img id="google" [src]="iconoGoogle" alt="Google Books" />
+                  </div>
+                </div>
+                <div *ngIf="(previewLink || webReaderLink) && viewability !== 'NO_PAGES'" class="preview-btn">
+  <a class="">
+    <p-button class=""  [rounded]="true" id="holas" (click)="abrirConfirmacionGoogle($event)">
+      Ver vista previa del libro
+    </p-button>
+  </a>
+</div>
+              </div>
+            </div>
+            <div class="sipnosis">
+              <div class="loader-ai"  *ngIf="sinopsisLoading">
+                <ng-lottie [options]="options1"></ng-lottie>
+              </div>
+              <div class="texto">
+                <div class="sip">
+                  <span *ngIf="!sinopsisLoading">{{ sinopsis }}</span>
+                </div>
+                <div class="logoOpen">
+                  <span class="tex">Generada por: </span>
+                  <img [src]="iconoOpenAi" alt="OpenAI" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div *ngIf="!loading && libro" class="relacionado">
+    <div class="relacionAutor">
+      <div class="tit">
+        <span class="priri" >Libros relacionados</span>
+        <span>Más de {{ libro.autor }} </span>
+      </div>
+      <div class="carousel">
+            <div
+              id="cast"
+              class=""
+              style="width: 100px; "
+            >
+            <ng-container *ngIf="libroAutor.length > 0; else noAutor">
+              <p-carousel
+                [value]="libroAutor"
+                [numVisible]="4"
+                [numScroll]="2"
+                [circular]="true"
+                [responsiveOptions]="responsiveOptions"
+                [showIndicators]="false"
+                class="w-100"
+              >
+                <ng-template pTemplate="item" let-product>
+                  <div
+                  id="anim" 
+                    class="rounded m-2 p-4"
+                    (click)="goToAndReload(product.isbn)" style="cursor: pointer;"
+                    style="cursor: pointer;"
+                  >
+                    <div id="anim" class="anim">
+                      <div class="">
+                        <img
+                          id="im"
+                          [src]="product.fotoUsr ? 'http://localhost:8000/storage/' + product.fotoUsr : 'assets/book_icon.png'"
+                          [alt]="product.titulo"
+                          class="rounded-border"
+                        />
+                      </div>
+                    </div>
+                    <div class="estes  ">
+                      <div id="titulo" class="">
+                        <div class="princi ">{{ product.titulo }}</div>
+                        <div class=" secu font-light text-gray-400">
+                          {{ product.autor }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </p-carousel>
+              </ng-container>
+              <ng-template #noAutor >
+                <p class="nohay" >No hay más libros de este autor.</p>
+              </ng-template>
+            </div>
+          </div>
+    </div>
+    <div class="relacionGenero">
+      <div class="tit">
+        <span>Más de {{ generoNombre }} </span>
+      </div>
+      <div class="carousel">
+            <div
+              id="cast"
+              class="card"
+              style="width: 100vh; "
+            >
+            <ng-container *ngIf="libroGenero.length > 0; else noGenero">
+              <p-carousel
+                [value]="libroGenero"
+                [numVisible]="4"
+                [numScroll]="2"
+                [circular]="true"
+                [responsiveOptions]="responsiveOptions"
+                [showIndicators]="false"
+                class="w-100"
+              >
+                <ng-template pTemplate="item" let-product>
+                  <div
+                  id="anim" 
+                    class="rounded m-2 p-4"
+                    (click)="goToAndReload(product.isbn)" style="cursor: pointer;"
+                    style="cursor: pointer;"
+                  >
+                    <div id="anim" class="anim">
+                      <div class="">
+                        <img [routerLink]="['/libro', libro.isbn]"
+                          id="im"
+                          [src]="product.fotoUsr ? 'http://localhost:8000/storage/' + product.fotoUsr : 'assets/book_icon.png'"
+                          [alt]="product.titulo"
+                          class="rounded-border"
+                        />
+                      </div>
+                    </div>
+                    <div class="estes  ">
+                      <div id="titulo" class="">
+                        <div class="princi ">{{ product.titulo }}</div>
+                        <div class=" secu font-light text-gray-400">
+                          {{ product.autor }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </p-carousel>
+              </ng-container>
+              <ng-template #noGenero>
+                <p class="nohay" >No hay libros disponibles de este género.</p>
+              </ng-template>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>

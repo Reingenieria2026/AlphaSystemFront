@@ -1,0 +1,36 @@
+<div class="vista-libro" >
+    <!-- <h1>{{ libro.titulo }}</h1> -->
+
+    <div class="fondo" [ngStyle]="{'background-image': 'url(' + 'http://localhost:8000/storage/' + libro.fotoUsr + ')'}"></div>
+  
+  <!-- Capa overlay, si deseas atenuar aún más el fondo -->
+  <div class="overlay"></div>
+    
+  <div class="contenido ">
+    <div class="imagen ">
+        <img [src]="libro.fotoUsr ? 'http://localhost:8000/storage/' + libro.fotoUsr : 'assets/book_icon.png'" [alt]="libro.titulo" class="shadow-xl/20 shadow-cyan-500"  />
+    </div>
+    <div id="dat" class="datos backdrop-blur-sm">
+        
+        <div class="row row-cols-1 row-cols-md-3">
+            <p><strong>Edición</strong> <br> {{ libro.edicion }}</p>
+            <p><strong>Año de Publicación</strong> <br> {{ libro.anioPubli }}</p>
+            <p><strong>ISBN</strong> <br> {{ libro.isbn }}</p>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2">
+            <p><strong>Autor</strong> <br> {{ libro.autor }}</p>
+            <p><strong>Editorial</strong> <br> {{ libro.editorial }}</p>
+        </div>
+
+        <p><strong>Sinopsis</strong> <br> {{ sinopsis }}</p>
+
+        <div id="pills" class="">
+            <p-tag *ngIf="libro.cantidad>0" severity="success" value="Disponible"/>
+            <p-tag *ngIf="!libro.cantidad" severity="danger" value="No disponible"/>
+            <p-tag severity="secondary" value="{{libroGenero}}"/>
+
+        </div>
+        
+    </div>
+  </div>
+</div>

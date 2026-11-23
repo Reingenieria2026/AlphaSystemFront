@@ -1,0 +1,459 @@
+<!-- <div id="prin" class="grid grid-flow-col grid-rows-3 gap-4">
+  <div class="ladoIzq row-span-3">
+    <img src="../../../../assets/login.png" alt="" />
+  </div>
+  <div class="carta">
+    <div class="card login-card" id="este">
+      <div class="text-center mb-4 foto">
+        <img src="../../../../assets/Diseño sin título (3).png" alt="" />
+      </div>
+      <div class="tepsto pb-8">
+        <h1>INICIAR SESIÓN</h1>
+      </div>
+      <form
+        [formGroup]="formulario"
+        (ngSubmit)="Guardar()"
+        autocomplete="off"
+        class="z-100"
+      >
+        <div class="form-group mb-4">
+          <input
+            type="text"
+            formControlName="correoUsr"
+            class="form-control"
+            placeholder="Correo electrónico"
+            [ngClass]="{
+              'is-invalid':
+                isValid('correoUsr') &&
+                (f['correoUsr'].touched || f['correoUsr'].dirty)
+            }"
+          />
+          <span
+            *ngIf="
+              f['correoUsr'].errors &&
+              (f['correoUsr'].touched || f['correoUsr'].dirty)
+            "
+            class="form-text text-danger"
+          >
+            <div *ngIf="f['correoUsr'].errors['required']">
+              Este campo es requerido
+            </div>
+            <div *ngIf="f['correoUsr'].errors['email']">
+              El correo electrónico debe ser válido
+            </div>
+          </span>
+        </div>
+
+        <div class="form-group mb-4">
+          <input
+            type="password"
+            formControlName="contrasena"
+            class="form-control"
+            placeholder="Contraseña"
+            [ngClass]="{
+              'is-invalid':
+                isValid('contrasena') &&
+                (f['contrasena'].touched || f['contrasena'].dirty)
+            }"
+          />
+          <span
+            *ngIf="
+              f['contrasena'].errors &&
+              (f['contrasena'].touched || f['contrasena'].dirty)
+            "
+            class="form-text text-danger"
+          >
+            <div *ngIf="f['contrasena'].errors['required']">
+              Este campo es requerido
+            </div>
+          </span>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" id="boton" class="btn btn-primary">
+            INGRESA
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <ng-template #svgIcon>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      color="#000000"
+      fill="none"
+    >
+      <path
+        d="M3.16405 11.3497L4 11.5587L4.45686 16.1005C4.715 18.6668 4.84407 19.9499 5.701 20.7249C6.55793 21.5 7.84753 21.5 10.4267 21.5H13.5733C16.1525 21.5 17.4421 21.5 18.299 20.7249C19.1559 19.9499 19.285 18.6668 19.5431 16.1005L20 11.5587L20.836 11.3497C21.5201 11.1787 22 10.564 22 9.85882C22 9.35735 21.7553 8.88742 21.3445 8.59985L13.1469 2.86154C12.4583 2.37949 11.5417 2.37949 10.8531 2.86154L2.65549 8.59985C2.24467 8.88742 2 9.35735 2 9.85882C2 10.564 2.47993 11.1787 3.16405 11.3497Z"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <circle
+        cx="12"
+        cy="14.5"
+        r="2.5"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </ng-template>
+
+  <nz-float-button
+    nzType="default"
+    style="right: 24px"
+    [nzIcon]="svgIcon"
+    (click)="goHome()"
+  >
+  </nz-float-button>
+</div> -->
+
+<div class="login">
+  <div class="fondo"></div>
+
+  <div class="contenido-login">
+    <!-- Logo -->
+    <div class="logo" [routerLink]="['/']">
+      <div class="imagen">
+        <img src="../../../../assets/AlphSysLogo.png" alt="Logo" />
+      </div>
+      <div class="nombre">
+        <span class="principal">Alpha</span>
+        <span class="secundario">System</span>
+        <span class="debajo "> Community </span>
+      </div>
+    </div>
+
+    <!-- <div class="logo" [routerLink]="['/']">
+        <div class="imagen">
+          <img src="../../../../assets/logoDragon.png" alt="" />
+        </div>
+        <div class="nombre">
+          <span class="principal">ITSES</span>
+          <span class="secundario">Biblioteca</span>
+        </div>
+      </div> -->
+
+    <!-- Formulario -->
+    <div class="login-container">
+      <h1 class="titulo">Inicio de sesión</h1>
+      <p class="subtitulo">Hola, ingresa tus datos para acceder a tu cuenta</p>
+
+      <form [formGroup]="formulario" (ngSubmit)="Guardar()" autocomplete="off">
+        <div class="campo">
+          <input
+            type="email"
+            placeholder="Correo electrónico"
+            formControlName="correoUsr"
+            [ngClass]="{
+              'invalido': isValid('correoUsr') && (f['correoUsr'].touched || f['correoUsr'].dirty)
+            }"
+          />
+        </div>
+
+        <div class="campo password-group">
+          <input
+            [type]="mostrarContrasena ? 'text' : 'password'"
+            placeholder="Contraseña"
+            formControlName="contrasena"
+            [ngClass]="{
+              'invalido': isValid('contrasena') && (f['contrasena'].touched || f['contrasena'].dirty)
+            }"
+          />
+          <button type="button" class="toggle" (click)="mostrarContrasena = !mostrarContrasena">
+            {{ mostrarContrasena ? 'Ocultar' : 'Mostrar' }}
+          </button>
+        </div>
+
+        <p
+          class="ayuda"
+          (click)="showProblemas()"
+          style="cursor: pointer; text-decoration: underline;"
+        >¿Tienes problemas para iniciar sesión?</p>
+
+        <p-dialog
+          header="Ayuda para iniciar sesión"
+          [(visible)]="visibleProblemas"
+          [modal]="true"
+          [draggable]="false"
+          [resizable]="false"
+          [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+          [style]="{ width: '50vw' }"
+        >
+          <p>
+            Acude a tu centro donde te registraron tu cuenta o comunícate con el
+            administrador para restablecer tu acceso.
+          </p>
+        </p-dialog>
+
+        <button
+        type="submit"
+        class="boton-ingresar"
+        [disabled]="isLoading"
+      >
+        <!-- Mientras carga, mostramos Lottie -->
+        <div *ngIf="isLoading" class="lottie-wrapper">
+          <ng-lottie [options]="options"></ng-lottie>
+        </div>
+
+        <!-- Cuando no carga, mostramos el texto -->
+        <span *ngIf="!isLoading">Ingresar</span>
+      </button>
+      </form>
+
+      <p
+        class="registro"
+        (click)="showRegistro()"
+        style="cursor: pointer; text-decoration: underline;"
+      >¿No tienes una cuenta?</p>
+
+      <p-dialog
+        header="Registro de cuenta"
+        [(visible)]="visibleRegistro"
+        [modal]="true"
+        [draggable]="false"
+        [resizable]="false"
+        [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+        [style]="{ width: '50vw' }"
+      >
+        <p>
+          Ve a un administrador de la biblioteca para que te registre con tu correo.
+          
+        </p>
+      </p-dialog>
+
+      <p
+        class="registro"
+        style=""
+      >Al iniciar sesión, aceptas nuestros
+        <a (click)="showTerminos()" style="cursor: pointer; text-decoration: underline;">Términos y Condiciones</a>
+  y nuestro
+  <a (click)="showPrivacidad()" style="cursor: pointer; text-decoration: underline;">Aviso de Privacidad</a>.
+    
+    
+    </p>
+
+    <p-dialog
+  header="Términos y Condiciones de Uso del Sistema Alpha System"
+  [(visible)]="visibleTerminos"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [breakpoints]="{ '1199px': '75vw', '575px': '95vw' }"
+  [style]="{ width: '65vw', maxHeight: '80vh' }"
+>
+  <div class="dialogo-legal" style="max-height: 60vh; overflow: auto;">
+
+    <h2>Términos y Condiciones de Uso del Sistema Alpha System</h2>
+    <p><strong>Última actualización:</strong> 12 de agosto del 2025</p>
+
+    <p>Los presentes términos y condiciones rigen el uso del software <strong>Alpha System</strong>, propiedad de <strong>Butterfly Synergy</strong>. Al acceder, instalar o utilizar Alpha System, la institución contratante y sus usuarios autorizados aceptan expresamente el contenido de este acuerdo, el cual ha sido elaborado en cumplimiento de la Norma Mexicana NMX-COE-001-SCFI-2019, la Ley Federal de Protección al Consumidor, la Ley Federal de Protección de Datos Personales en Posesión de los Particulares y demás disposiciones aplicables en México.</p>
+
+    <p><strong>Butterfly Synergy</strong>, con domicilio en Privada de San Miguelito #23, Santuario De Atotonilco, 37893, San Miguel de Allende, Guanajuato, México, RFC: CAEJ040411QS1, teléfono +52 415 111 63 52 y correo electrónico <strong>soporte&#64;butterfly.com</strong>, actúa como proveedor del software y licenciante exclusivo de Alpha System. La marca Alpha System se encuentra registrada y protegida conforme a la legislación de propiedad industrial vigente.</p>
+
+    <h3>Objeto del contrato</h3>
+    <p>Alpha System es una solución informática orientada a la gestión bibliotecaria de instituciones públicas y privadas. El sistema se ofrece en dos modalidades:</p>
+    <ul>
+      <li><strong>Versión Community (AGPL v3):</strong> licencia libre conforme a la GNU Affero General Public License v3.0, con funcionalidades básicas y sin soporte prioritario.</li>
+      <li><strong>Versión Enterprise Comercial:</strong> licencia de uso limitada, soporte técnico preferente y funciones avanzadas, vigente durante el plazo contratado.</li>
+    </ul>
+    <p>La licencia es no exclusiva, no transferible y permite la instalación únicamente en un servidor por licencia. Cualquier uso no autorizado, reventa, sublicencia o reproducción parcial o total del software constituye una infracción grave que podrá derivar en la suspensión o cancelación inmediata de la licencia, así como en las acciones legales correspondientes.</p>
+
+    <h3>Vigencia, soporte y garantía</h3>
+    <p>Como parte de nuestra estrategia de valor para el cliente, Alpha System incluye garantía total de funcionamiento, soporte técnico y actualizaciones durante toda la vigencia de la licencia adquirida, sin costos adicionales. Esto implica que cualquier error técnico atribuible al software será corregido, y las nuevas versiones y mejoras se entregarán de manera gratuita mientras la licencia esté activa. Las actualizaciones serán notificadas por correo electrónico y se proveerán mediante enlace seguro de descarga.</p>
+
+    <p>En caso de que Alpha System se instale en un servidor sin conexión a internet, el sistema continuará operando con sus funciones básicas. No obstante, herramientas externas como OpenAI o Google Books API dejarán de funcionar, al igual que la recepción automática de actualizaciones y soporte remoto, por lo que el alcance del servicio quedará limitado.</p>
+
+    <h3>Herramientas y servicios de terceros</h3>
+    <p>Alpha System integra funcionalidades provistas por terceros, incluyendo pero no limitadas a OpenAI y Google Books API. Dichos servicios cuentan con sus propios Términos y Condiciones y Políticas de Privacidad, independientes a las de Butterfly Synergy. El uso indebido de estos servicios a través de Alpha System será responsabilidad exclusiva de la institución contratante. Butterfly Synergy garantiza que la integración con estas herramientas cumple con las disposiciones legales mexicanas, pero no se hace responsable por cambios, interrupciones o limitaciones impuestas por los proveedores externos.</p>
+
+    <h3>Responsabilidades y limitaciones</h3>
+    <p>Butterfly Synergy se compromete a mantener Alpha System operativo y seguro conforme a las mejores prácticas de desarrollo. Sin embargo, no será responsable por fallos ocasionados por infraestructura deficiente de la institución, ataques informáticos externos, errores de configuración ajenos a nuestro control o incumplimiento de las obligaciones contractuales por parte del cliente.</p>
+
+    <p>En caso de incumplimiento de estos Términos y Condiciones, la licencia podrá ser suspendida por un plazo de catorce (14) días naturales, durante el cual el sistema operará con funciones limitadas, incluyendo la desactivación de integraciones externas. La reincidencia podrá derivar en la cancelación definitiva de la licencia, sin obligación de reembolso.</p>
+
+    <h3>Protección de datos personales</h3>
+    <p>El tratamiento de datos personales dentro de Alpha System se regirá por el Aviso de Privacidad oficial, disponible en este mismo sistema. Cuando el sistema esté instalado en servidores de la institución contratante, ésta asumirá el rol de responsable del tratamiento de datos ante los titulares y las autoridades competentes, debiendo cumplir con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares y sus reglamentos.</p>
+
+    <h3>Jurisdicción y legislación aplicable</h3>
+    <p>El presente contrato se regirá e interpretará conforme a las leyes de los Estados Unidos Mexicanos. Cualquier controversia derivada de este documento será sometida a los tribunales competentes de Guanajuato, México, renunciando las partes a cualquier otro fuero que pudiera corresponderles por razón de su domicilio presente o futuro.</p>
+
+    <p>La aceptación de estos Términos y Condiciones se realiza al marcar la casilla de conformidad previa a la instalación o, el inicio se sesión o uso de Alpha System, quedando registrada electrónicamente la fecha y hora de dicha aceptación.</p>
+
+  </div>
+</p-dialog>
+
+
+<p-dialog
+  header="Aviso de Privacidad"
+  [(visible)]="visiblePrivacidad"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [breakpoints]="{ '1199px': '75vw', '575px': '95vw' }"
+  [style]="{ width: '70vw', maxHeight: '80vh' }"
+>
+  <div class="dialogo-legal" style="max-height: 60vh; overflow: auto;">
+    <table style="width:100%; border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th style="text-align:left; padding:8px; border-bottom:1px solid #ddd;">Sección</th>
+          <th style="text-align:left; padding:8px; border-bottom:1px solid #ddd;">Contenido</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="vertical-align: top; padding:8px;">Responsable de la protección de sus datos personales</td>
+          <td style="padding:8px;">
+            Butterfly Synergy, con domicilio en Privada de San Miguelito #23, 37893, Santuario De Atotonilco, San Miguel de Allende, Guanajuato, México, es responsable del tratamiento de sus datos personales únicamente en los casos en que implemente directamente el sistema Alpha System para una institución educativa o biblioteca bajo su propia administración.
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; padding:8px;">Cómo contactarnos</td>
+          <td style="padding:8px;">
+            <strong>Oficina de privacidad:</strong> Área de Soporte y Protección de Datos Personales<br>
+            <strong>Domicilio:</strong> Privada de San Miguelito #23, 37893, Santuario de Atotonilco, San Miguel de Allende, Guanajuato, México<br>
+            <strong>Correo electrónico:</strong> soporte&#64;butterfly.com<br>
+            <strong>Teléfono:</strong> +52 415 111 63 52
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; padding:8px;">¿Para qué fines recabamos y utilizamos sus datos personales?</td>
+          <td style="padding:8px;">
+            Sus datos personales serán utilizados para las siguientes finalidades:
+            <ul>
+              <li>Proveer los servicios solicitados relacionados con la gestión bibliotecaria, incluyendo el registro de usuarios, control de préstamos, devoluciones y multas.</li>
+              <li>Administrar y mantener su cuenta de usuario en el sistema Alpha System.</li>
+              <li>Verificar su identidad y la autenticidad de la información proporcionada.</li>
+              <li>Informar sobre cambios o nuevas funcionalidades que estén relacionadas con el servicio contratado.</li>
+              <li>Dar cumplimiento a obligaciones legales y contractuales relacionadas con el uso del sistema.</li>
+              <li>Brindar soporte técnico y atención al usuario.</li>
+            </ul>
+            Finalidades secundarias (opcionales):
+            <ul>
+              <li>Evaluar la calidad del servicio y la satisfacción de los usuarios.</li>
+              <li>Realizar estudios internos sobre hábitos de lectura, comportamiento de los usuarios y estadísticas de uso del sistema, con fines de mejora.</li>
+            </ul>
+            En caso de que no desee que sus datos sean utilizados para las finalidades secundarias, puede manifestarlo directamente ante la biblioteca o institución responsable de su registro.
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; padding:8px;">¿Qué datos personales obtenemos y de dónde?</td>
+          <td style="padding:8px;">
+            Para las finalidades señaladas en el presente aviso de privacidad, podemos recabar sus datos personales de distintas formas: cuando usted nos los proporciona directamente; cuando visita nuestro sitio de Internet o utiliza nuestros servicios en línea; y, en casos excepcionales, cuando obtenemos información a través de otras fuentes permitidas por la ley.
+            <p><strong>Datos personales que recabamos de forma directa:</strong></p>
+            Los datos que obtenemos por este medio incluyen, entre otros:
+            <ul>
+              <li>Nombre(s) y apellidos</li>
+              <li>Correo electrónico</li>
+              <li>Teléfono</li>
+              <li>Dirección (estado, municipio, ciudad, calle y número)</li>
+              <li>Fecha de nacimiento</li>
+              <li>Fotografía de perfil</li>
+              <li>Contraseña de acceso al sistema</li>
+            </ul>
+            <p><strong>Datos personales que recabamos cuando visita nuestro sitio de Internet o utiliza nuestros servicios en línea:</strong></p>
+            <ul>
+              <li>Dirección IP</li>
+              <li>Tipo de navegador</li>
+              <li>Sistema operativo</li>
+              <li>Fecha y hora de acceso al sistema</li>
+            </ul>
+            <p><strong>Datos personales que recabamos a través de otras fuentes:</strong></p>
+            En casos excepcionales y únicamente cuando la ley lo permita:
+            <ul>
+              <li>Nombre completo</li>
+              <li>Teléfono</li>
+              <li>Correo electrónico</li>
+              <li>Institución de procedencia</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; padding:8px;">Datos personales sensibles</td>
+          <td style="padding:8px;">
+            En general Alpha System no requiere datos sensibles; si la biblioteca decide recabarlos (accesibilidad, inclusión, servicios especiales), podrán incluir, entre otros:
+            <ul>
+              <li>Información relacionada con el estado de salud.</li>
+              <li>Datos sobre discapacidad o requerimientos especiales de accesibilidad.</li>
+              <li>Información que pueda revelar origen étnico o racial.</li>
+              <li>Otros datos que la biblioteca determine como necesarios para brindar un servicio especializado.</li>
+            </ul>
+            De conformidad con el artículo 9 de la LFPDPPP, se requiere consentimiento expreso para tratar datos sensibles. Texto de consentimiento:
+            <br>☐ Consiento que mis datos personales sensibles sean tratados conforme a los términos y condiciones del presente aviso de privacidad.
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; padding:8px;">¿Cómo puede limitar el uso o divulgación de sus datos?</td>
+          <td style="padding:8px;">
+            No utilizamos datos con fines publicitarios, comerciales ni de marketing. No enviamos correo postal publicitario ni realizamos campañas hacia los usuarios. Si la biblioteca decide enviar mensajes adicionales, deberá indicarle los mecanismos para optar por no recibirlos; contacte directamente a la biblioteca responsable.
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; padding:8px;">Derechos ARCO (acceso, rectificación, cancelación y oposición)</td>
+          <td style="padding:8px;">
+            En Alpha System, la biblioteca o institución que recabó sus datos es la responsable de atender solicitudes ARCO. Presente su solicitud ante la biblioteca, conforme a sus procedimientos y medios.
+            <p><strong>Si Butterfly Synergy llegara a actuar como responsable del tratamiento</strong> (implementaciones directas o pruebas), puede escribir a <em>soporte&#64;butterfly.com</em> o llamar al <em>+52 415 111 63 52</em>. Plazo de respuesta: máx. 20 días hábiles.</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; padding:8px;">Revocación del consentimiento</td>
+          <td style="padding:8px;">
+            Puede revocar en cualquier momento. Procedimiento:
+            <ul>
+              <li>Si la biblioteca es responsable del tratamiento, dirija la solicitud a esa institución.</li>
+              <li>Si Butterfly Synergy actúa como responsable, escriba a soporte&#64;butterfly.com.</li>
+            </ul>
+            Requisitos: Nombre, correo registrado, motivo, identificación oficial y, en su caso, documentos de representación. Plazo de respuesta: máx. 7 días hábiles.
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; padding:8px;">Transferencias de datos</td>
+          <td style="padding:8px;">
+            No transferimos datos a terceros salvo autorización expresa de la biblioteca responsable y solo para soporte/mantenimiento autorizado, con confidencialidad estricta. Posibles transferencias de la biblioteca:
+            <ul>
+              <li>Autoridades competentes (obligaciones legales)</li>
+              <li>Instituciones educativas o bibliotecas colaboradoras (fines operativos autorizados)</li>
+            </ul>
+            Se aplican las excepciones del art. 37 de la LFPDPPP. Si no se opone, se entenderá su consentimiento. Texto:
+            <br>☐ Consiento que mis datos personales sensibles sean transferidos conforme a los términos y condiciones del presente aviso de privacidad.
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; padding:8px;">Modificaciones al aviso de privacidad</td>
+          <td style="padding:8px;">
+            Puede actualizarse por cambios legislativos, políticas internas, requerimientos del servicio o mejoras tecnológicas. Cada biblioteca es responsable de comunicar su propio aviso. Medios: anuncios visibles, folletos, publicación en Alpha System o web oficial, notificación por correo.
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; padding:8px;">Uso de cookies y web beacons</td>
+          <td style="padding:8px;">
+            Solo usamos cookies técnicas necesarias (sesión, identificación de navegador y validación de acceso). No usamos cookies de terceros ni tecnologías de rastreo para marketing o publicidad. Si las deshabilita, la plataforma podría no funcionar correctamente.
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; padding:8px;">Quejas y denuncias</td>
+          <td style="padding:8px;">
+            Si considera lesionado su derecho de protección de datos personales, puede interponer queja o denuncia ante la Secretaría de Anticorrupción y Buen Gobierno. Más información: https://www.gob.mx/buengobierno
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</p-dialog>
+
+
+
+    </div>
+
+    <!-- Pie -->
+    <div class="empresa">Alpha System | Butterfly Synergy ®</div>
+  </div>
+</div>

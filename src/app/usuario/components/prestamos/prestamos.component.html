@@ -1,0 +1,61 @@
+<p-toast position="top-left"></p-toast>
+
+<div class="contenedor-principal">
+  <div class="tarjeta">
+    <div class="encabezado">
+      <h2 class="titulo-seccion">HISTORIAL DE PRÉSTAMOS</h2>
+
+      <div class="buscador">
+        <span class="pi pi-search"></span>
+        <input
+          pInputText
+          type="text"
+          placeholder="Buscar por título o autor"
+          [(ngModel)]="busqueda"
+          maxlength="80"
+          aria-label="Buscar libros prestados"
+        />
+      </div>
+    </div>
+
+    <!-- Skeleton -->
+    <div class="libros-grid" *ngIf="loading">
+      <div class="libro-card skeleton" *ngFor="let i of [1,2,3,4,5,6,7,8]">
+        <div class="imagen-wrapper shimmer"></div>
+        <div class="contenido">
+          <div class="linea shimmer"></div>
+          <div class="linea corto shimmer"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vacío -->
+    <div class="vacio" *ngIf="!loading && librosFiltrados.length === 0">
+      <img src="assets/book_icon.png" alt="" />
+      <p>No tienes libros en tu historial con ese criterio.</p>
+    </div>
+
+    <!-- Grid -->
+    <div class="libros-grid" *ngIf="!loading && librosFiltrados.length > 0">
+      <div class="libro-card" *ngFor="let libro of librosFiltrados">
+        <div class="imagen-wrapper">
+          <img
+            [src]="coverUrl(libro.fotoUsr)"
+            (error)="replaceWithFallback($event)"
+            [alt]="libro.titulo || 'Portada del libro'"
+            loading="lazy"
+            decoding="async"
+            width="240"
+            height="360"
+            referrerpolicy="no-referrer"
+          />
+        </div>
+
+        <div class="contenido">
+          <h3 class="titulo" [title]="libro.titulo">{{ libro.titulo }}</h3>
+          <p class="autor" [title]="libro.autor">{{ libro.autor }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

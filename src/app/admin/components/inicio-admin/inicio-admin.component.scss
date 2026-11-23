@@ -1,0 +1,357 @@
+@use '../../../styles/variables' as *;
+@use "sass:color";
+
+.body{
+    padding: 1vh 15vh;
+    width: 100%;
+    height: 100vh;
+    .titulo{
+        .tit{
+            font-size: 10vh;
+            font-family: "Playfair Display", serif;
+            font-optical-sizing: auto;
+        }
+    }
+    .contenido{
+        width: 100%;
+        height: 75%;
+        background-color: transparent;
+        border-radius: 16px;
+        
+        .usuario{
+            padding: 1vh;
+            background-color: #ffffff;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: row;
+            .imagen{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: 4vh;
+                img{
+                    aspect-ratio: 1/1;
+                    max-width: 30vh;
+                    width: 30vh;
+                    max-height: 30vh;
+                    border-radius: 99999px;
+                    margin-bottom: 10px;
+                }
+            }
+            .detalles{
+                display: flex;
+                padding-left: 5vh;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                .nombre{
+                    span{
+                        font-family: "Roboto", sans-serif;
+                        font-size: 6vh;
+                        font-weight: 2000;
+                    }
+                }
+                .rol{
+                    span{
+                        font-family: "Nunito Sans", sans-serif;
+                        font-size: 2.5vh;
+                    }
+                }
+            }
+        }
+
+        .pendientes{
+            display: flex;
+            flex-direction: row;
+            padding-top: 16px;
+            align-items: flex-start;
+            .prestamos{
+                width: 50%;
+
+                .titulo{
+                    span{
+                        font-size: 3vh;
+                        font-family: "Playfair Display", serif;
+                        font-optical-sizing: auto;
+                    }
+                }
+                .lista{
+                    background-color: #ffffff;
+                    border-radius: 16px;
+                    width: 100%;
+                    height: 27vh;
+
+                }
+            }
+            .deudas{
+                width: 50%;
+                margin-left: 24px;
+
+                .titulo{
+                    span{
+                        font-size: 3vh;
+                        font-family: "Playfair Display", serif;
+                        font-optical-sizing: auto;
+                    }
+                }
+                .lista{
+                    background-color:#ffffff;
+                    border-radius: 16px;
+                    width: 100%;
+                    height: 27vh;
+
+                }
+            }
+        }
+    }
+    
+}
+
+#usuario{
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 16px;
+    margin: 10px;
+    transition-duration: 300ms;
+    font-family: "Roboto", sans-serif;
+
+    &:hover{
+        background-color: #D9D9D9;
+        transition-duration: 300ms;
+        transform: scale(1.02);
+    }
+
+    #tipok{
+        display: flex
+        ;
+            flex-direction: row;
+            width: 22%;
+            justify-content: space-between;
+    }
+
+}
+
+#adentro{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+
+}
+
+::ng-deep .p-scrollpanel-bar {
+  background-color: $color-marron-opaco !important; 
+  border-radius: 8px;
+  opacity: 0.5;
+}
+
+::ng-deep .p-scrollpanel-bar:hover {
+  background-color: $color-marron !important; 
+}
+
+.contenedor{
+  font-family: 'Euclid', sans-serif;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px; 
+    border-radius: 16px;
+    @include theme-prop(
+  background-color,
+  color-marron-lighten-75,
+  color.adjust($color-marron, $lightness: 95%)
+);
+
+    //background-color: color.adjust($color-marron, $lightness: 75%) !important;
+    .bienvenida{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        span{
+            font-size: 3vh;
+            font-weight: 300;
+            color: $color-marron;
+            font-optical-sizing: auto;
+        }
+    }   
+
+    .cuadros{
+        background-color: transparent !important;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        
+        width: 100%;
+        
+        .clientes, .librosDisponibles, .librosPrestados, .deudas{
+            background-color: color.adjust($color-marron, $lightness: 60%) !important;
+            margin: 10px;
+            border-radius: 16px;
+            padding: 10px;
+            width: 45vh;
+            height: 20vh;
+            padding-left: 20px;
+            transition-duration: 300ms;
+            cursor: pointer;
+            &:hover{
+                background-color: color.adjust($color-marron, $lightness: 0%) !important;
+                transition-duration: 300ms;
+                color: $blanco;
+                .icono{
+                svg{
+                    height: 35px;
+                    width: 35px;
+                }
+                path{
+                fill: $blanco !important;
+                } 
+                
+                }
+                .contenido{
+                .numero{
+                    color: $blanco;
+                }
+            }
+            .titulo{
+                span{
+                    color: $blanco;
+                }
+            }
+
+            }
+            .icono{
+                svg{
+                    height: 35px;
+                    width: 35px;
+                }
+                path{
+                fill: $color-marron !important;
+                } 
+
+            }
+            .contenido{
+                margin-top: 7px;
+                    height: 65px;
+
+                .numero{
+                    font-size: 6vh;
+                    font-weight: 600;
+                    color: $color-marron;
+                }
+            }
+            .titulo{
+                height: 5px;
+                span{
+                    font-size: 2.5vh;
+                    font-optical-sizing: auto;
+                    font-weight: 500;
+                    color: $color-marron;
+                    opacity: 0.8;
+                }
+            }
+            
+        }
+
+        
+    }
+    .tablas{
+        display: flex;
+        flex-direction: row;
+        margin-top: 20px;
+        justify-content: space-between;
+        
+        .tablaPrestamos, .tablaDeudas{
+            background-color: $blanco;
+            padding: 10px;
+            border-radius: 16px;
+            height: 43vh;
+            width: 45.5rem;
+        }
+        .titulo{
+            display: flex;
+            padding: 10px;
+            flex-direction: row;
+            justify-content: space-between;
+            span{
+                font-size: 2.5vh;
+                font-weight: 500;
+                color: $color-marron;
+                opacity: 0.8;
+            }
+            button{
+                background-color: $color-naranja;
+                color: $blanco;
+                border-radius: 16px;
+                padding: 5px 10px;
+                font-size: 1.5vh;
+                font-weight: 600;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+
+                &:hover{
+                    background-color: color.adjust($color-naranja, $lightness: -10%);
+                    transition: background-color 0.3s ease;
+                }
+            }
+        }
+    }
+    .gato{
+        width: 250px;
+        height: 250px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        position: absolute;
+        bottom: 0px;
+        right: 60px;
+        .icono{
+            
+            width: 110%;
+            height: 100%;
+        }
+        
+    }
+}
+
+.label {
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  &.pendiente {
+    background-color: #FFC107;
+    color: #212121;
+  }
+  &.regresado {
+    background-color: #4CAF50;
+    color: #fff;
+  }
+}
+
+:host ::ng-deep .clickable-row {
+  cursor: pointer;
+}
+:host ::ng-deep .clickable-row:hover {
+  background-color: color.adjust($color-marron, $lightness: 20%);
+  color: #fff;
+}
+:host ::ng-deep .selected-row {
+  background-color: $color-naranja; /* tu $color-naranja */
+  color: #ffffff;
+}
+
+.small-spinner {
+  width: 4rem;
+  height: 4rem;
+  display: inline-block;
+}
+
+.table-spinner {
+  width: 8rem;
+  height: 8rem;
+  margin: 2rem auto;
+  display: block;
+}

@@ -1,0 +1,464 @@
+<p-toast />
+<p-confirmPopup />
+<nz-float-button-top></nz-float-button-top>
+
+<!-- 
+<div class="top"></div>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a id="logo" class="navbar-brand" href="#" [routerLink]="['/']">
+            <img src="../../../../assets/feltrinelli-logo.svg" alt="Inicio" height="40">
+        </a>
+
+        <div id="hola" class="ms-auto d-flex">
+            <a id="tes" class="nav-link h-full" href="#" [routerLink]="['/quienes']">¿Quienes somos?</a>
+            <a id="tes" class="nav-link h-full" href="#" [routerLink]="['/catalogo']">Catalogo</a>
+            <a id="tes" *ngIf="!user" class="nav-link" href="#" [routerLink]="['/login']">
+                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z" /><path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z" /></svg>
+                Iniciar sesión</a>
+            <div class="si" *ngIf="user">
+              <p-splitbutton label="Save" severity="contrast" [model]="items" text >
+                <ng-template #content>
+                    <span class="flex items-center ">
+                        <img alt="logo" [src]="user.fotoUsr
+                        ? 'http://localhost:8000/storage/' + user.fotoUsr
+                        : 'assets/user_icon.png'"  style="height: 2rem; margin-right: 0.5rem" class="rounded-full aspect-square" />
+                        <span id="tes" >{{user.nombreUsr + ' ' +user.apellidoP}}</span>
+                    </span>
+                </ng-template>
+            </p-splitbutton>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="main-content scroll-smooth">
+    <router-outlet></router-outlet>
+</div>
+
+
+  <div id="foot" class=" text-white mt-5">
+    <div class="redes">
+      <div class="logo">
+        <img src="../../../../assets/feltrinelli-logo-blanco.svg" alt="">
+      </div>
+      <div class="redeslink">
+        <a href="https://www.facebook.com/">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#ffffff" viewBox="0 0 24 24">
+            <path d="M22.675 0h-21.35C0.597 0 0 0.597 0 1.325v21.351C0 23.403 0.597 24 1.325 24h11.495v-9.294H9.691V11.08h3.129V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464 0.099 2.797 0.143v3.24l-1.918 0.001c-1.504 0-1.795 0.715-1.795 1.763v2.313h3.587l-0.467 3.626h-3.12V24h6.116C23.403 24 24 23.403 24 22.675V1.325C24 0.597 23.403 0 22.675 0z"/>
+          </svg>
+        </a>
+        
+        <a href="https://www.instagram.com/">
+          <img src="../../../../assets/Instagram-logo-white-PNG-large-size.png" alt="">
+        </a>
+        
+        <a href="https://twitter.com/">
+          <svg width="24" height="22" viewBox="0 0 300 271" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+            <path d="m236 0h46l-101 115 118 156h-92.6l-72.5-94.8-83 94.8h-46l107-123-113-148h94.9l65.5 86.6zm-16.1 244h25.5l-165-218h-27.4z"/>
+          </svg>
+        </a>
+        
+        <a href="https://www.youtube.com/">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#ffffff" viewBox="0 0 24 24">
+            <path d="M23.498 6.186a2.994 2.994 0 0 0-2.107-2.121C19.723 3.5 12 3.5 12 3.5s-7.723 0-9.391.565a2.994 2.994 0 0 0-2.107 2.121A31.736 31.736 0 0 0 0 12a31.736 31.736 0 0 0 .502 5.814 2.994 2.994 0 0 0 2.107 2.121C4.277 20.5 12 20.5 12 20.5s7.723 0 9.391-.565a2.994 2.994 0 0 0 2.107-2.121A31.736 31.736 0 0 0 24 12a31.736 31.736 0 0 0-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </a>
+        
+      </div>
+    </div>
+    <div class="informacion">
+      Código ético | Condiciones de uso del sitio | Información sobre la resolución alternativa de controversias de consumidores - ADR/ODR | Información sobre la garantía legal de conformidad | Información sobre el RAEE | Información sobre cookies | Gestión de preferencias de cookies | Código de autorregulación de Netcomm | Netcomm Espacio de consumidores | Reglamento DSA
+  
+  LaFeltrinelli Internet Bookshop S.r.l. - Sede legal y administrativa: Via Maurizio Quadrio, 17, 20154 Milán - C.F. y P.I. 05329570963 - Registro de empresas de Milán, Monza Brianza Lodi n.º 05329570963 - R.E.A. MI 1813088 - Capital Social € 10.000,00 i.v. - Con socio único, sujeta a la dirección y coordinación de Feltrinelli S.p.A.
+    </div>
+  </div> -->
+
+<div id="contanier" class="grid grid-cols-6 grid-rows-5 gap-4">
+  <div id="top" class="row-span-5">
+    <div class="contenido">
+      <div class="logo">
+        <div class="imagen">
+          <img src="../../../../assets/AlphSysLogo.png" alt="" />
+        </div>
+        <div class="nombre">
+          <span class="principal">Alpha</span>
+          <span class="secundario">System</span>
+          <span class="debajo "> Community </span>
+        </div>
+      </div>
+      <!-- <div class="logo">
+        <div class="imagen">
+          <img src="../../../../assets/logoDragon.png" alt="" />
+        </div>
+        <div class="nombre">
+          <span class="principal">ITSES</span>
+          <span class="secundario">Biblioteca</span>
+        </div>
+      </div> -->
+
+      <div class="iconos">
+        <div class="opciones">
+          <div class="arriba">
+            <a
+              class="inicio"
+              href="#"
+              [routerLink]="['/']"
+              routerLinkActive="activo"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                color="#ffffff"
+                fill="none"
+              >
+                <path
+                  d="M3 11.9896V14.5C3 17.7998 3 19.4497 4.02513 20.4749C5.05025 21.5 6.70017 21.5 10 21.5H14C17.2998 21.5 18.9497 21.5 19.9749 20.4749C21 19.4497 21 17.7998 21 14.5V11.9896C21 10.3083 21 9.46773 20.6441 8.74005C20.2882 8.01237 19.6247 7.49628 18.2976 6.46411L16.2976 4.90855C14.2331 3.30285 13.2009 2.5 12 2.5C10.7991 2.5 9.76689 3.30285 7.70242 4.90855L5.70241 6.46411C4.37533 7.49628 3.71179 8.01237 3.3559 8.74005C3 9.46773 3 10.3083 3 11.9896Z"
+                  stroke="#725b3a"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M15 21.5V16.5C15 15.0858 15 14.3787 14.5607 13.9393C14.1213 13.5 13.4142 13.5 12 13.5C10.5858 13.5 9.87868 13.5 9.43934 13.9393C9 14.3787 9 15.0858 9 16.5V21.5"
+                  stroke="#725b3a"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+              <span>Descubre</span>
+            </a>
+
+            <a
+              class="opcion"
+              href="#"
+              [routerLink]="['/catalogo']"
+              routerLinkActive="activo"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                color="currentColor"
+                fill="none"
+              >
+                <path
+                  d="M3 9H18C18.9319 9 19.3978 9 19.7654 9.15224C20.2554 9.35523 20.6448 9.74458 20.8478 10.2346C21 10.6022 21 11.0681 21 12C21 12.9319 21 13.3978 20.8478 13.7654C20.6448 14.2554 20.2554 14.6448 19.7654 14.8478C19.3978 15 18.9319 15 18 15H13"
+                  stroke="#725b3a"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M6 15H3"
+                  stroke="#725b3a"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M13 15H15C15.9319 15 16.3978 15 16.7654 15.1522C17.2554 15.3552 17.6448 15.7446 17.8478 16.2346C18 16.6022 18 17.0681 18 18C18 18.9319 18 19.3978 17.8478 19.7654C17.6448 20.2554 17.2554 20.6448 16.7654 20.8478C16.3978 21 15.9319 21 15 21H3"
+                  stroke="#725b3a"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M3 3H14C14.9319 3 15.3978 3 15.7654 3.15224C16.2554 3.35523 16.6448 3.74458 16.8478 4.23463C17 4.60218 17 5.06812 17 6C17 6.93188 17 7.39782 16.8478 7.76537C16.6448 8.25542 16.2554 8.64477 15.7654 8.84776C15.3978 9 14.9319 9 14 9H3"
+                  stroke="#725b3a"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M13 9L13 15.1905C13 16.3045 13 16.8616 12.6735 16.9803C12.3469 17.0991 11.9782 16.6761 11.2407 15.8303L10.7593 15.278C10.4064 14.8733 10.23 14.6709 10 14.6709C9.77003 14.6709 9.5936 14.8733 9.24074 15.278L8.75926 15.8303C8.02179 16.6761 7.65305 17.0991 7.32653 16.9803C7 16.8616 7 16.3045 7 15.1905L7 9"
+                  stroke="#725b3a"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+              <span>Libros</span>
+            </a>
+
+            <a
+              id="exclusivo"
+              class="opcion"
+              href="#"
+              [routerLink]="['/makeawish']"
+              routerLinkActive="activo-exclusivo, activo"
+              #rla="routerLinkActive"
+              [ngClass]="{ 'activo-exclusivo': rla.isActive }"
+            >
+              <div class="contenido-exclusivo">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
+                  <defs>
+                    <linearGradient
+                      id="rainbow-gradient"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="0%"
+                    >
+                      <stop offset="0%" stop-color="red">
+                        <animate
+                          attributeName="stop-color"
+                          values="red;orange;yellow;green;blue;indigo;violet;red"
+                          dur="6s"
+                          repeatCount="indefinite"
+                        />
+                      </stop>
+                      <stop offset="100%" stop-color="violet">
+                        <animate
+                          attributeName="stop-color"
+                          values="violet;red;orange;yellow;green;blue;indigo;violet"
+                          dur="6s"
+                          repeatCount="indefinite"
+                        />
+                      </stop>
+                    </linearGradient>
+                  </defs>
+                  <path
+                    fill="url(#rainbow-gradient)"
+                    stroke="url(#rainbow-gradient)"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05143L20.0969 8.58575C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1271 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58575L7.08837 8.05143C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z"
+                  />
+                </svg>
+
+                <span id="hola">A tu medida</span>
+              </div>
+            </a>
+            <a
+              class="opcion"
+              href="#"
+              [routerLink]="['/quienes']"
+              routerLinkActive="activo"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+    <path d="M12 8V12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M12 15.9883V15.9983" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+              <span>Acerca de</span>
+            </a>
+          </div>
+          <div class="abajo">
+            <a *ngIf="user && user.idTipoUsr === 1" class="inicio" href="#" [routerLink]="['/admin']">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                color="#725b3a"
+                fill="none"
+              >
+                <path
+                  d="M16.3083 4.38394C15.7173 4.38394 15.4217 4.38394 15.1525 4.28405C15.1151 4.27017 15.0783 4.25491 15.042 4.23828C14.781 4.11855 14.5721 3.90959 14.1541 3.49167C13.1922 2.52977 12.7113 2.04882 12.1195 2.00447C12.04 1.99851 11.96 1.99851 11.8805 2.00447C11.2887 2.04882 10.8077 2.52977 9.84585 3.49166C9.42793 3.90959 9.21897 4.11855 8.95797 4.23828C8.92172 4.25491 8.88486 4.27017 8.84747 4.28405C8.57825 4.38394 8.28273 4.38394 7.69171 4.38394H7.58269C6.07478 4.38394 5.32083 4.38394 4.85239 4.85239C4.38394 5.32083 4.38394 6.07478 4.38394 7.58269V7.69171C4.38394 8.28273 4.38394 8.57825 4.28405 8.84747C4.27017 8.88486 4.25491 8.92172 4.23828 8.95797C4.11855 9.21897 3.90959 9.42793 3.49166 9.84585C2.52977 10.8077 2.04882 11.2887 2.00447 11.8805C1.99851 11.96 1.99851 12.04 2.00447 12.1195C2.04882 12.7113 2.52977 13.1922 3.49166 14.1541C3.90959 14.5721 4.11855 14.781 4.23828 15.042C4.25491 15.0783 4.27017 15.1151 4.28405 15.1525C4.38394 15.4217 4.38394 15.7173 4.38394 16.3083V16.4173C4.38394 17.9252 4.38394 18.6792 4.85239 19.1476C5.32083 19.6161 6.07478 19.6161 7.58269 19.6161H7.69171C8.28273 19.6161 8.57825 19.6161 8.84747 19.716C8.88486 19.7298 8.92172 19.7451 8.95797 19.7617C9.21897 19.8815 9.42793 20.0904 9.84585 20.5083C10.8077 21.4702 11.2887 21.9512 11.8805 21.9955C11.96 22.0015 12.0399 22.0015 12.1195 21.9955C12.7113 21.9512 13.1922 21.4702 14.1541 20.5083C14.5721 20.0904 14.781 19.8815 15.042 19.7617C15.0783 19.7451 15.1151 19.7298 15.1525 19.716C15.4217 19.6161 15.7173 19.6161 16.3083 19.6161H16.4173C17.9252 19.6161 18.6792 19.6161 19.1476 19.1476C19.6161 18.6792 19.6161 17.9252 19.6161 16.4173V16.3083C19.6161 15.7173 19.6161 15.4217 19.716 15.1525C19.7298 15.1151 19.7451 15.0783 19.7617 15.042C19.8815 14.781 20.0904 14.5721 20.5083 14.1541C21.4702 13.1922 21.9512 12.7113 21.9955 12.1195C22.0015 12.0399 22.0015 11.96 21.9955 11.8805C21.9512 11.2887 21.4702 10.8077 20.5083 9.84585C20.0904 9.42793 19.8815 9.21897 19.7617 8.95797C19.7451 8.92172 19.7298 8.88486 19.716 8.84747C19.6161 8.57825 19.6161 8.28273 19.6161 7.69171V7.58269C19.6161 6.07478 19.6161 5.32083 19.1476 4.85239C18.6792 4.38394 17.9252 4.38394 16.4173 4.38394H16.3083Z"
+                  stroke="#725b3a"
+                  stroke-width="1.5"
+                ></path>
+                <path
+                  d="M15.5 12C15.5 13.933 13.933 15.5 12 15.5C10.067 15.5 8.5 13.933 8.5 12C8.5 10.067 10.067 8.5 12 8.5C13.933 8.5 15.5 10.067 15.5 12Z"
+                  stroke="#725b3a"
+                  stroke-width="1.5"
+                ></path>
+              </svg>
+              <span>Gestor</span>
+            </a>
+
+            <a *ngIf="user && user.idTipoUsr === 2" class="inicio" href="#" [routerLink]="['/usuario']">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                color="#725b3a"
+                fill="none"
+              >
+                <path
+                  d="M16.3083 4.38394C15.7173 4.38394 15.4217 4.38394 15.1525 4.28405C15.1151 4.27017 15.0783 4.25491 15.042 4.23828C14.781 4.11855 14.5721 3.90959 14.1541 3.49167C13.1922 2.52977 12.7113 2.04882 12.1195 2.00447C12.04 1.99851 11.96 1.99851 11.8805 2.00447C11.2887 2.04882 10.8077 2.52977 9.84585 3.49166C9.42793 3.90959 9.21897 4.11855 8.95797 4.23828C8.92172 4.25491 8.88486 4.27017 8.84747 4.28405C8.57825 4.38394 8.28273 4.38394 7.69171 4.38394H7.58269C6.07478 4.38394 5.32083 4.38394 4.85239 4.85239C4.38394 5.32083 4.38394 6.07478 4.38394 7.58269V7.69171C4.38394 8.28273 4.38394 8.57825 4.28405 8.84747C4.27017 8.88486 4.25491 8.92172 4.23828 8.95797C4.11855 9.21897 3.90959 9.42793 3.49166 9.84585C2.52977 10.8077 2.04882 11.2887 2.00447 11.8805C1.99851 11.96 1.99851 12.04 2.00447 12.1195C2.04882 12.7113 2.52977 13.1922 3.49166 14.1541C3.90959 14.5721 4.11855 14.781 4.23828 15.042C4.25491 15.0783 4.27017 15.1151 4.28405 15.1525C4.38394 15.4217 4.38394 15.7173 4.38394 16.3083V16.4173C4.38394 17.9252 4.38394 18.6792 4.85239 19.1476C5.32083 19.6161 6.07478 19.6161 7.58269 19.6161H7.69171C8.28273 19.6161 8.57825 19.6161 8.84747 19.716C8.88486 19.7298 8.92172 19.7451 8.95797 19.7617C9.21897 19.8815 9.42793 20.0904 9.84585 20.5083C10.8077 21.4702 11.2887 21.9512 11.8805 21.9955C11.96 22.0015 12.0399 22.0015 12.1195 21.9955C12.7113 21.9512 13.1922 21.4702 14.1541 20.5083C14.5721 20.0904 14.781 19.8815 15.042 19.7617C15.0783 19.7451 15.1151 19.7298 15.1525 19.716C15.4217 19.6161 15.7173 19.6161 16.3083 19.6161H16.4173C17.9252 19.6161 18.6792 19.6161 19.1476 19.1476C19.6161 18.6792 19.6161 17.9252 19.6161 16.4173V16.3083C19.6161 15.7173 19.6161 15.4217 19.716 15.1525C19.7298 15.1151 19.7451 15.0783 19.7617 15.042C19.8815 14.781 20.0904 14.5721 20.5083 14.1541C21.4702 13.1922 21.9512 12.7113 21.9955 12.1195C22.0015 12.0399 22.0015 11.96 21.9955 11.8805C21.9512 11.2887 21.4702 10.8077 20.5083 9.84585C20.0904 9.42793 19.8815 9.21897 19.7617 8.95797C19.7451 8.92172 19.7298 8.88486 19.716 8.84747C19.6161 8.57825 19.6161 8.28273 19.6161 7.69171V7.58269C19.6161 6.07478 19.6161 5.32083 19.1476 4.85239C18.6792 4.38394 17.9252 4.38394 16.4173 4.38394H16.3083Z"
+                  stroke="#725b3a"
+                  stroke-width="1.5"
+                ></path>
+                <path
+                  d="M15.5 12C15.5 13.933 13.933 15.5 12 15.5C10.067 15.5 8.5 13.933 8.5 12C8.5 10.067 10.067 8.5 12 8.5C13.933 8.5 15.5 10.067 15.5 12Z"
+                  stroke="#725b3a"
+                  stroke-width="1.5"
+                ></path>
+              </svg>
+              <span>Mi perfil</span>
+            </a>
+
+            <a
+              *ngIf="user"
+              class="logout-button opcion"
+              (click)="logout()"
+              [class.disabled]="logoutInProgress"
+            >
+              <div id="bot" class="cont">
+                <ng-container id="bot" *ngIf="!logoutInProgress; else loading">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    color="#725b3a"
+                    fill="none"
+                  >
+                    <path
+                      d="M15 17.625C14.9264 19.4769 13.3831 21.0494 11.3156 20.9988C10.8346 20.987 10.2401 20.8194 9.05112 20.484C6.18961 19.6768 3.70555 18.3203 3.10956 15.2815C3 14.723 3 14.0944 3 12.8373L3 11.1627C3 9.90561 3 9.27705 3.10956 8.71846C3.70555 5.67965 6.18961 4.32316 9.05112 3.51603C10.2401 3.18064 10.8346 3.01295 11.3156 3.00119C13.3831 2.95061 14.9264 4.52307 15 6.37501"
+                      stroke="#725b3a"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    ></path>
+                    <path
+                      d="M21 12H10M21 12C21 11.2998 19.0057 9.99153 18.5 9.5M21 12C21 12.7002 19.0057 14.0085 18.5 14.5"
+                      stroke="#725b3a"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                  <span>Cerrar sesión</span>
+                </ng-container>
+                <ng-template #loading>
+                  <ng-lottie
+                    id="cargar"
+                    [options]="options"
+                    style="width: 32px; height: 32px;"
+                  ></ng-lottie>
+                </ng-template>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="left" class="col-span-5">
+    <div class="info">
+      <div class="barraBusqueda">
+        <div class="busqueda">
+          <input
+            type="text"
+            [(ngModel)]="searchTerm"
+            (keyup.enter)="search()"
+            placeholder="Busca por nombre de libro, autor o ISBN"
+          />
+          <button (click)="search()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              color="#725b3a"
+              fill="none"
+            >
+              <path
+                d="M17 17L21 21"
+                stroke="#725b3a"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19C15.4183 19 19 15.4183 19 11Z"
+                stroke="#725b3a"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="perfil">
+        <div *ngIf="user" class="estLogeado">
+          <span class="flex items-center">
+            <img
+              alt="logo"
+              [src]="user.fotoUsr
+                        ? 'http://localhost:8000/storage/' + user.fotoUsr
+                        : 'assets/user_icon.png'"
+              style="height: 3rem; margin-right: 0.5rem;"
+              class="rounded-full aspect-square"
+            />
+            <span id="tes">{{user.nombreUsr + ' ' +user.apellidoP}}</span>
+          </span>
+        </div>
+        <div *ngIf="!user" class="noEstaLogeado">
+          <a id="tes" class="nav-link" href="#" [routerLink]="['/login']">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              color="#725b3a"
+              fill="none"
+            >
+              <path
+                d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                stroke="#725b3a"
+                stroke-width="1.5"
+              ></path>
+              <path
+                d="M14.75 9.5C14.75 11.0188 13.5188 12.25 12 12.25C10.4812 12.25 9.25 11.0188 9.25 9.5C9.25 7.98122 10.4812 6.75 12 6.75C13.5188 6.75 14.75 7.98122 14.75 9.5Z"
+                stroke="#725b3a"
+                stroke-width="1.5"
+              ></path>
+              <path
+                d="M5.49994 19.0001L6.06034 18.0194C6.95055 16.4616 8.60727 15.5001 10.4016 15.5001H13.5983C15.3926 15.5001 17.0493 16.4616 17.9395 18.0194L18.4999 19.0001"
+                stroke="#725b3a"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+            <span>
+              Iniciar sesión
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="papas">
+      <div class="dentro">
+        <div class="lottie">
+          <ng-lottie
+                    id="gato"
+                    [options]="gato"
+                    style="width: 10px; height: 10px;"
+                  ></ng-lottie>
+        </div>
+        <div
+          class="mensaje"
+          *ngIf="visible"
+          [@fadeInOut]
+        >
+          {{ letraMostrada }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="center" class="col-span-5 row-span-4 col-start-2 row-start-2">
+    <p-scrollpanel [style]="{ width: '100%', height: '590px' }">
+      <router-outlet></router-outlet>
+    </p-scrollpanel>
+  </div>
+</div>

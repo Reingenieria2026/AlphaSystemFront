@@ -1,0 +1,124 @@
+<p-toast position="top-left"></p-toast>
+
+<div class="contenedor-principal">
+  <div class="tarjeta">
+    <div class="perfil-wrapper">
+      <!-- Perfil del usuario -->
+      <div class="perfil-card">
+        <div class="avatar">
+          <img
+            [src]="profileImage || 'assets/perfilGato.png'"
+            (error)="onImageError($event)"
+            alt="Foto de perfil"
+          />
+        </div>
+
+        <div class="info">
+          <h2>{{ fullName }}</h2>
+          <p class="rol">{{ rol }}</p>
+        </div>
+      </div>
+
+      <!-- Mascota -->
+      <div class="mascota">
+        <img [src]="getMascotaUrl(numeroDeLibrosLeidos)" alt="Mascota animada" />
+        <div class="dialogo-retro">
+          <p>¡Sigue leyendo, me gusta!</p>
+        </div>
+      </div>
+
+      <!-- Progreso -->
+      <div class="progreso-libros">
+        <label>Progreso de lectura</label>
+        <div class="barra">
+          <div class="llenado" [style.width.%]="calcularPorcentajeLectura()"></div>
+        </div>
+        <p class="contador">{{ numeroDeLibrosLeidos }} libros leídos</p>
+      </div>
+
+      <!-- Tablas con el mismo formato del admin -->
+      <div class="tablas">
+        <!-- Préstamos -->
+        <div class="tablaPrestamos" @fadeSimple>
+          <div class="titulo">
+            <span>Préstamos</span>
+          </div>
+
+          <div class="tabla">
+            <ng-container *ngIf="!isLoadingPrestamosList; else loadingTablaPrestamos">
+              <p-scrollpanel styleClass="scroll-box">
+                <div class="list" *ngIf="pendingPrestamos.length > 0; else noPending">
+                  <div
+                    *ngFor="let p of pendingPrestamos"
+                    class="item clickable-row"
+                    (click)="goToPrestamo(p.idPrestamo)"
+                    [class.selected-row]="selectedPrestamoId === p.idPrestamo"
+                  >
+                    <div class="item-left">
+                      <strong>{{ p.libro.titulo }}</strong>
+                      <small>
+                        Desde: {{ p.fechaPrestamo | date:'dd/MM/yyyy' }} ·
+                        Hasta: {{ p.fechaEntrega | date:'dd/MM/yyyy' }}
+                      </small>
+                    </div>
+                    <div class="item-right">
+                      <span class="badge-id">#{{ p.idPrestamo }}</span>
+                      <span class="label" [ngClass]="p.devuelto === 0 ? 'pendiente' : 'regresado'">
+                        {{ p.devuelto === 0 ? 'Pendiente' : 'Regresado' }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <ng-template #noPending>
+                  <div class="empty">No hay préstamos pendientes.</div>
+                </ng-template>
+              </p-scrollpanel>
+            </ng-container>
+
+            <ng-template #loadingTablaPrestamos>
+              <ng-lottie [options]="spinner" class="table-spinner"></ng-lottie>
+            </ng-template>
+          </div>
+        </div>
+
+        <!-- Deudas -->
+        <div class="tablaDeudas" @fadeSimple>
+          <div class="titulo">
+            <span>Deudas</span>
+          </div>
+
+          <div class="tabla">
+            <ng-container *ngIf="!isLoadingPrestamosList; else loadingTablaDeudas">
+              <p-scrollpanel styleClass="scroll-box">
+                <div class="list" *ngIf="debtPrestamos.length > 0; else noDebt">
+                  <div
+                    *ngFor="let d of debtPrestamos"
+                    class="item clickable-row"
+                    (click)="goToPrestamo(d.idPrestamo)"
+                    [class.selected-row]="selectedPrestamoId === d.idPrestamo"
+                  >
+                    <div class="item-left">
+                      <strong>{{ d.libro.titulo }}</strong>
+                      <small>Usuario: {{ d.usuario.nombreUsr }} {{ d.usuario.apellidoP }}</small>
+                    </div>
+                    <div class="item-right">
+                      <span class="badge-id">#{{ d.idPrestamo }}</span>
+                      <span class="label pendiente">${{ d.multa }}</span>
+                    </div>
+                  </div>
+                </div>
+                <ng-template #noDebt>
+                  <div class="empty">No hay deudas.</div>
+                </ng-template>
+              </p-scrollpanel>
+            </ng-container>
+
+            <ng-template #loadingTablaDeudas>
+              <ng-lottie [options]="spinner" class="table-spinner"></ng-lottie>
+            </ng-template>
+          </div>
+        </div>
+      </div> <!-- /.tablas -->
+    </div>
+  </div>
+</div>

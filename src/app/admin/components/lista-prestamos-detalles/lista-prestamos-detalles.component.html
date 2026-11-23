@@ -1,0 +1,320 @@
+<p-toast position="top-right"></p-toast>
+<!-- 
+<div class="titulo text-5xl text-center font-serif mb-10">
+  {{ modoEdicion ? 'DETALLE PRÉSTAMO' : 'NUEVO PRÉSTAMO' }}
+</div>
+
+<ng-container *ngIf="modoEdicion; else nuevoForm">
+  <ng-container *ngIf="usuario && libro; else cargando">
+    <div class="mx-10 p-6 bg-white rounded-xl shadow-lg border">
+      <h3 class="text-xl font-bold mb-4">Resumen de Préstamo #{{ prestamoId }}</h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div>
+          <label class="block text-sm">Usuario</label>
+          <input pInputText [value]="usuario.nombreUsr + ' ' + usuario.apellidoP" disabled class="w-full" />
+        </div>
+        <div>
+          <label class="block text-sm">Libro</label>
+          <input pInputText [value]="libro.titulo" disabled class="w-full" />
+        </div>
+        <div>
+          <label class="block text-sm">Fecha Préstamo</label>
+          <input pInputText [value]="fechaPrestamo | date:'dd/MM/yyyy'" disabled class="w-full" />
+        </div>
+        <div>
+          <label class="block text-sm">Fecha Entrega Pactada</label>
+          <input pInputText [value]="fechaEntrega | date:'dd/MM/yyyy'" disabled class="w-full" />
+        </div>
+        <div *ngIf="devuelto">
+          <label class="block text-sm">Estado</label>
+          <input pInputText value="Devuelto" disabled class="w-full" />
+        </div>
+        <div>
+          <label class="block text-sm">Multa</label>
+          <input
+            pInputText
+            [value]="'$ ' + multaRestante.toFixed(2)"
+            disabled
+            [ngClass]="{ 'text-red-600 font-semibold': multaRestante > 0 }"
+            class="w-full"
+          />
+        </div>
+      </div>
+
+      <button
+        *ngIf="!devuelto && multaRestante > 0"
+        pButton
+        label="Pagar Multa"
+        class="bg-blue-500 text-white mb-4 w-full"
+        (click)="pagarMulta()"
+      ></button>
+
+      <button
+        *ngIf="!devuelto && multaRestante === 0"
+        pButton
+        label="Regresar Libro"
+        class="bg-lime-500 text-white w-full"
+        (click)="regresarLibro()"
+      ></button>
+
+      <div *ngIf="devuelto" class="text-center text-gray-600 mt-4">
+        Libro devuelto correctamente
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #cargando>
+    <div class="mx-10 p-6 text-center text-gray-600">🕒 Cargando datos del préstamo...</div>
+  </ng-template>
+</ng-container>
+
+<ng-template #nuevoForm>
+  <div class="mx-10 p-6 bg-white rounded-xl shadow-lg border">
+    <h3 class="text-xl font-bold mb-4">Nuevo Préstamo</h3>
+    <form [formGroup]="formulario" (ngSubmit)="realizarPrestamo()" class="space-y-6">
+      <p-scrollpanel [style]="{ width: '100%', height: '400px' }">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm">ISBN del Libro</label>
+            <div class="flex gap-2">
+              <input pInputText formControlName="isbn" placeholder="ISBN" class="flex-auto" />
+              <button pButton type="button" icon="pi pi-search" (click)="buscarLibro()"></button>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm">Correo del Usuario</label>
+            <div class="flex gap-2">
+              <input pInputText formControlName="correo" placeholder="Correo" class="flex-auto" />
+              <button pButton type="button" icon="pi pi-search" (click)="buscarUsuario()"></button>
+            </div>
+          </div>
+        </div>
+
+        <div id="forms" class="grid grid-flow-col grid-rows-2 gap-4">
+          <div *ngIf="libro" class="mb-4 p-4 bg-gray-50 rounded">
+            <label class="block text-sm">Libro</label>
+            <input pInputText [value]="libro.titulo" disabled class="w-full" />
+            <label class="block text-sm">Autor</label>
+            <input pInputText [value]="libro.autor" disabled class="w-full" />
+            <label class="block text-sm">Edición</label>
+            <input pInputText [value]="libro.edicion" disabled class="w-full" />
+            <label class="block text-sm">Género</label>
+            <input pInputText [value]="libro.genero?.nombreGenero || libro.idGenero" disabled class="w-full" />
+          </div>
+
+          <div *ngIf="usuario" class="mb-4 p-4 bg-gray-50 rounded">
+            <label class="block text-sm">Usuario</label>
+            <input pInputText [value]="usuario.nombreUsr + ' ' + usuario.apellidoP" disabled class="w-full" />
+            <label class="block text-sm">Total Préstamos</label>
+            <input pInputText [value]="usuario.totalPrestamos" disabled class="w-full" />
+            <label class="block text-sm">Total Deuda</label>
+            <input pInputText [value]="usuario.totalDeuda" disabled class="w-full" />
+          </div>
+        </div>
+
+        <div *ngIf="usuario && libro" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div>
+            <label class="block text-sm">Usuario Seleccionado</label>
+            <input pInputText [value]="usuario.nombreUsr + ' ' + usuario.apellidoP" disabled class="w-full" />
+          </div>
+          <div>
+            <label class="block text-sm">Libro Seleccionado</label>
+            <input pInputText [value]="libro.titulo" disabled class="w-full" />
+          </div>
+          <div>
+            <label class="block text-sm">Fecha Entrega Pactada</label>
+            <input pInputText [value]="fechaEntrega | date:'dd/MM/yyyy'" disabled class="w-full" />
+          </div>
+        </div>
+
+        <button
+          pButton
+          type="submit"
+          label="REALIZAR PRÉSTAMO"
+          class="w-full bg-lime-500 text-white"
+          [disabled]="formulario.invalid || !libro || !usuario"
+        ></button>
+      </p-scrollpanel>
+    </form>
+  </div>
+</ng-template>
+
+ -->
+
+ <p-toast position="top-right"></p-toast>
+
+<div class="detalle-prestamo-wrap">
+
+  <!-- Botón Regresar flotante / sticky -->
+  <div class="back-floating">
+    <button
+      pButton
+      pRipple
+      icon="pi pi-arrow-left"
+      label="Regresar"
+      class="back-btn"
+      (click)="goBack()"
+    ></button>
+  </div>
+
+  <!-- MODO EDICIÓN (DETALLE) -->
+  <ng-container *ngIf="modoEdicion; else nuevoForm">
+
+    <!-- LOADING -->
+    <div class="loading" *ngIf="cargando" @fadeSimple>
+      <ng-lottie [options]="spinner" class="lottie"></ng-lottie>
+      <p>Cargando datos del préstamo...</p>
+    </div>
+
+    <!-- CONTENIDO -->
+    <ng-container *ngIf="!cargando && usuario && libro" @fadeUp>
+
+      <!-- Encabezado -->
+      <header class="header-card card" @fadeUp>
+        <div class="left">
+          <h1>Préstamo #{{ prestamoId }}</h1>
+          <!-- <div class="mini">
+            <span class="chip">
+              <i class="pi pi-calendar"></i>
+              {{ fechaPrestamo | date:'dd/MM/yyyy' }} → {{ fechaEntrega | date:'dd/MM/yyyy' }}
+            </span>
+            <p-tag
+              class="estado-tag"
+              [value]="estadoLabel"
+              [severity]="estadoSeverity"
+            ></p-tag>
+
+            <p-tag class="tiempo-tag" [value]="diasChipLabel" [severity]="diasChipSeverity"></p-tag>
+          </div> -->
+        </div>
+        <!-- <div class="right">
+          <span class="multa" [class.deuda]="multaRestante > 0">
+            Multa: {{ multaRestante | currency:'USD':'symbol':'1.2-2' }}
+          </span>
+        </div> -->
+      </header>
+
+      <!-- GRID principal -->
+      <section class="details-grid">
+
+        <!-- Libro -->
+        <article class="card book-card" @fadeSimple>
+          <div class="cover">
+            <img
+              *ngIf="libro?.fotoUsr"
+              [src]="photoUrl(libro.fotoUsr)"
+              alt="Portada del libro"
+            />
+            <div class="cover-fallback" *ngIf="!libro?.fotoUsr">
+              <i class="pi pi-book"></i>
+            </div>
+          </div>
+
+          <div class="info">
+            <h2 class="title">{{ libro?.titulo || '—' }}</h2>
+            <div class="rows">
+              <div class="row"><span>Autor</span><strong>{{ libro?.autor || '—' }}</strong></div>
+              <div class="row"><span>Edición</span><strong>{{ libro?.edicion || '—' }}</strong></div>
+              <div class="row"><span>Año</span><strong>{{ libro?.anioPubli || '—' }}</strong></div>
+              <div class="row"><span>Stock</span><strong>{{ libro?.cantidad ?? '—' }}</strong></div>
+              <div class="row">
+                <span>Género</span>
+                <strong>{{ libroGeneroLabel }}</strong>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Usuario -->
+        <article class="card user-card" @fadeSimple>
+          <div class="user">
+            <div class="avatar">
+              <img
+                *ngIf="usuario?.fotoUsr"
+                [src]="photoUrl(usuario.fotoUsr)"
+                alt="Avatar de usuario"
+              />
+              <span *ngIf="!usuario?.fotoUsr">{{ initials(usuario?.nombreUsr + ' ' + usuario?.apellidoP) }}</span>
+            </div>
+            <div class="uinfo">
+              <h2 class="name">{{ usuario?.nombreUsr }} {{ usuario?.apellidoP }}</h2>
+              <div class="sub">{{ usuario?.correoUsr || '—' }}</div>
+            </div>
+          </div>
+
+          <div class="rows">
+            <div class="row"><span>Teléfono</span><strong>{{ usuario?.telefonoUsr || '—' }}</strong></div>
+            <div class="row"><span>Dirección</span><strong>{{ usuario?.calle || '—' }}, {{ usuario?.colonia || '—' }}</strong></div>
+            <div class="row"><span>Tipo de usuario</span><strong>{{ usuarioTipoLabel }}</strong></div>
+            <div class="row"><span>Estado</span><strong>{{ usuarioEstadoLabel }}</strong></div>
+          </div>
+        </article>
+
+        <!-- Resumen / Acciones -->
+        <aside class="card resume-card" @fadeSimple>
+          <h3 class="resume-title">Resumen</h3>
+          <div class="resume-rows">
+            <div class="r"><span>Libro</span><strong>{{ libro?.titulo || '—' }}</strong></div>
+            <div class="r"><span>Usuario</span><strong>{{ usuario?.nombreUsr }} {{ usuario?.apellidoP }}</strong></div>
+            <div class="r"><span>Prestado</span><strong>{{ fechaPrestamo | date:'dd/MM/yyyy' }}</strong></div>
+            <div class="r"><span>Entrega pactada</span><strong>{{ fechaEntrega | date:'dd/MM/yyyy' }}</strong></div>
+            <div class="r">
+              <span>Estado</span>
+              <strong>
+                <p-tag [value]="estadoLabel" [severity]="estadoSeverity"></p-tag>
+              </strong>
+            </div>
+            <div class="r">
+              <span>Multa</span>
+              <strong [class.deuda]="multaRestante > 0">{{ multaRestante | currency:'USD':'symbol':'1.2-2' }}</strong>
+            </div>
+            <div class="r">
+              <span>Tiempo</span>
+              <strong>
+                <p-tag [value]="diasChipLabel" [severity]="diasChipSeverity"></p-tag>
+              </strong>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button
+              pButton
+              pRipple
+              label="Pagar multa"
+              icon="pi pi-wallet"
+              class="p-button-danger"
+              (click)="pagarMulta()"
+              [disabled]="devuelto || multaRestante <= 0"
+            ></button>
+
+            <button
+              pButton
+              pRipple
+              label="Marcar devuelto"
+              icon="pi pi-check"
+              class="p-button-success"
+              (click)="regresarLibro()"
+              [disabled]="devuelto || multaRestante > 0"
+            ></button>
+          </div>
+
+          <div class="devuelto-msg" *ngIf="devuelto">
+            <i class="pi pi-check-circle"></i> Libro devuelto correctamente
+          </div>
+        </aside>
+
+      </section>
+    </ng-container>
+  </ng-container>
+
+  <!-- NUEVO (se deja como estaba por compatibilidad) -->
+  <ng-template #nuevoForm>
+    <div class="fallback-new card" @fadeUp>
+      <h2>Nuevo préstamo</h2>
+      <p>Esta vista está pensada para detalle. Para crear un préstamo usa el componente de “Nuevo préstamo”.</p>
+    </div>
+  </ng-template>
+</div>
+

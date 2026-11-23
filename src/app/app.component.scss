@@ -1,0 +1,29 @@
+::ng-deep .logout-dialog.p-confirm-dialog {
+  background-color: #FAF3ED !important;  // beige
+  color: #44322D !important;             // marrón
+  border-radius: 1rem !important;
+  border: 2px solid #44322d60 !important;
+}
+
+::ng-deep .logout-dialog .p-dialog-header {
+  background-color: #FAF3ED !important;
+  color: #44322D !important;
+  font-weight: bold;
+}
+
+::ng-deep .logout-dialog .p-confirm-dialog-icon {
+  color: #FF6F61 !important; // coral
+  font-size: 2rem;
+}
+
+::ng-deep .logout-dialog .p-confirm-dialog-accept {
+  background-color: #FF6F61 !important;
+  color: white !important;
+  border: none;
+}
+
+::ng-deep .logout-dialog .p-confirm-dialog-reject {
+  background-color: #fff5f0 !important;
+  color: #44322D !important;
+  border: 1px solid #44322d60 !important;
+}
